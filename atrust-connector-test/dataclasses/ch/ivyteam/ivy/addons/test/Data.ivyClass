@@ -1,0 +1,6 @@
+Data #class
+ch.ivyteam.ivy.addons.test #namespace
+signatureJob atrust.bo.SignatureJob #field
+signatureJob PERSISTENT #fieldModifier
+signatureDocumentData atrust.bo.SignatureDocumentData #field
+signatureDocumentData PERSISTENT #fieldModifier
