@@ -136,7 +136,7 @@ Bk6 @GridStep f1 '' #zField
 Bk6 @PushWFArc f2 '' #zField
 Bk6 @PushWFArc f0 '' #zField
 >Proto Bk6 Bk6 BpmnScriptTask #zField
-Dt0 f11 617 201 30 30 0 15 #rect
+Dt0 f11 545 177 30 30 0 15 #rect
 Dt0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -151,7 +151,7 @@ Then he can press sign the doc. Integration code will be call, and user will be 
     </language>
 </elementInfo>
 ' #txt
-Dt0 f18 128 82 592 92 -290 -42 #rect
+Dt0 f18 64 66 592 92 -290 -42 #rect
 Dt0 f15 outLink StartATrustExample.ivp #txt
 Dt0 f15 inParamDecl '<> param;' #txt
 Dt0 f15 requestEnabled true #txt
@@ -170,7 +170,7 @@ Dt0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f15 @C|.responsibility Everybody #txt
-Dt0 f15 137 201 30 30 -24 17 #rect
+Dt0 f15 65 177 30 30 -24 17 #rect
 Dt0 f1 dialogId atrust.demo.DocumentSignature #txt
 Dt0 f1 startMethod start() #txt
 Dt0 f1 requestActionDecl '<> param;' #txt
@@ -186,10 +186,10 @@ Dt0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f1 272 194 128 44 -55 -8 #rect
-Dt0 f2 167 216 272 216 #arcP
-Dt0 f5 400 216 617 216 #arcP
-Dt0 f10 1009 393 30 30 0 15 #rect
+Dt0 f1 200 170 128 44 -55 -8 #rect
+Dt0 f2 95 192 200 192 #arcP
+Dt0 f5 328 192 545 192 #arcP
+Dt0 f10 937 337 30 30 0 15 #rect
 Dt0 f4 outLink AddTemplateATrust.ivp #txt
 Dt0 f4 inParamDecl '<> param;' #txt
 Dt0 f4 requestEnabled true #txt
@@ -204,7 +204,7 @@ Dt0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f4 @C|.responsibility Everybody #txt
-Dt0 f4 137 393 30 30 -21 17 #rect
+Dt0 f4 65 337 30 30 -21 17 #rect
 Dt0 f16 outLink DeleteTemplateATrust.ivp #txt
 Dt0 f16 inParamDecl '<> param;' #txt
 Dt0 f16 requestEnabled true #txt
@@ -219,7 +219,7 @@ Dt0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f16 @C|.responsibility Everybody #txt
-Dt0 f16 137 593 30 30 -21 17 #rect
+Dt0 f16 65 529 30 30 -21 17 #rect
 Dt0 f17 outLink GetListTemplate.ivp #txt
 Dt0 f17 inParamDecl '<> param;' #txt
 Dt0 f17 requestEnabled true #txt
@@ -234,10 +234,10 @@ Dt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f17 @C|.responsibility Everybody #txt
-Dt0 f17 137 817 30 30 -24 17 #rect
-Dt0 f19 785 593 30 30 0 15 #rect
-Dt0 f20 785 817 30 30 0 15 #rect
-Dt0 f23 167 408 272 408 #arcP
+Dt0 f17 65 705 30 30 -24 17 #rect
+Dt0 f19 713 529 30 30 0 15 #rect
+Dt0 f20 713 705 30 30 0 15 #rect
+Dt0 f23 95 352 200 352 #arcP
 Dt0 S11 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -246,8 +246,8 @@ Dt0 S11 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dt0 S11 272 386 192 44 -77 -16 #rect
-Dt0 f3 464 408 512 408 #arcP
+Dt0 S11 200 330 192 44 -77 -16 #rect
+Dt0 f3 392 352 440 352 #arcP
 Dt0 S21 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -256,10 +256,10 @@ AddTemplateATrust</name>
     </language>
 </elementInfo>
 ' #txt
-Dt0 S21 512 386 256 44 -107 -16 #rect
-Dt0 f6 167 608 272 608 #arcP
-Dt0 f8 400 608 480 608 #arcP
-Dt0 f12 720 608 785 608 #arcP
+Dt0 S21 440 330 256 44 -107 -16 #rect
+Dt0 f6 95 544 200 544 #arcP
+Dt0 f8 328 544 408 544 #arcP
+Dt0 f12 648 544 713 544 #arcP
 Dt0 S31 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -268,7 +268,7 @@ which will be deleted</name>
     </language>
 </elementInfo>
 ' #txt
-Dt0 S31 272 586 128 44 -57 -20 #rect
+Dt0 S31 200 522 128 44 -57 -20 #rect
 Dt0 S41 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -277,8 +277,8 @@ DeleteTemplateATrust</name>
     </language>
 </elementInfo>
 ' #txt
-Dt0 S41 480 586 240 44 -111 -20 #rect
-Dt0 f0 167 832 272 832 #arcP
+Dt0 S41 408 522 240 44 -111 -20 #rect
+Dt0 f0 95 720 200 720 #arcP
 Dt0 S51 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -287,7 +287,7 @@ GetListTemplate</name>
     </language>
 </elementInfo>
 ' #txt
-Dt0 S51 272 810 240 44 -111 -20 #rect
+Dt0 S51 200 698 240 44 -111 -20 #rect
 Dt0 S60 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -295,9 +295,9 @@ Dt0 S60 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dt0 S60 608 810 112 44 -31 -8 #rect
-Dt0 f7 512 832 608 832 #arcP
-Dt0 f13 720 832 785 832 #arcP
+Dt0 S60 536 698 112 44 -31 -8 #rect
+Dt0 f7 440 720 536 720 #arcP
+Dt0 f13 648 720 713 720 #arcP
 Dt0 S61 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -305,9 +305,9 @@ Dt0 S61 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dt0 S61 832 386 112 44 -31 -8 #rect
-Dt0 f14 768 408 832 408 #arcP
-Dt0 f9 944 408 1009 408 #arcP
+Dt0 S61 760 330 112 44 -31 -8 #rect
+Dt0 f14 696 352 760 352 #arcP
+Dt0 f9 872 352 937 352 #arcP
 Dt0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -319,7 +319,7 @@ Template should be a xml file</name>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f21 128 322 432 44 -212 -18 #rect
+Dt0 f21 64 274 432 44 -212 -18 #rect
 Dt0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -333,7 +333,7 @@ You should provide exactly templateID</name>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f22 128 522 448 44 -217 -18 #rect
+Dt0 f22 64 458 448 44 -217 -18 #rect
 Dt0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -347,28 +347,28 @@ It returns your templates name and ids</name>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f24 128 754 496 44 -243 -18 #rect
+Dt0 f24 64 642 496 44 -243 -18 #rect
 Dt0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>API KEY IN GLOBAL VARIABLE of A-TRUST-CONNECTOR project:&#13;
-- ATrust.APIKey: API Key for A-Trust Handysignatur api&#13;
-- ATrust.ATrustTemplateId: The ID of the signature template to be used.&#13;
+        <name>API KEY IN GLOBAL VARIABLE of A-TRUST-CONNECTOR  project:&#13;
+- ATrust.APIKey  : API Key for A-Trust Handysignatur api&#13;
+- ATrust.ATrustTemplateId   : The ID of the signature template to be used.&#13;
 </name>
         <nameStyle>26,5,8,0
 4,5,8
 17,5,8,0
-9,5,8
+10,5,8
 4,5
-13,5,0
+15,5,0,12
 43,5
-23,5,0
+26,5,0,12
 48,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f25 760 90 512 76 -248 -34 #rect
+Dt0 f25 680 66 512 76 -250 -34 #rect
 Dt0 f25 -1|-1|-65536 #nodeStyle
 >Proto Dt0 .type atrust.connector.demo.Data #txt
 >Proto Dt0 .processKind NORMAL #txt
@@ -378,7 +378,7 @@ Dt0 f25 -1|-1|-65536 #nodeStyle
         <swimlaneLabel>Example to integrate in your process</swimlaneLabel>
     </language>
     <swimlaneOrientation>false</swimlaneOrientation>
-    <swimlaneSize>928</swimlaneSize>
+    <swimlaneSize>768</swimlaneSize>
     <swimlaneColor gradient="false">-1</swimlaneColor>
     <swimlaneType>POOL</swimlaneType>
     <swimlaneSpaceBefore>32</swimlaneSpaceBefore>
