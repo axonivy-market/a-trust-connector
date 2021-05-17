@@ -1,0 +1,16 @@
+SignatureResult #class
+atrust.connector.restricted #namespace
+signatureAppliedSuccessfully Boolean #field
+signatureAppliedSuccessfully 'True when A-Trust reports successfull signature.' #fieldComment
+pdfDocument java.util.List<Byte> #field
+pdfDocument 'PDF Binary of signed document.' #fieldComment
+referenceTaskId Long #field
+referenceTaskId 'The reference task id you passed during the signature request. Used to recognize that this is callback task.' #fieldComment
+errorMessage String #field
+errorMessage 'Message in case of an error.' #fieldComment
+documentName String #field
+documentName 'Name of the document (passed back from A-Trust service)' #fieldComment
+certificateB64 String #field
+certificateB64 'Used signature certificate, encoded by Base64.' #fieldComment
+aTrustTicketID String #field
+aTrustTicketID 'Ticket ID from A-Trust signature inbox.' #fieldComment

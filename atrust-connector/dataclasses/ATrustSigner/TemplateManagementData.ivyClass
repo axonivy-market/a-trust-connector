@@ -1,0 +1,6 @@
+TemplateManagementData #class
+ATrustSigner #namespace
+documentByteArray List<Byte> #field
+result atrust.bo.TemplateData #field
+myIvyFile File #field
+templateId Number #field

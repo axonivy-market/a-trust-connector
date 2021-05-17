@@ -1,0 +1,68 @@
+{
+	"id": "atrust",
+	"name": "A-Trust Mobile phone signature",
+	"tags": ["connector"],
+	"mavenArtifacts": [
+		{
+			"name": "A-Trust Connector",
+			"groupId": "ch.ivyteam.connector",
+			"artifactId": "atrust-connector",
+			"makesSenseAsMavenDependency": true
+		},
+		{
+			"name": "A-Trust Connector Demo",
+			"groupId": "ch.ivyteam.connector",
+			"artifactId": "atrust-connector-demo"
+		}
+	],
+	"installers": [
+		{
+			"id": "maven-dependency",
+			"data": {
+				"dependencies": [
+					{
+						"groupId": "ch.ivyteam.connector",
+						"artifactId": "atrust-connector",
+						"version": "1.0.0-SNAPSHOT",
+						"type": "iar"
+					}
+				],
+				"repositories":[
+					{
+						"id":"axonivy.public",
+						"url":"http://repo.axonivy.rocks",
+						"snapshots":{"enabled":"true"}
+					}
+				]
+			}
+		},
+		{
+			"id": "maven-import",
+			"data": {
+				"projects":[
+					{
+						"groupId": "ch.ivyteam.connector",
+						"artifactId": "atrust-connector-demo",
+						"version": "1.0.0-SNAPSHOT",
+						"type": "iar"
+					}
+				],
+				"repositories":[
+					{
+						"id":"axonivy.public",
+						"url":"http://repo.axonivy.rocks"
+					}
+				]
+			}
+		},
+		{
+			"id": "open-resource",
+			"data": {
+				"project": "atrust-connector-demo",
+				"resources": [
+					"processes/ATrustIntegration/DemoStart.mod"
+				]
+			}
+		}
+	]
+}
