@@ -49,7 +49,7 @@ Ee0 @PushWFArc f13 '' #zField
 >Proto Ee0 Ee0 EndSignature #zField
 Ee0 f21 actionTable 'out=in;
 ' #txt
-Ee0 f21 actionCode 'import atrust.util.ATrustSignerSessionHelper;
+Ee0 f21 actionCode 'import atrust.connector.util.ATrustSignerSessionHelper;
 
 ATrustSignerSessionHelper.saveToSession(in.signatureResult);' #txt
 Ee0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -115,8 +115,8 @@ Ee0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ee0 f24 792 202 176 44 -82 -8 #rect
 Ee0 f20 actionTable 'out=in;
 ' #txt
-Ee0 f20 actionCode 'import atrust.connector.restricted.SignatureSessionContainer;
-import atrust.util.ATrustSignerSessionHelper;
+Ee0 f20 actionCode 'import atrust.connector.util.ATrustSignerSessionHelper;
+import atrust.connector.restricted.SignatureSessionContainer;
 import ch.ivyteam.ivy.bpm.error.BpmError;
 
 SignatureSessionContainer container = ATrustSignerSessionHelper.getContainerObjectFromSession();
@@ -164,8 +164,8 @@ flag to TRUE</name>
 Ee0 f19 792 106 128 44 -40 -16 #rect
 Ee0 f47 actionTable 'out=in;
 ' #txt
-Ee0 f47 actionCode 'import atrust.connector.restricted.SignatureResult;
-import atrust.util.ATrustSignerSessionHelper;
+Ee0 f47 actionCode 'import atrust.connector.util.ATrustSignerSessionHelper;
+import atrust.connector.restricted.SignatureResult;
 import ch.ivyteam.ivy.bpm.error.BpmError;
 
 //get signature result from session (as we only handle one siganture per user at a time, we do not need more parameters)
@@ -205,9 +205,11 @@ Ee0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ee0 f5 @C|.responsibility Everybody #txt
 Ee0 f5 129 209 30 30 -34 27 #rect
+Ee0 f5 res:/webContent/icons/atrust-icon.png?small #fDecoratorIcon
+Ee0 f5 bg|bg|-65536 #nodeStyle
 Ee0 f45 actionTable 'out=in;
 ' #txt
-Ee0 f45 actionCode 'import atrust.util.ATrustSignerSessionHelper;
+Ee0 f45 actionCode 'import atrust.connector.util.ATrustSignerSessionHelper;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.request.IHttpResponse;
 import ch.ivyteam.ivy.request.IHttpRequest;
@@ -260,7 +262,7 @@ Ee0 f23 operation EndSignature #txt
 Ee0 f23 inputParams 'parameters.aPIKey=ivy.var.ATrust_APIKey;
 parameters.ticket=in.aTrustTicketID;
 ' #txt
-Ee0 f23 exceptionHandler at:aws:atrustsigner:endsignature:exception #txt
+Ee0 f23 exceptionHandler atrust:connector:atrustsigner:endsignature:exception #txt
 Ee0 f23 beanConfig "" #txt
 Ee0 f23 timeout 0 #txt
 Ee0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -339,7 +341,7 @@ out.signatureResult.errorMessage=error.getLocalizedMessage();
 out.signatureResult.pdfDocument=null;
 out.signatureResult.signatureAppliedSuccessfully=false;
 ' #txt
-Ee0 f22 errorCode at:aws:atrustsigner:endsignature:exception #txt
+Ee0 f22 errorCode atrust:connector:atrustsigner:endsignature:exception #txt
 Ee0 f22 attachedToRef 1795E86BDB4B84C5-f23 #txt
 Ee0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -351,10 +353,10 @@ Ee0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ee0 f22 569 241 30 30 -119 17 #rect
 Ee0 f0 actionTable 'out=in;
 ' #txt
-Ee0 f0 actionCode 'import atrust.connector.restricted.SignatureResult;
-import atrust.enums.SignatureStatus;
-import atrust.util.ATrustSignerSessionHelper;
-import atrust.bo.SignatureDocumentData;
+Ee0 f0 actionCode 'import atrust.connector.enums.SignatureStatus;
+import atrust.connector.bo.SignatureDocumentData;
+import atrust.connector.util.ATrustSignerSessionHelper;
+import atrust.connector.restricted.SignatureResult;
 import ch.ivyteam.ivy.workflow.ITask;
 import java.io.ByteArrayInputStream;
 import ch.ivyteam.ivy.workflow.document.Path;
@@ -398,10 +400,10 @@ Ee0 f1 outCond in.signatureAppliedSuccessfully #txt
 Ee0 f1 432 584 488 584 #arcP
 Ee0 f10 actionTable 'out=in;
 ' #txt
-Ee0 f10 actionCode 'import atrust.connector.restricted.SignatureResult;
-import atrust.enums.SignatureStatus;
-import atrust.util.ATrustSignerSessionHelper;
-import atrust.bo.SignatureDocumentData;
+Ee0 f10 actionCode 'import atrust.connector.enums.SignatureStatus;
+import atrust.connector.bo.SignatureDocumentData;
+import atrust.connector.util.ATrustSignerSessionHelper;
+import atrust.connector.restricted.SignatureResult;
 import ch.ivyteam.ivy.workflow.ITask;
 
 SignatureResult sr = ATrustSignerSessionHelper.getSignatureResultFromSession();
@@ -444,7 +446,7 @@ Ee0 f2 752 584 808 584 #arcP
 Ee0 f13 600 704 736 600 #arcP
 Ee0 f13 1 736 704 #addKink
 Ee0 f13 0 0.2279760548790699 -1 -15 #arcLabel
->Proto Ee0 .type ATrustSigner.EndSignatureData #txt
+>Proto Ee0 .type atrust.connector.atrustsigner.EndSignatureData #txt
 >Proto Ee0 .processKind NORMAL #txt
 >Proto Ee0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

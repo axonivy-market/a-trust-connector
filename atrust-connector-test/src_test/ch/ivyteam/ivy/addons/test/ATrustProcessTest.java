@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
-import ATrustSigner.StartSignatureData;
-import atrust.bo.SignatureDocumentData;
-import atrust.bo.SignatureJob;
+import atrust.connector.atrustsigner.StartSignatureData;
+import atrust.connector.bo.SignatureDocumentData;
+import atrust.connector.bo.SignatureJob;
 import ch.ivyteam.ivy.bpm.engine.client.BpmClient;
 import ch.ivyteam.ivy.bpm.engine.client.ExecutionResult;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmElement;

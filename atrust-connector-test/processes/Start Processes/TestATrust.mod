@@ -30,8 +30,8 @@ Tt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f0 @C|.responsibility Everybody #txt
 Tt0 f0 81 113 30 30 -21 17 #rect
-Tt0 f13 processCall ATrustSigner/StartSignature:call(atrust.bo.SignatureJob) #txt
-Tt0 f13 requestActionDecl '<atrust.bo.SignatureJob signatureJob> param;' #txt
+Tt0 f13 processCall ATrustSigner/StartSignature:call(atrust.connector.bo.SignatureJob) #txt
+Tt0 f13 requestActionDecl '<atrust.connector.bo.SignatureJob signatureJob> param;' #txt
 Tt0 f13 requestMappingAction 'param.signatureJob=in.signatureJob;
 ' #txt
 Tt0 f13 responseActionDecl 'at.DocumentSignatureComponent.DocumentSignatureComponentData out;
@@ -51,8 +51,8 @@ Output: SignatureDocumentData</name>
 Tt0 f13 432 98 192 60 -89 -28 #rect
 Tt0 f10 actionTable 'out=in;
 ' #txt
-Tt0 f10 actionCode 'import ch.ivyteam.ivy.cm.IContentObjectValue;
-import atrust.bo.SignatureJob;
+Tt0 f10 actionCode 'import atrust.connector.bo.SignatureJob;
+import ch.ivyteam.ivy.cm.IContentObjectValue;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import ch.ivyteam.ivy.workflow.document.IDocument;

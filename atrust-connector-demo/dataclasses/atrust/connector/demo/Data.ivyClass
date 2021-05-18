@@ -1,6 +1,6 @@
 Data #class
 atrust.connector.demo #namespace
 myIvyFile File #field
-templateData atrust.bo.TemplateData #field
+templateData atrust.connector.bo.TemplateData #field
 templateId Number #field
 templateId PERSISTENT #fieldModifier

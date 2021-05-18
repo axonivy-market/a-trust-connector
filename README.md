@@ -30,27 +30,15 @@ Before any signing interactions between the **Axon Ivy Engine** and the **A-Trus
 
 1. Register an A-Trust Handy-Signatur account: https://www.a-trust.at/en/handy-signatur/handy-signatur-activation/
 
-2. Create an A-Trust Signatur-Box and get a new open API key: https://www.a-trust.at/en/handy-signatur/signaturbox/
+2. Create an A-Trust Signatur-Box **[here](https://www.a-trust.at/en/handy-signatur/signaturbox)** and then get a new `API key` with the `Endpoint URI` web service.
 
-3. Open the `Definitions/Web Service Clients` Editor in your Designer and select `ATrustHandysignaturService` client.
-
-4. Edit the web service `WSDL URL` to your ***Signatur-box*** endpoint:
-
-   ![atrust-wsdl-url](doc/images/edit-web-service-client.png)
-
-5. Scroll to **Features** add `IgnoreAllPoliciesFeature` and `WSAddressingFeature`
-
-   ![atrust-service-feature](doc/images/edit-web-service-feature.png)
-
-6. Click on the `Generate WS classes` button, then save and close `Web Service Clients`. Make sure your `Endpoint URI` is generated correctly.
-
-7. Open the `Configuration/variables.yaml` in your Designer and edit `APIKey`, `ATrustTemplateId`
+3. Open the `Configuration/variables.yaml` in your Designer and edit: `APIKey`, `TemplateId`, `EndpointUri`
 
    ![atrust-key](doc/images/edit-atrust-variable.png)
 
-8. Save the changed settings.
+4. Save the changed settings.
 
-9. Start `ATrustIntegration/DemoStart/StartATrustExample.ivp` of the `atrust-connector-demo` project to test your setup.
+5. Start `ATrustIntegration/DemoStart/StartATrustExample.ivp` of the `atrust-connector-demo` project to test your setup.
 
       Your setup was correct if you are being forwarded to the ***[A-Trust identification](https://www.handy-signatur.at/mobile/https-security-layer-request/identification.aspx)*** page.
 

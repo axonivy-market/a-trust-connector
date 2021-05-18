@@ -107,7 +107,7 @@ Tt0 f94 448 128 536 128 #arcP
 Tt0 f3 inParamDecl '<File templateFile> param;' #txt
 Tt0 f3 inParamTable 'out.myIvyFile=param.templateFile;
 ' #txt
-Tt0 f3 outParamDecl '<atrust.bo.TemplateData templateData> result;' #txt
+Tt0 f3 outParamDecl '<atrust.connector.bo.TemplateData templateData> result;' #txt
 Tt0 f3 outParamTable 'result.templateData=in.result;
 ' #txt
 Tt0 f3 callSignature AddTemplateATrust(File) #txt
@@ -119,9 +119,11 @@ Tt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f3 145 113 30 30 -13 17 #rect
+Tt0 f3 res:/webContent/icons/atrust-icon.png?small #fDecoratorIcon
+Tt0 f3 bg|bg|-65536 #nodeStyle
 Tt0 f12 175 128 320 128 #arcP
 Tt0 f0 inParamDecl '<> param;' #txt
-Tt0 f0 outParamDecl '<atrust.bo.TemplateData templateData> result;' #txt
+Tt0 f0 outParamDecl '<atrust.connector.bo.TemplateData templateData> result;' #txt
 Tt0 f0 outParamTable 'result.templateData=in.result;
 ' #txt
 Tt0 f0 callSignature GetListTemplate() #txt
@@ -133,10 +135,18 @@ Tt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f0 145 497 30 30 -13 17 #rect
+Tt0 f0 res:/webContent/icons/atrust-icon.png?small #fDecoratorIcon
+Tt0 f0 bg|bg|-65536 #nodeStyle
 Tt0 f6 175 512 288 512 #arcP
 Tt0 f1 785 113 30 30 0 15 #rect
+Tt0 f1 res:/webContent/icons/atrust-icon.png?small #fDecoratorIcon
+Tt0 f1 bg|bg|-65536 #nodeStyle
 Tt0 f2 689 305 30 30 0 15 #rect
+Tt0 f2 res:/webContent/icons/atrust-icon.png?small #fDecoratorIcon
+Tt0 f2 bg|bg|-65536 #nodeStyle
 Tt0 f5 593 497 30 30 0 15 #rect
+Tt0 f5 res:/webContent/icons/atrust-icon.png?small #fDecoratorIcon
+Tt0 f5 bg|bg|-65536 #nodeStyle
 Tt0 f8 400 512 593 512 #arcP
 Tt0 f10 528 320 689 320 #arcP
 Tt0 f11 664 128 785 128 #arcP
@@ -155,8 +165,10 @@ Tt0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f13 145 305 30 30 -13 17 #rect
+Tt0 f13 res:/webContent/icons/atrust-icon.png?small #fDecoratorIcon
+Tt0 f13 bg|bg|-65536 #nodeStyle
 Tt0 f7 175 320 320 320 #arcP
->Proto Tt0 .type ATrustSigner.TemplateManagementData #txt
+>Proto Tt0 .type atrust.connector.atrustsigner.TemplateManagementData #txt
 >Proto Tt0 .processKind CALLABLE_SUB #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

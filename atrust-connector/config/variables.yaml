@@ -1,9 +1,4 @@
-# == Variables ==
-# 
-# You can define here your project Variables.
-# If you want to define/override a Variable for a specific Environment, 
-# please add a 'variables.yaml' in the sub directory '_<environment>'.
-#
+
 Variables:
   # Custom variables of ATrust Handysignatur API
   ATrust:
@@ -14,15 +9,8 @@ Variables:
     APIKey: 'TEST-API-KEY-UXWRZBKTTMQOFXFQFIUPABGUCZQGYTXDFPYTUOYRGIFQHKRELBR'
 
     # The ID of the signature template to be used.
-    ATrustTemplateId: 14467
+    TemplateId: 14467
 
-    # The position of the signature seal in the PDF.
-    SignStamp:
-      # Left lower X coordinate of the signature seal (in user space units)
-      CoordinatesX0: '30.0'
-      # Right upper X coordinate of the signature seal (in user space units)
-      CoordinatesX1: '60.2'
-      # Left lower Y coordinate of the signature seal (in user space units)
-      CoordinatesY0: '5.5'
-      # Right upper Y coordinate of the signature seal (in user space units)
-      CoordinatesY1: '14.4'
+    # The endpoint uri of A-Trust Handysignatur Signatur-box webservice
+    EndpointUri: 'https://handy-signatur.at/demosignaturbox/intern/HandySignaturPdf.svc'
+
