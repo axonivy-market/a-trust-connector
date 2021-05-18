@@ -63,8 +63,10 @@ The DemoStart process contains a final service part, where we prepared a signatu
 
    ![atrust-demo-feature](doc/images/atrust-demo-feature.png)
 
-* You need to upload a signature template and update `ATrustTemplateId` value in the `Configuration/variables.yaml`.
-* An example SignatureTemplate in CMS: `cms/Templates/tempsiegel1`.
-* Upload template process available in `DemoStart.mod` process of `atrust-connector-demo` project. A-trust returns `templateID` and sets it in project Variables!
+* You need to upload a **SignatureTemplate** to the **[A-Trust](https://www.a-trust.at)** service. Uses `Upload template` start in the `DemoStart.mod` process of `atrust-connector-demo` project.
+
+   When uploading successfully, A-trust returns `templateID` and sets it in project Variables - `ATrustTemplateId` value in the `Configuration/variables.yaml`.
+
+* An example **SignatureTemplate** in CMS: `cms/Templates/tempsiegel1`.
 * **Handy Signatur** is probably only possible for **AUSTRIANS**.
 * Check the latest API description on the **[A-Trust](https://www.a-trust.at)** webpage.

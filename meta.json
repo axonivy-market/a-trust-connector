@@ -23,7 +23,7 @@
 					{
 						"groupId": "ch.ivyteam.connector",
 						"artifactId": "atrust-connector",
-						"version": "1.0.0-SNAPSHOT",
+						"version": "${version}",
 						"type": "iar"
 					}
 				],
@@ -43,7 +43,7 @@
 					{
 						"groupId": "ch.ivyteam.connector",
 						"artifactId": "atrust-connector-demo",
-						"version": "1.0.0-SNAPSHOT",
+						"version": "${version}",
 						"type": "iar"
 					}
 				],

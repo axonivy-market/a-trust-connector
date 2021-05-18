@@ -28,8 +28,7 @@ Tt0 @StartSub f13 '' #zField
 Tt0 @PushWFArc f7 '' #zField
 >Proto Tt0 Tt0 TemplateManagement #zField
 Tt0 f103 actionTable 'out=in;
-' #txt
-Tt0 f103 actionCode '
+out.result.resultCode=wsResponse;
 ' #txt
 Tt0 f103 clientId 17963E54F88541B8 #txt
 Tt0 f103 port HttpsEndpoint #txt
@@ -144,7 +143,9 @@ Tt0 f11 664 128 785 128 #arcP
 Tt0 f13 inParamDecl '<Number templateId> param;' #txt
 Tt0 f13 inParamTable 'out.templateId=param.templateId;
 ' #txt
-Tt0 f13 outParamDecl '<> result;' #txt
+Tt0 f13 outParamDecl '<Integer resultCode> result;' #txt
+Tt0 f13 outParamTable 'result.resultCode=in.result.resultCode;
+' #txt
 Tt0 f13 callSignature DeleteTemplateATrust(Number) #txt
 Tt0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
