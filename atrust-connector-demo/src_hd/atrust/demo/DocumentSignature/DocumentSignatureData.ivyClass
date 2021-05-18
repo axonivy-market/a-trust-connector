@@ -1,9 +1,9 @@
 DocumentSignatureData #class
 atrust.demo.DocumentSignature #namespace
-signatureJob atrust.bo.SignatureJob #field
+signatureJob atrust.connector.bo.SignatureJob #field
 signatureJob 'The input of A-Trust Signature servive' #fieldComment
 signatureJob PERSISTENT #fieldModifier
-signatureDocumentData atrust.bo.SignatureDocumentData #field
+signatureDocumentData atrust.connector.bo.SignatureDocumentData #field
 signatureDocumentData 'The output of A-Trust Signature servive' #fieldComment
 signatureDocumentData PERSISTENT #fieldModifier
 disableSignButton Boolean #field

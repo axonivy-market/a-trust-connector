@@ -3,6 +3,7 @@
     <webServiceConfig>
         <name>ATrustHandysignaturService</name>
         <id>17963E54F88541B8</id>
+        <icon>res:/webContent/icons/atrust-icon.png</icon>
         <wsdlUrl>https://handy-signatur.at/demosignaturbox/intern/HandySignaturPdf.svc?wsdl</wsdlUrl>
         <wsCallLibrary>CXF</wsCallLibrary>
         <feature>
@@ -16,7 +17,7 @@
             <port>
                 <name>HttpsEndpoint</name>
                 <portType>IHandySignaturPdf</portType>
-                <locationUri>https://handy-signatur.at/demosignaturbox/intern/HandySignaturPdf.svc</locationUri>
+                <locationUri>&lt;%=ivy.var.ATrust_EndpointUri%&gt;</locationUri>
             </port>
             <portType>
                 <name>IHandySignaturPdf</name>

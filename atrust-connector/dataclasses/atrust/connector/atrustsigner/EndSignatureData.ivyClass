@@ -1,5 +1,5 @@
 EndSignatureData #class
-ATrustSigner #namespace
+atrust.connector.atrustsigner #namespace
 resultCode Integer #field
 resultCode 'Result code from A-Trust web service call.' #fieldComment
 callbackSafetyHash String #field

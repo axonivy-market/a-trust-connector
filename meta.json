@@ -5,14 +5,14 @@
 	"mavenArtifacts": [
 		{
 			"name": "A-Trust Connector",
-			"groupId": "ch.ivyteam.connector",
-			"artifactId": "atrust-connector",
+			"groupId": "com.axonivy.connector.atrust",
+			"artifactId": "a-trust-connector",
 			"makesSenseAsMavenDependency": true
 		},
 		{
 			"name": "A-Trust Connector Demo",
-			"groupId": "ch.ivyteam.connector",
-			"artifactId": "atrust-connector-demo"
+			"groupId": "com.axonivy.connector.atrust",
+			"artifactId": "a-trust-connector-demo"
 		}
 	],
 	"installers": [
@@ -21,8 +21,8 @@
 			"data": {
 				"dependencies": [
 					{
-						"groupId": "ch.ivyteam.connector",
-						"artifactId": "atrust-connector",
+						"groupId": "com.axonivy.connector.atrust",
+						"artifactId": "a-trust-connector",
 						"version": "${version}",
 						"type": "iar"
 					}
@@ -41,8 +41,8 @@
 			"data": {
 				"projects":[
 					{
-						"groupId": "ch.ivyteam.connector",
-						"artifactId": "atrust-connector-demo",
+						"groupId": "com.axonivy.connector.atrust",
+						"artifactId": "a-trust-connector-demo",
 						"version": "${version}",
 						"type": "iar"
 					}

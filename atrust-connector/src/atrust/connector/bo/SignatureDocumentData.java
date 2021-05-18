@@ -1,8 +1,8 @@
-package atrust.bo;
+package atrust.connector.bo;
 
 import java.io.Serializable;
 
-import atrust.enums.SignatureStatus;
+import atrust.connector.enums.SignatureStatus;
 
 public class SignatureDocumentData implements Serializable {
 

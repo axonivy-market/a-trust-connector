@@ -192,8 +192,7 @@ Ds0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ds0 f9 115 723 26 26 -16 15 #rect
 Ds0 f10 actionTable 'out=in;
 ' #txt
-Ds0 f10 actionCode 'import atrust.bo.SignatureJob;
-import java.nio.file.Files;
+Ds0 f10 actionCode 'import java.nio.file.Files;
 import java.nio.file.Path;
 import ch.ivyteam.ivy.workflow.document.IDocument;
 
@@ -202,17 +201,17 @@ IDocument document = ivy.case.documents().getAll().get(0);
 Path path = document.read().asJavaFile().toPath();
 
 // Prepare data for Signature job
-SignatureJob signatureJob = new SignatureJob();
-signatureJob.taskId = ivy.task.getId();
-signatureJob.documentName = document.getName();
-signatureJob.pdfDocument = Files.readAllBytes(path);
-signatureJob.signStampCoordinatesX0 = 30.7;
-signatureJob.signStampCoordinatesX1 = 60.2;
-signatureJob.signStampCoordinatesY0 = 5.5;
-signatureJob.signStampCoordinatesY1 = 14.4;
-signatureJob.signStampPageNumber = 1;
+//SignatureJob signatureJob = new SignatureJob();
+in.signatureJob.taskId = ivy.task.getId();
+in.signatureJob.documentName = document.getName();
+in.signatureJob.pdfDocument = Files.readAllBytes(path);
+in.signatureJob.signStampCoordinatesX0 = 30.7;
+in.signatureJob.signStampCoordinatesX1 = 60.2;
+in.signatureJob.signStampCoordinatesY0 = 5.5;
+in.signatureJob.signStampCoordinatesY1 = 14.4;
+in.signatureJob.signStampPageNumber = 1;
 
-in.signatureJob = signatureJob;' #txt
+//in.signatureJob = signatureJob;' #txt
 Ds0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -223,8 +222,8 @@ Input: SignatureJob</name>
 ' #txt
 Ds0 f10 200 714 176 44 -69 -16 #rect
 Ds0 f30 1003 723 26 26 0 12 #rect
-Ds0 f13 processCall ATrustSigner/StartSignature:call(atrust.bo.SignatureJob) #txt
-Ds0 f13 requestActionDecl '<atrust.bo.SignatureJob signatureJob> param;' #txt
+Ds0 f13 processCall ATrustSigner/StartSignature:call(atrust.connector.bo.SignatureJob) #txt
+Ds0 f13 requestActionDecl '<atrust.connector.bo.SignatureJob signatureJob> param;' #txt
 Ds0 f13 requestMappingAction 'param.signatureJob=in.signatureJob;
 ' #txt
 Ds0 f13 responseActionDecl 'at.DocumentSignatureComponent.DocumentSignatureComponentData out;
@@ -246,8 +245,8 @@ Ds0 f11 expr out #txt
 Ds0 f11 141 736 200 736 #arcP
 Ds0 f8 actionTable 'out=in;
 ' #txt
-Ds0 f8 actionCode 'import atrust.enums.SignatureStatus;
-import atrust.bo.SignatureDocumentData;
+Ds0 f8 actionCode 'import atrust.connector.enums.SignatureStatus;
+import atrust.connector.bo.SignatureDocumentData;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -299,7 +298,7 @@ Ds0 f17 512 77 512 138 #arcP
 Ds0 f6 376 736 448 736 #arcP
 Ds0 f20 actionTable 'out=in;
 ' #txt
-Ds0 f20 actionCode 'import atrust.enums.SignatureStatus;
+Ds0 f20 actionCode 'import atrust.connector.enums.SignatureStatus;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

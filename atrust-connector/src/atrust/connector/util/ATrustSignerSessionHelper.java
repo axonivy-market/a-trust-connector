@@ -1,4 +1,4 @@
-package atrust.util;
+package atrust.connector.util;
 
 import atrust.connector.restricted.SignatureResult;
 import atrust.connector.restricted.SignatureSessionContainer;

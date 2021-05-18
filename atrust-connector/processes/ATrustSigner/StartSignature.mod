@@ -16,7 +16,6 @@ Se0 @GridStep f14 '' #zField
 Se0 @Alternative f7 '' #zField
 Se0 @PushWFArc f13 '' #zField
 Se0 @PushWFArc f9 '' #zField
-Se0 @PushWFArc f11 '' #zField
 Se0 @PushWFArc f18 '' #zField
 Se0 @ErrorBoundaryEvent f6 '' #zField
 Se0 @GridStep f41 '' #zField
@@ -31,10 +30,11 @@ Se0 @StartSub f0 '' #zField
 Se0 @PushWFArc f1 '' #zField
 Se0 @EndSub f2 '' #zField
 Se0 @PushWFArc f19 '' #zField
+Se0 @PushWFArc f3 '' #zField
 >Proto Se0 Se0 StartSignature #zField
 Se0 f8 actionTable 'out=in;
 ' #txt
-Se0 f8 actionCode 'import atrust.enums.SignatureStatus;
+Se0 f8 actionCode 'import atrust.connector.enums.SignatureStatus;
 
 in.signatureDocumentData.resultCode = in.resultCode;
 in.signatureDocumentData.signatureTicket = in.signatureTicket;
@@ -48,7 +48,7 @@ Se0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Se0 f8 816 74 160 44 -73 -8 #rect
+Se0 f8 832 74 160 44 -73 -8 #rect
 Se0 f4 actionTable 'out=in;
 out.forwardTargetUrl=wsResponse.handySignaturUrl;
 out.resultCode=wsResponse.startSignatureTemplateExResult;
@@ -63,13 +63,13 @@ parameters.documentName=in.signatureJob.documentName;
 parameters.errorURL=in.internalCallbackUrl;
 parameters.page=in.signatureJob.signStampPageNumber > 0 ? in.signatureJob.signStampPageNumber : 1;
 parameters.redirectURL=in.internalCallbackUrl;
-parameters.sigTemplateId=Integer.parseInt(ivy.var.ATrust_ATrustTemplateId);
+parameters.sigTemplateId=ivy.var.ATrust_TemplateId.toNumber();
 parameters.x0=in.signatureJob.signStampCoordinatesX0;
 parameters.x1=in.signatureJob.signStampCoordinatesX1;
 parameters.y0=in.signatureJob.signStampCoordinatesY0;
 parameters.y1=in.signatureJob.signStampCoordinatesY1;
 ' #txt
-Se0 f4 exceptionHandler at:aws:atrustsigner:startsignature:exception #txt
+Se0 f4 exceptionHandler atrust:connector:atrustsigner:startsignature:exception #txt
 Se0 f4 beanConfig "" #txt
 Se0 f4 timeout 0 #txt
 Se0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -80,11 +80,11 @@ StartSignature</name>
     </language>
 </elementInfo>
 ' #txt
-Se0 f4 464 170 176 44 -68 -16 #rect
+Se0 f4 480 170 176 44 -68 -16 #rect
 Se0 f12 actionTable 'out=in;
 ' #txt
-Se0 f12 actionCode 'import atrust.connector.restricted.SignatureSessionContainer;
-import atrust.util.ATrustSignerSessionHelper;
+Se0 f12 actionCode 'import atrust.connector.util.ATrustSignerSessionHelper;
+import atrust.connector.restricted.SignatureSessionContainer;
 import org.apache.commons.lang3.StringUtils;
 
 SignatureSessionContainer container = new SignatureSessionContainer();
@@ -106,7 +106,7 @@ to user''s session</name>
     </language>
 </elementInfo>
 ' #txt
-Se0 f12 816 170 128 44 -46 -16 #rect
+Se0 f12 832 170 128 44 -46 -16 #rect
 Se0 f14 actionTable 'out=in;
 ' #txt
 Se0 f14 actionCode 'import java.util.UUID;
@@ -132,7 +132,7 @@ Se0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Se0 f7 688 176 32 32 0 -117 #rect
+Se0 f7 704 176 32 32 0 -117 #rect
 Se0 f13 expr in #txt
 Se0 f13 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -141,21 +141,19 @@ Se0 f13 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Se0 f13 720 192 816 192 #arcP
+Se0 f13 736 192 832 192 #arcP
 Se0 f13 0 0.53125 0 -13 #arcLabel
 Se0 f9 expr out #txt
-Se0 f9 640 192 688 192 #arcP
-Se0 f11 expr out #txt
-Se0 f11 416 192 464 192 #arcP
+Se0 f9 656 192 704 192 #arcP
 Se0 f18 expr in #txt
 Se0 f18 outCond 'in.resultCode != 0' #txt
-Se0 f18 704 176 816 96 #arcP
-Se0 f18 1 704 96 #addKink
+Se0 f18 720 176 832 96 #arcP
+Se0 f18 1 720 96 #addKink
 Se0 f18 1 0.15281434264333596 0 0 #arcLabel
 Se0 f6 actionTable 'out=in;
 out.signatureDocumentData.lastSignatureError=error.getLocalizedMessage();
 ' #txt
-Se0 f6 errorCode at:aws:atrustsigner:startsignature:exception #txt
+Se0 f6 errorCode atrust:connector:atrustsigner:startsignature:exception #txt
 Se0 f6 attachedToRef 17944BA9442F63F7-f4 #txt
 Se0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -164,7 +162,7 @@ Se0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Se0 f6 601 209 30 30 15 6 #rect
+Se0 f6 617 209 30 30 15 6 #rect
 Se0 f41 actionTable 'out=in;
 ' #txt
 Se0 f41 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
@@ -196,21 +194,21 @@ and forward to EndSignature</name>
     </language>
 </elementInfo>
 ' #txt
-Se0 f41 1168 170 176 44 -70 -16 #rect
-Se0 f42 1392 176 32 32 0 16 #rect
+Se0 f41 1184 170 176 44 -70 -16 #rect
+Se0 f42 1408 176 32 32 0 16 #rect
 Se0 f44 expr out #txt
-Se0 f44 976 96 1408 176 #arcP
-Se0 f44 1 1408 96 #addKink
+Se0 f44 992 96 1424 176 #arcP
+Se0 f44 1 1424 96 #addKink
 Se0 f44 0 0.5898941129540048 0 0 #arcLabel
-Se0 f17 616 239 1408 208 #arcP
-Se0 f17 1 616 288 #addKink
-Se0 f17 2 1408 288 #addKink
+Se0 f17 632 239 1424 208 #arcP
+Se0 f17 1 632 288 #addKink
+Se0 f17 2 1424 288 #addKink
 Se0 f17 1 0.03406640910883355 0 0 #arcLabel
-Se0 f16 1344 192 1392 192 #arcP
+Se0 f16 1360 192 1408 192 #arcP
 Se0 f16 0 0.6490674774449611 0 0 #arcLabel
 Se0 f10 actionTable 'out=in;
 ' #txt
-Se0 f10 actionCode 'import atrust.enums.SignatureStatus;
+Se0 f10 actionCode 'import atrust.connector.enums.SignatureStatus;
 
 in.signatureDocumentData.resultCode = in.resultCode;
 in.signatureDocumentData.signatureTicket = in.signatureTicket;
@@ -226,17 +224,17 @@ Se0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Se0 f10 992 170 128 44 -55 -8 #rect
+Se0 f10 1008 170 128 44 -55 -8 #rect
 Se0 f43 expr out #txt
-Se0 f43 944 192 992 192 #arcP
-Se0 f38 1120 192 1168 192 #arcP
-Se0 f0 inParamDecl '<atrust.bo.SignatureJob signatureJob> param;' #txt
+Se0 f43 960 192 1008 192 #arcP
+Se0 f38 1136 192 1184 192 #arcP
+Se0 f0 inParamDecl '<atrust.connector.bo.SignatureJob signatureJob> param;' #txt
 Se0 f0 inParamTable 'out.signatureJob=param.signatureJob;
 ' #txt
-Se0 f0 outParamDecl '<atrust.bo.SignatureDocumentData signatureDocumentData> result;' #txt
+Se0 f0 outParamDecl '<atrust.connector.bo.SignatureDocumentData signatureDocumentData> result;' #txt
 Se0 f0 outParamTable 'result.signatureDocumentData=in.signatureDocumentData;
 ' #txt
-Se0 f0 callSignature call(atrust.bo.SignatureJob) #txt
+Se0 f0 callSignature call(atrust.connector.bo.SignatureJob) #txt
 Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -245,10 +243,15 @@ Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Se0 f0 129 177 30 30 -13 17 #rect
+Se0 f0 res:/webContent/icons/atrust-icon.png?small #fDecoratorIcon
+Se0 f0 bg|bg|-65536 #nodeStyle
 Se0 f1 159 192 224 192 #arcP
-Se0 f2 1489 177 30 30 0 15 #rect
-Se0 f19 1424 192 1489 192 #arcP
->Proto Se0 .type ATrustSigner.StartSignatureData #txt
+Se0 f2 1505 177 30 30 0 15 #rect
+Se0 f2 res:/webContent/icons/atrust-icon.png?small #fDecoratorIcon
+Se0 f2 bg|bg|-65536 #nodeStyle
+Se0 f19 1440 192 1505 192 #arcP
+Se0 f3 416 192 480 192 #arcP
+>Proto Se0 .type atrust.connector.atrustsigner.StartSignatureData #txt
 >Proto Se0 .processKind CALLABLE_SUB #txt
 >Proto Se0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -275,8 +278,6 @@ Se0 f7 out f18 tail #connect
 Se0 f18 head f8 mainIn #connect
 Se0 f7 out f13 tail #connect
 Se0 f13 head f12 mainIn #connect
-Se0 f14 mainOut f11 tail #connect
-Se0 f11 head f4 mainIn #connect
 Se0 f8 mainOut f44 tail #connect
 Se0 f44 head f42 in #connect
 Se0 f6 mainOut f17 tail #connect
@@ -291,3 +292,5 @@ Se0 f0 mainOut f1 tail #connect
 Se0 f1 head f14 mainIn #connect
 Se0 f42 out f19 tail #connect
 Se0 f19 head f2 mainIn #connect
+Se0 f14 mainOut f3 tail #connect
+Se0 f3 head f4 mainIn #connect

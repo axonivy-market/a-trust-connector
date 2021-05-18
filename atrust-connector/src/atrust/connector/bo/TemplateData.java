@@ -1,4 +1,4 @@
-package atrust.bo;
+package atrust.connector.bo;
 
 import java.io.Serializable;
 
