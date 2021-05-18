@@ -42,7 +42,7 @@ Before any signing interactions between the **Axon Ivy Engine** and the **A-Trus
 
    ![atrust-service-feature](doc/images/edit-web-service-feature.png)
 
-6. Click on the `Generate WS classes` button, then save and close `Web Service Clients`. Make sure your endpoint URL is generated correctly.
+6. Click on the `Generate WS classes` button, then save and close `Web Service Clients`. Make sure your `Endpoint URI` is generated correctly.
 
 7. Open the `Configuration/variables.yaml` in your Designer and edit `APIKey`, `ATrustTemplateId`
 
