@@ -19,3 +19,5 @@ streamedContent org.primefaces.model.StreamedContent #field
 streamedContent PERSISTENT #fieldModifier
 doesDocumentExist Boolean #field
 doesDocumentExist PERSISTENT #fieldModifier
+disableUpload Boolean #field
+disableUpload PERSISTENT #fieldModifier

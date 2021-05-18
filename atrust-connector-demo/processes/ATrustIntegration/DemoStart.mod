@@ -18,6 +18,8 @@ Bk0 BpmnScriptTask Big #zClass
 Bk0 BpmnScriptTask #cInfo
 Bk6 BpmnScriptTask Big #zClass
 Bk6 BpmnScriptTask #cInfo
+Bk7 BpmnScriptTask Big #zClass
+Bk7 BpmnScriptTask #cInfo
 Dt0 @AnnotationInP-0n ai ai #zField
 Dt0 @TextInP .type .type #zField
 Dt0 @TextInP .processKind .processKind #zField
@@ -41,7 +43,6 @@ Dt0 @PushWFArc f3 '' #zField
 Dt0 Bk2 S21 'Sub 2' #zField
 Dt0 @PushWFArc f6 '' #zField
 Dt0 @PushWFArc f8 '' #zField
-Dt0 @PushWFArc f12 '' #zField
 Dt0 Bk3 S31 'Sub 3' #zField
 Dt0 Bk4 S41 'Sub 4' #zField
 Dt0 @PushWFArc f0 '' #zField
@@ -56,6 +57,9 @@ Dt0 @InfoButton f21 '' #zField
 Dt0 @InfoButton f22 '' #zField
 Dt0 @InfoButton f24 '' #zField
 Dt0 @InfoButton f25 '' #zField
+Dt0 Bk7 S62 'Sub 6' #zField
+Dt0 @PushWFArc f26 '' #zField
+Dt0 @PushWFArc f12 '' #zField
 >Proto Dt0 Dt0 DemoStart #zField
 Bk1 @AnnotationInP-0n ai ai #zField
 Bk1 @TextInP .type .type #zField
@@ -136,7 +140,19 @@ Bk6 @GridStep f1 '' #zField
 Bk6 @PushWFArc f2 '' #zField
 Bk6 @PushWFArc f0 '' #zField
 >Proto Bk6 Bk6 BpmnScriptTask #zField
-Dt0 f11 545 177 30 30 0 15 #rect
+Bk7 @AnnotationInP-0n ai ai #zField
+Bk7 @TextInP tags tags #zField
+Bk7 @MessageFlowInP-0n messageIn messageIn #zField
+Bk7 @MessageFlowOutP-0n messageOut messageOut #zField
+Bk7 @TextInP .xml .xml #zField
+Bk7 @TextInP .responsibility .responsibility #zField
+Bk7 @PushTrueWFInG-01 g0 '' #zField
+Bk7 @PushTrueWFOutG-01 g1 '' #zField
+Bk7 @GridStep f1 '' #zField
+Bk7 @PushWFArc f2 '' #zField
+Bk7 @PushWFArc f0 '' #zField
+>Proto Bk7 Bk7 BpmnScriptTask #zField
+Dt0 f11 545 305 30 30 0 15 #rect
 Dt0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -152,6 +168,7 @@ Then he can press sign the doc. Integration code will be call, and user will be 
 </elementInfo>
 ' #txt
 Dt0 f18 64 66 592 92 -290 -42 #rect
+Dt0 f18 bg|bg|-16744448 #nodeStyle
 Dt0 f15 outLink StartATrustExample.ivp #txt
 Dt0 f15 inParamDecl '<> param;' #txt
 Dt0 f15 requestEnabled true #txt
@@ -170,7 +187,7 @@ Dt0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f15 @C|.responsibility Everybody #txt
-Dt0 f15 65 177 30 30 -24 17 #rect
+Dt0 f15 65 305 30 30 -24 17 #rect
 Dt0 f1 dialogId atrust.demo.DocumentSignature #txt
 Dt0 f1 startMethod start() #txt
 Dt0 f1 requestActionDecl '<> param;' #txt
@@ -186,10 +203,10 @@ Dt0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f1 200 170 128 44 -55 -8 #rect
-Dt0 f2 95 192 200 192 #arcP
-Dt0 f5 328 192 545 192 #arcP
-Dt0 f10 937 337 30 30 0 15 #rect
+Dt0 f1 200 298 128 44 -55 -8 #rect
+Dt0 f2 95 320 200 320 #arcP
+Dt0 f5 328 320 545 320 #arcP
+Dt0 f10 849 465 30 30 0 15 #rect
 Dt0 f4 outLink AddTemplateATrust.ivp #txt
 Dt0 f4 inParamDecl '<> param;' #txt
 Dt0 f4 requestEnabled true #txt
@@ -204,7 +221,7 @@ Dt0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f4 @C|.responsibility Everybody #txt
-Dt0 f4 65 337 30 30 -21 17 #rect
+Dt0 f4 65 465 30 30 -21 17 #rect
 Dt0 f16 outLink DeleteTemplateATrust.ivp #txt
 Dt0 f16 inParamDecl '<> param;' #txt
 Dt0 f16 requestEnabled true #txt
@@ -219,7 +236,7 @@ Dt0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f16 @C|.responsibility Everybody #txt
-Dt0 f16 65 529 30 30 -21 17 #rect
+Dt0 f16 65 657 30 30 -21 17 #rect
 Dt0 f17 outLink GetListTemplate.ivp #txt
 Dt0 f17 inParamDecl '<> param;' #txt
 Dt0 f17 requestEnabled true #txt
@@ -234,10 +251,10 @@ Dt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f17 @C|.responsibility Everybody #txt
-Dt0 f17 65 705 30 30 -24 17 #rect
-Dt0 f19 713 529 30 30 0 15 #rect
-Dt0 f20 713 705 30 30 0 15 #rect
-Dt0 f23 95 352 200 352 #arcP
+Dt0 f17 65 833 30 30 -24 17 #rect
+Dt0 f19 849 657 30 30 0 15 #rect
+Dt0 f20 713 833 30 30 0 15 #rect
+Dt0 f23 95 480 192 480 #arcP
 Dt0 S11 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -246,8 +263,8 @@ Dt0 S11 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dt0 S11 200 330 192 44 -77 -16 #rect
-Dt0 f3 392 352 440 352 #arcP
+Dt0 S11 192 458 192 44 -77 -16 #rect
+Dt0 f3 384 480 416 480 #arcP
 Dt0 S21 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -256,10 +273,9 @@ AddTemplateATrust</name>
     </language>
 </elementInfo>
 ' #txt
-Dt0 S21 440 330 256 44 -107 -16 #rect
-Dt0 f6 95 544 200 544 #arcP
-Dt0 f8 328 544 408 544 #arcP
-Dt0 f12 648 544 713 544 #arcP
+Dt0 S21 416 458 256 44 -107 -16 #rect
+Dt0 f6 95 672 192 672 #arcP
+Dt0 f8 320 672 400 672 #arcP
 Dt0 S31 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -268,7 +284,7 @@ which will be deleted</name>
     </language>
 </elementInfo>
 ' #txt
-Dt0 S31 200 522 128 44 -57 -20 #rect
+Dt0 S31 192 650 128 44 -57 -20 #rect
 Dt0 S41 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -277,8 +293,8 @@ DeleteTemplateATrust</name>
     </language>
 </elementInfo>
 ' #txt
-Dt0 S41 408 522 240 44 -111 -20 #rect
-Dt0 f0 95 720 200 720 #arcP
+Dt0 S41 400 650 240 44 -111 -20 #rect
+Dt0 f0 95 848 192 848 #arcP
 Dt0 S51 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -287,7 +303,7 @@ GetListTemplate</name>
     </language>
 </elementInfo>
 ' #txt
-Dt0 S51 200 698 240 44 -111 -20 #rect
+Dt0 S51 192 826 240 44 -111 -20 #rect
 Dt0 S60 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -295,9 +311,9 @@ Dt0 S60 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dt0 S60 536 698 112 44 -31 -8 #rect
-Dt0 f7 440 720 536 720 #arcP
-Dt0 f13 648 720 713 720 #arcP
+Dt0 S60 528 826 112 44 -31 -8 #rect
+Dt0 f7 432 848 528 848 #arcP
+Dt0 f13 640 848 713 848 #arcP
 Dt0 S61 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -305,9 +321,9 @@ Dt0 S61 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dt0 S61 760 330 112 44 -31 -8 #rect
-Dt0 f14 696 352 760 352 #arcP
-Dt0 f9 872 352 937 352 #arcP
+Dt0 S61 704 458 112 44 -31 -8 #rect
+Dt0 f14 672 480 704 480 #arcP
+Dt0 f9 816 480 849 480 #arcP
 Dt0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -319,7 +335,7 @@ Template should be a xml file</name>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f21 64 274 432 44 -212 -18 #rect
+Dt0 f21 64 402 432 44 -212 -18 #rect
 Dt0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -333,7 +349,7 @@ You should provide exactly templateID</name>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f22 64 458 448 44 -217 -18 #rect
+Dt0 f22 64 586 448 44 -217 -18 #rect
 Dt0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -347,7 +363,7 @@ It returns your templates name and ids</name>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f24 64 642 496 44 -243 -18 #rect
+Dt0 f24 64 770 496 44 -243 -18 #rect
 Dt0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -368,8 +384,18 @@ Dt0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f25 680 66 512 76 -250 -34 #rect
+Dt0 f25 64 176 592 80 -250 -34 #rect
 Dt0 f25 -1|-1|-65536 #nodeStyle
+Dt0 S62 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Print output</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 S62 704 650 112 44 -31 -8 #rect
+Dt0 f26 640 672 704 672 #arcP
+Dt0 f12 816 672 849 672 #arcP
 >Proto Dt0 .type atrust.connector.demo.Data #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -378,7 +404,7 @@ Dt0 f25 -1|-1|-65536 #nodeStyle
         <swimlaneLabel>Example to integrate in your process</swimlaneLabel>
     </language>
     <swimlaneOrientation>false</swimlaneOrientation>
-    <swimlaneSize>768</swimlaneSize>
+    <swimlaneSize>880</swimlaneSize>
     <swimlaneColor gradient="false">-1</swimlaneColor>
     <swimlaneType>POOL</swimlaneType>
     <swimlaneSpaceBefore>32</swimlaneSpaceBefore>
@@ -496,6 +522,7 @@ Bk4 f0 requestActionDecl '<Number templateId> param;' #txt
 Bk4 f0 requestMappingAction 'param.templateId=in.templateId;
 ' #txt
 Bk4 f0 responseMappingAction 'out=in;
+out.templateData.resultCode=result.resultCode;
 ' #txt
 Bk4 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -598,6 +625,24 @@ Bk6 f2 77 256 216 256 #arcP
 Bk6 f0 328 256 563 256 #arcP
 >Proto Bk6 0 0 32 24 18 0 #rect
 >Proto Bk6 @|BpmnScriptTaskIcon #fIcon
+Bk7 g0 51 243 26 26 0 5 #rect
+Bk7 g1 563 243 26 26 0 5 #rect
+Bk7 f1 actionTable 'out=in;
+' #txt
+Bk7 f1 actionCode 'ivy.log.info("A-Trust call result code {0}", in.templateData.resultCode);' #txt
+Bk7 f1 security system #txt
+Bk7 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>console log</name>
+    </language>
+</elementInfo>
+' #txt
+Bk7 f1 216 234 112 44 -32 -8 #rect
+Bk7 f2 77 256 216 256 #arcP
+Bk7 f0 328 256 563 256 #arcP
+>Proto Bk7 0 0 32 24 18 0 #rect
+>Proto Bk7 @|BpmnScriptTaskIcon #fIcon
 Dt0 f15 mainOut f2 tail #connect
 Dt0 f2 head f1 in #connect
 Dt0 f1 out f5 tail #connect
@@ -607,11 +652,9 @@ Dt0 f23 head S11 g0 #connect
 Dt0 S11 g1 f3 tail #connect
 Dt0 f3 head S21 g0 #connect
 Dt0 f16 mainOut f6 tail #connect
-Dt0 f12 head f19 mainIn #connect
 Dt0 f6 head S31 g0 #connect
 Dt0 S31 g1 f8 tail #connect
 Dt0 f8 head S41 g0 #connect
-Dt0 S41 g1 f12 tail #connect
 Dt0 f17 mainOut f0 tail #connect
 Dt0 f0 head S51 g0 #connect
 Dt0 S51 g1 f7 tail #connect
@@ -622,6 +665,10 @@ Dt0 S21 g1 f14 tail #connect
 Dt0 f14 head S61 g0 #connect
 Dt0 S61 g1 f9 tail #connect
 Dt0 f9 head f10 mainIn #connect
+Dt0 S41 g1 f26 tail #connect
+Dt0 f26 head S62 g0 #connect
+Dt0 S62 g1 f12 tail #connect
+Dt0 f12 head f19 mainIn #connect
 Bk1 g0 m f0 tail #connect
 Bk1 f0 head f89 mainIn #connect
 Bk1 f1 head g1 m #connect
@@ -657,3 +704,8 @@ Bk6 f2 head f1 mainIn #connect
 Bk6 f1 mainOut f0 tail #connect
 Bk6 f0 head g1 m #connect
 Bk6 0 0 640 512 0 #ivRect
+Bk7 g0 m f2 tail #connect
+Bk7 f2 head f1 mainIn #connect
+Bk7 f1 mainOut f0 tail #connect
+Bk7 f0 head g1 m #connect
+Bk7 0 0 640 512 0 #ivRect

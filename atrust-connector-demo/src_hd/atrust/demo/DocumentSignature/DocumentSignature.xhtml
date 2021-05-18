@@ -25,20 +25,24 @@
 			<h:form id="form" styleClass="document-table-component">
 				<f:event listener="#{logic.loadStatus()}" type="preRenderComponent" />
 
-				<p:messages id="document-messages" closable="true">
+				<p:messages id="document-messages" closable="true" globalOnly="true" redisplay="false">
 					<p:autoUpdate />
 				</p:messages>
+				
+				<p:growl id="upload-message" redisplay="false">
+				</p:growl>
 
 				<p:fileUpload id="document-upload"
 					mode="advanced" auto="true"
 					chooseIcon="si si-add-small"
 					fileLimit="1"
 					fileUploadListener="#{logic.upload}"
-					process="@this"
-					update="form @this"
+					process="form"
+					update="form"
 					label="Upload new file"
 					cancelLabel="Cancel"
-					allowTypes="/(\.|\/)(pdf)$/" accept=".pdf"/>
+					allowTypes="/(\.|\/)(pdf)$/" accept=".pdf"
+					disabled="#{data.disableUpload}"/>
 
 				<p:dataTable id="document-table"
 					widgetVar="fileTableVar"
@@ -107,8 +111,8 @@
 					<f:facet name="footer">
 						<p:commandButton id="document-deletion-yes"
 							value="Yes"
-							process="@this form"
-							update="form document-table document-messages form:document-upload"
+							process="form"
+							update="form"
 							actionListener="#{logic.delete}"
 							oncomplete="PF('document-delete-dialog').hide();" />
 						<p:commandButton id="document-deletion-no"
