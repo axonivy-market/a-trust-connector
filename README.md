@@ -1,18 +1,18 @@
-**Axon Ivy’s [A-Trust](https://www.a-trust.at)** connector helps you to accelerate process automation initiatives by integrating **A-Trust** into your process application within no time. **A-Trust** with the mobile phone signature, you can clearly authenticate yourself on the Internet. It is your personal signature on the net, which is equivalent to the handwritten signature by law. This connector:
+**Axon Ivy’s [A-Trust](https://www.a-trust.at)** connector helps you to accelerate process automation initiatives by integrating **A-Trust HandySignatur** into your process application within no time. **A-Trust** with the mobile phone signature, you can clearly authenticate yourself on the Internet. It is your personal signature on the net, which is equivalent to the handwritten signature by law. This connector:
 
-*	Is based on SOAP web service technologies.
-*	Provides access to the core features of A-Trust to virtually sign all kinds of documents.
+*	Is based on **SOAP** web service technologies.
+*	Provides access to the core features of **A-Trust** to virtually sign all kinds of documents.
 *	Supports you with an easy-to-copy demo implementation to reduce your integration effort.
 *	Enables low code citizen developers to enhance existing business processes with mobile phone signature features.
 
 
 ## Demo
 
-1. Upload a **pdf** document.
+1. Upload a **PDF** document.
 
    ![demo-process](doc/images/atrust-upload-doc.png)
 
-2. Click on **Sign Document** and signers will be forwarded to the **Handy-Signatur** identification page.
+2. Click on **Sign Document** and signers will be forwarded to the **HandySignatur** identification page.
 
    ![atrust-signature](doc/images/atrust-handysign-login.png)
 
@@ -26,11 +26,11 @@
 
 ## Setup
 
-Before any signing interactions between the **Axon Ivy Engine** and the **A-Trust Handy Signatur** services can be run, they have to be introduced to each other. This can be done as follows:
+Before any signing interactions between the **Axon Ivy Engine** and the **A-Trust HandySignatur** services can be run, they have to be introduced to each other. This can be done as follows:
 
-1. Register an A-Trust Handy-Signatur account: https://www.a-trust.at/en/handy-signatur/handy-signatur-activation/
+1. Register an **A-Trust HandySignatur** account: https://www.a-trust.at/en/handy-signatur/handy-signatur-activation/
 
-2. Create an A-Trust Signatur-Box **[here](https://www.a-trust.at/en/handy-signatur/signaturbox)** and then get a new `API key` with the `Endpoint URI` web service.
+2. Create an **A-Trust Signatur-Box** **[here](https://www.a-trust.at/en/handy-signatur/signaturbox)** and then get a new `API key` with the `Endpoint URI` web service.
 
 3. Open the `Configuration/variables.yaml` in your Designer and edit: `APIKey`, `TemplateId`, `EndpointUri`
 
@@ -40,20 +40,20 @@ Before any signing interactions between the **Axon Ivy Engine** and the **A-Trus
 
 5. Start `ATrustIntegration/ATrustDemo/StartATrustExample.ivp` of the `a-trust-connector-demo` project to test your setup.
 
-      Your setup was correct if you are being forwarded to the ***[A-Trust identification](https://www.handy-signatur.at/mobile/https-security-layer-request/identification.aspx)*** page.
+      Your setup was correct if you are being forwarded to the **[A-Trust identification](https://www.handy-signatur.at/mobile/https-security-layer-request/identification.aspx)** page.
 
       ![atrust-handysign-auth](doc/images/atrust-handy-sign-auth.png)
 
 
 ### Notes:
 
-The DemoStart process contains a final service part, where we prepared a signature template on the A-Trust server.
+The ATrustDemo process contains a final service part, where we prepared a signature template on the **A-Trust** server.
 
    ![atrust-demo-feature](doc/images/atrust-demo-feature.png)
 
 * You need to upload a **SignatureTemplate** to the **[A-Trust](https://www.a-trust.at)** service. Uses `AddTemplateATrust` start in the `ATrustDemo` process of `a-trust-connector-demo` project.
 
-   When uploading successfully, A-trust returns `templateID` and sets it in project Variables - `TemplateId` value in the `Configuration/variables.yaml`.
+   When uploading successfully, **A-trust** returns `templateID` and sets it in project Variables - `TemplateId` value in the `Configuration/variables.yaml`.
 
 * An example **SignatureTemplate** in CMS: `cms/Templates/tempsiegel1`.
 * **Handy Signatur** is probably only possible for **AUSTRIANS**.
