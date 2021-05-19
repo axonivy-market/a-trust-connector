@@ -14,9 +14,9 @@ pipeline {
     stage('build') {
       steps {
         script {
-          bat "mvn clean install -f atrust-connector/pom.xml"
-          bat "mvn clean install -f atrust-connector-demo/pom.xml"
-          bat "mvn clean verify -f atrust-connector-test/pom.xml"
+          bat "mvn clean install -f a-trust-connector/pom.xml"
+          bat "mvn clean install -f a-trust-connector-demo/pom.xml"
+          bat "mvn clean verify -f a-trust-connector-test/pom.xml"
 
           archiveArtifacts artifacts: "*/target/*.iar", allowEmptyArchive: true
           junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
