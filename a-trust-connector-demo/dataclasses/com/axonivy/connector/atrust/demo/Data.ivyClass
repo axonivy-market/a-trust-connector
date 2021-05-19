@@ -1,0 +1,6 @@
+Data #class
+com.axonivy.connector.atrust.demo #namespace
+myIvyFile File #field
+templateData com.axonivy.connector.atrust.bo.TemplateData #field
+templateId Number #field
+templateId PERSISTENT #fieldModifier

@@ -1,0 +1,16 @@
+EndSignatureData #class
+com.axonivy.connector.atrust #namespace
+resultCode Integer #field
+resultCode 'Result code from A-Trust web service call.' #fieldComment
+callbackSafetyHash String #field
+callbackSafetyHash 'Hash code generated for more safety in internal callback link.' #fieldComment
+referenceTaskId Long #field
+referenceTaskId 'Reuqest task id. Will be used to add signed document.' #fieldComment
+aTrustTicketID String #field
+aTrustTicketID 'Ticket ID from A-Trust signature inbox.' #fieldComment
+signatureAppliedSuccessfully Boolean #field
+signatureAppliedSuccessfully 'True when A-Trust reports successfull signature.' #fieldComment
+signatureResult com.axonivy.connector.atrust.restricted.SignatureResult #field
+signatureResult 'Result object, we prepare for the calling process.' #fieldComment
+callbackUrlAfterSignature String #field
+callbackUrlAfterSignature 'URL of the original calling process. ' #fieldComment

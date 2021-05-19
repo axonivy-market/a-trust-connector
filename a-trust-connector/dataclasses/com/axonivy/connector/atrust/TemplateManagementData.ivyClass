@@ -1,0 +1,6 @@
+TemplateManagementData #class
+com.axonivy.connector.atrust #namespace
+documentByteArray List<Byte> #field
+result com.axonivy.connector.atrust.bo.TemplateData #field
+myIvyFile File #field
+templateId Number #field

@@ -1,0 +1,10 @@
+SignatureSessionContainer #class
+com.axonivy.connector.atrust.restricted #namespace
+callbackUrlAfterSignature String #field
+callbackUrlAfterSignature 'Callback URL from caller of this interface. After Session Result is present, user will be forwarded to this place.' #fieldComment
+aTrustTicketID String #field
+aTrustTicketID 'Ticket ID from A-Trust signature inbox.' #fieldComment
+callbackSafetyHash String #field
+callbackSafetyHash 'Used to make sure, session data is matching current callback from A-Trust.' #fieldComment
+referenceTaskId Long #field
+referenceTaskId 'Reuqest task id. Will be used to add signed document.' #fieldComment

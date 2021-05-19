@@ -38,7 +38,7 @@ Before any signing interactions between the **Axon Ivy Engine** and the **A-Trus
 
 4. Save the changed settings.
 
-5. Start `ATrustIntegration/DemoStart/StartATrustExample.ivp` of the `atrust-connector-demo` project to test your setup.
+5. Start `ATrustIntegration/ATrustDemo/StartATrustExample.ivp` of the `a-trust-connector-demo` project to test your setup.
 
       Your setup was correct if you are being forwarded to the ***[A-Trust identification](https://www.handy-signatur.at/mobile/https-security-layer-request/identification.aspx)*** page.
 
@@ -51,9 +51,9 @@ The DemoStart process contains a final service part, where we prepared a signatu
 
    ![atrust-demo-feature](doc/images/atrust-demo-feature.png)
 
-* You need to upload a **SignatureTemplate** to the **[A-Trust](https://www.a-trust.at)** service. Uses `Upload template` start in the `DemoStart.mod` process of `atrust-connector-demo` project.
+* You need to upload a **SignatureTemplate** to the **[A-Trust](https://www.a-trust.at)** service. Uses `AddTemplateATrust` start in the `ATrustDemo` process of `a-trust-connector-demo` project.
 
-   When uploading successfully, A-trust returns `templateID` and sets it in project Variables - `ATrustTemplateId` value in the `Configuration/variables.yaml`.
+   When uploading successfully, A-trust returns `templateID` and sets it in project Variables - `TemplateId` value in the `Configuration/variables.yaml`.
 
 * An example **SignatureTemplate** in CMS: `cms/Templates/tempsiegel1`.
 * **Handy Signatur** is probably only possible for **AUSTRIANS**.
