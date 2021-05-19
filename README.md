@@ -53,7 +53,7 @@ The ATrustDemo process contains a final service part, where we prepared a signat
 
 * You need to upload a **SignatureTemplate** to the **[A-Trust](https://www.a-trust.at)** service. Uses `AddTemplateATrust` start in the `ATrustDemo` process of `a-trust-connector-demo` project.
 
-   When uploading successfully, **A-trust** returns `templateID` and sets it in project Variables - `TemplateId` value in the `Configuration/variables.yaml`.
+   When uploading successfully, **A-Trust** returns `templateID` and sets it in project Variables - `TemplateId` value in the `Configuration/variables.yaml`.
 
 * An example **SignatureTemplate** in CMS: `cms/Templates/tempsiegel1`.
 * **Handy Signatur** is probably only possible for **AUSTRIANS**.
