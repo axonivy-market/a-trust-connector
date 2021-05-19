@@ -184,8 +184,8 @@ Ao0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>UPDATE A-TRUST CUSTOM VARS IN GLOBAL VARIABLE of A-TRUST-CONNECTOR  project:&#13;
 - ATrust.APIKey  : API Key for A-Trust Handysignatur api&#13;
-- ATrust.TemplateId   : The ID of the signature template to be used.&#13;
 - ATrust.EndpointUri   : The endpoint uri of A-Trust Handysignatur Signatur-box webservice.&#13;
+- ATrust.TemplateId   : The ID of the signature template to be used.&#13;
 </name>
         <nameStyle>6,5,8,0
 1,5,8
@@ -195,12 +195,13 @@ Ao0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 10,5,8
 4,5
 15,5,0,12
-43,5
-20,5,0,12
-50,5
-18,5,0,12
+42,5
 1,5,0
-72,5
+18,5,0,12
+1,5,12
+74,5
+20,5,0,12
+48,5
 </nameStyle>
     </language>
 </elementInfo>
