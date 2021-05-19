@@ -232,22 +232,21 @@ Ds0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 &#13;
 UPDATE A-TRUST CUSTOM VARS IN GLOBAL VARIABLE of A-TRUST-CONNECTOR project:&#13;
 - ATrust.APIKey    : API Key for A-Trust Handysignatur api&#13;
-- ATrust.ATrustTemplateId    : The ID of the signature template to be used.&#13;
 - ATrust.EndpointUri   : The endpoint uri of A-Trust Handysignatur Signatur-box webservice.&#13;
-</name>
+- ATrust.TemplateId    : The ID of the signature template to be used.</name>
         <nameStyle>13,5,8,0
 81,5,0
 17,5,0,12
 43,5,0
-27,5,0,12
-50,5,0
 19,5,0,12
-72,5,0
+74,5,0
+21,5,0,12
+46,5,0
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f19 60 440 568 128 -255 -58 #rect
+Ds0 f19 80 450 528 108 -255 -50 #rect
 Ds0 f19 bg|bg|-16744448 #nodeStyle
 Ds0 f38 actionTable 'out=in;
 ' #txt

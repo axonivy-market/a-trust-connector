@@ -1,8 +1,15 @@
-# == Variables ==
-# 
-# You can define here your project Variables.
-# If you want to define/override a Variable for a specific Environment, 
-# please add a 'variables.yaml' in the sub directory '_<environment>'.
-#
 Variables:
-  #myVariable: value
+  # Custom variables of ATrust Handysignatur API
+  ATrust:
+    # API Key for "A-Trust Handysignatur API"
+  # Dear Bug Hunter,
+  # This credential is intentionally included for educational purposes only and does not provide access to any production systems.
+  # Please do not submit it as part of our bug bounty program.
+    APIKey: 'TEST-API-KEY-UXWRZBKTTMQOFXFQFIUPABGUCZQGYTXDFPYTUOYRGIFQHKRELBR'
+
+    # The endpoint uri of A-Trust Handysignatur Signatur-box webservice
+    EndpointUri: 'https://handy-signatur.at/demosignaturbox/intern/HandySignaturPdf.svc'
+
+    # The ID of the signature template to be used.
+    TemplateId: 14467
+

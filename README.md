@@ -59,11 +59,11 @@ Before any signing interactions between the **Axon Ivy Engine** and the **A-Trus
        # API Key for "A-Trust Handysignatur API"
        APIKey: 'your API Key'
 
-       # The ID of the signature template to be used.
-       TemplateId: # your TemplateId with number format, e.g: 1
-
        # The endpoint uri of A-Trust Handysignatur Signatur-box webservice
        EndpointUri: 'your Endpoint URI'
+
+       # The ID of the signature template to be used.
+       TemplateId: # your TemplateId with number format, e.g: 1
 
    ```
 
