@@ -46,8 +46,8 @@ pipeline {
 
           echo "====================Build all modules===================="
           def mavenGoal = params.deployToRepo ? 'deploy' : 'install'
-          bat "mvn clean ${mavenGoal} -f atrust-connector/pom.xml"
-          bat "mvn clean ${mavenGoal} -f atrust-connector-demo/pom.xml"
+          bat "mvn clean ${mavenGoal} -f a-trust-connector/pom.xml"
+          bat "mvn clean ${mavenGoal} -f a-trust-connector-demo/pom.xml"
 
           echo "====================Create release tag ${params.releaseVersion}===================="
           bat """
