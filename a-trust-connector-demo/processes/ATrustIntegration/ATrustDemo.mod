@@ -563,7 +563,7 @@ Bk4 f1 448 160 707 160 #arcP
 Bk5 f100 actionTable 'out=in;
 ' #txt
 Bk5 f100 actionCode '// Remove there code and replace by your template Id
-in.templateId = ivy.session.getAttribute("deleteTemplateId").toNumber();' #txt
+in.templateId = 15656;' #txt
 Bk5 f100 security system #txt
 Bk5 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

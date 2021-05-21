@@ -11,5 +11,5 @@ Variables:
     EndpointUri: 'https://handy-signatur.at/demosignaturbox/intern/HandySignaturPdf.svc'
 
     # The ID of the signature template to be used.
-    TemplateId: 14467
+    TemplateId: 14464
 
