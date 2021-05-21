@@ -174,11 +174,11 @@ Ao0 S11 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
         <name>Get TemplateSiegel from CMS&#13;
-/Template/templatesiegel</name>
+/Templates/SampleSignatureSeal</name>
     </language>
 </elementInfo>
 ' #txt
-Ao0 S11 208 458 192 44 -77 -16 #rect
+Ao0 S11 200 458 208 44 -86 -16 #rect
 Ao0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -396,12 +396,12 @@ Ao0 f9 832 480 865 480 #arcP
 Ao0 f6 111 320 216 320 #arcP
 Ao0 f14 664 480 720 480 #arcP
 Ao0 f12 832 672 865 672 #arcP
-Ao0 f7 400 480 456 480 #arcP
+Ao0 f7 408 480 456 480 #arcP
 Ao0 f8 111 832 224 832 #arcP
 Ao0 f13 336 672 432 672 #arcP
 Ao0 f23 656 832 729 832 #arcP
 Ao0 f27 111 672 208 672 #arcP
-Ao0 f28 111 480 208 480 #arcP
+Ao0 f28 111 480 200 480 #arcP
 Ao0 f29 432 832 544 832 #arcP
 >Proto Ao0 .type com.axonivy.connector.atrust.demo.Data #txt
 >Proto Ao0 .processKind NORMAL #txt
@@ -461,17 +461,17 @@ Bk2 f89 actionCode '//Create a file that will hold the template
 in.myIvyFile = new File("Template.xml", true);
 
 //Save result in java File of ivy File
-ivy.cms.getContentObjectValue("/Templates/tempsiegel1", ivy.session.contentLocale).exportContentToFile(in.myIvyFile.getJavaFile(), null);
+ivy.cms.getContentObjectValue("/Templates/SampleSignatureSeal", ivy.session.contentLocale).exportContentToFile(in.myIvyFile.getJavaFile(), null);
 ' #txt
 Bk2 f89 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Get TemplateSiegel from CMS&#13;
-/template/templatesiegel</name>
+/Templates/SampleSignatureSeal</name>
     </language>
 </elementInfo>
 ' #txt
-Bk2 f89 272 138 192 44 -77 -16 #rect
+Bk2 f89 264 138 208 44 -86 -16 #rect
 Bk2 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -480,7 +480,7 @@ Bk2 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk2 g0 51 147 26 26 -9 14 #rect
-Bk2 f0 77 160 272 160 #arcP
+Bk2 f0 77 160 264 160 #arcP
 Bk2 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -489,7 +489,7 @@ Bk2 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk2 g1 691 147 26 26 -23 17 #rect
-Bk2 f1 464 160 691 160 #arcP
+Bk2 f1 472 160 691 160 #arcP
 >Proto Bk2 0 0 32 24 18 0 #rect
 >Proto Bk2 @|BpmnScriptTaskIcon #fIcon
 Bk3 f6 processCall ATrust/TemplateManagement:AddTemplateATrust(File) #txt
