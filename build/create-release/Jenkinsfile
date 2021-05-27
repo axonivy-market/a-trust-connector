@@ -35,7 +35,7 @@ pipeline {
               $xml.project.version = $env:releaseVersion
               $dependencies = $xml.project.dependencies.ChildNodes
               foreach($dependency in $dependencies) {
-                if($dependency.groupId -eq 'ch.ivyteam.connector') {
+                if($dependency.groupId -eq 'com.axonivy.connector.atrust') {
                   $dependency.version = $env:releaseVersion
                 }
               }
@@ -46,8 +46,7 @@ pipeline {
 
           echo "====================Build all modules===================="
           def mavenGoal = params.deployToRepo ? 'deploy' : 'install'
-          bat "mvn clean ${mavenGoal} -f a-trust-connector/pom.xml"
-          bat "mvn clean ${mavenGoal} -f a-trust-connector-demo/pom.xml"
+          bat "mvn clean ${mavenGoal}"
 
           echo "====================Create release tag ${params.releaseVersion}===================="
           bat """
