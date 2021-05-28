@@ -38,7 +38,7 @@ public class ATrustProcessTest {
 		String listTemplate = demoData.getTemplateData().getListTemplates();
 		Integer resultCode = demoData.getTemplateData().getResultCode();
 		assertThat(listTemplate).isNotNull();
-		assertTrue(StringUtils.contains(listTemplate, "SignaturQualifiziert_AIS_Vertrag_oben"));
+		assertTrue(StringUtils.contains(listTemplate, "AxonDemo"));
 		assertThat(resultCode).isNotNull();
 		assertTrue(resultCode == 0);
 	}
