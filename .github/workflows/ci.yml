@@ -15,11 +15,11 @@ jobs:
         java-version: 11
 
     - name: Build with Maven on master branch
-      if: github.ref == 'refs/heads/main'
+      if: github.ref == 'refs/heads/master'
       run: mvn clean deploy --batch-mode
 
     - name: Build with Maven on non-master branch
-      if: github.ref != 'refs/heads/main'
+      if: github.ref != 'refs/heads/master'
       run: mvn clean verify --batch-mode
 
     - name: Publish Unit Test Results
