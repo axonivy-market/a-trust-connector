@@ -17,6 +17,8 @@ jobs:
     - name: Build with Maven on master branch
       if: github.ref == 'refs/heads/master'
       run: mvn clean deploy --batch-mode
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build with Maven on non-master branch
       if: github.ref != 'refs/heads/master'
