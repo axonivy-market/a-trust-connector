@@ -6,11 +6,11 @@ Clearly authenticate your customers with a mobile phone signature on the web.
 
 ## Relase Management
 
-master branch will be deployed as SNAPSHOT artifact to GitHub Package registry.
+`master` branch will be deployed as `SNAPSHOT` artifact to GitHub Package registry.
 
-if you want to create a new release then proceed as follows:
+If you want to create a new release then proceed as follows:
 
-#. Go to GitHub repository
-#. Go to Actions
-#. Go to Release-Build
-#. Run workflow and select branch: master
+1. Go to GitHub repository
+2. Go to Actions
+3. Go to Release-Build
+4. Run workflow and select branch: master
