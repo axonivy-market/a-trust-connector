@@ -236,6 +236,7 @@ Ao0 f15 startName 'A-Trust HandySignatur Example' #txt
 Ao0 f15 caseData 'businessCase.attach=true
 case.name=Your process' #txt
 Ao0 f15 showInStartList 1 #txt
+Ao0 f15 @CG|tags demo #txt
 Ao0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
