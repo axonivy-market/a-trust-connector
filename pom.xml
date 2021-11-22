@@ -9,6 +9,7 @@
     <module>a-trust-connector</module>
     <module>a-trust-connector-demo</module>
     <module>a-trust-connector-test</module>
+    <module>a-trust-connector-product</module>
   </modules>
 
   <scm>
