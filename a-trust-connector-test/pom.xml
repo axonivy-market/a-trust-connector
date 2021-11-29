@@ -3,19 +3,19 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.connector.atrust</groupId>
   <artifactId>a-trust-connector-test</artifactId>
-  <version>9.2.1-SNAPSHOT</version>
+  <version>9.3.0-SNAPSHOT</version>
   <packaging>iar</packaging>
   <dependencies>
     <dependency>
       <groupId>com.axonivy.ivy.test</groupId>
       <artifactId>unit-tester</artifactId>
-      <version>9.2.0</version>
+      <version>9.3.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.axonivy.ivy.webtest</groupId>
       <artifactId>web-tester</artifactId>
-      <version>9.2.0</version>
+      <version>9.3.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -37,7 +37,7 @@
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
-        <version>9.2.2</version>
+        <version>9.3.1</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>
