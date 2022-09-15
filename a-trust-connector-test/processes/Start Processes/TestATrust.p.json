@@ -55,7 +55,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ProcessHelper;",
+            "import com.axonivy.connector.atrust.IvyScriptCmsHelper;",
             "import com.axonivy.connector.atrust.bo.SignatureJob;",
             "import ch.ivyteam.ivy.cm.ContentObjectValue;",
             "import java.nio.file.Files;",
@@ -63,7 +63,7 @@
             "import ch.ivyteam.ivy.workflow.document.IDocument;",
             "",
             "//Get first doc from CMS",
-            "ContentObjectValue docContent = ProcessHelper.getTrustTestDoc(\"/TestData/ATrustTestDoc\");",
+            "ContentObjectValue docContent = IvyScriptCmsHelper.getContentObjectValue(\"/TestData/ATrustTestDoc\");",
             "        ",
             "// Prepare data for Signature job",
             "SignatureJob signatureJob = new SignatureJob();",

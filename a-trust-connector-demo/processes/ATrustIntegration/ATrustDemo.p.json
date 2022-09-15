@@ -109,6 +109,7 @@
           "config" : {
             "output" : {
               "code" : [
+                "import com.axonivy.connector.atrust.IvyScriptCmsHelper;",
                 "import ch.ivyteam.ivy.cm.ContentObjectValue;",
                 "import java.nio.file.Files;",
                 "import java.util.Optional;",
@@ -119,7 +120,7 @@
                 "in.myIvyFile = new File(\"Template.xml\", true);",
                 "",
                 "//Save result in java File of ivy File",
-                "ContentObjectValue cov = ProcessHelper.getTrustTestDoc(\"/Templates/SampleSignatureSeal\");",
+                "ContentObjectValue cov = IvyScriptCmsHelper.getContentObjectValue(\"/Templates/SampleSignatureSeal\");",
                 "Path filePath = in.myIvyFile.getJavaFile().toPath();",
                 "Files.write(filePath, cov.read().bytes());"
               ]
