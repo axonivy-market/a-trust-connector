@@ -1,0 +1,89 @@
+{
+  "format" : "9.4.20",
+  "id" : "17969069DFA18010",
+  "data" : "com.axonivy.connector.atrust.test.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "startSignature.ivp",
+      "config" : {
+        "callSignature" : "startSignature",
+        "outLink" : "startSignature.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 128 },
+        "labelOffset" : { "x" : 36, "y" : 37 }
+      },
+      "connect" : { "id" : "f3", "to" : "f10" }
+    }, {
+      "id" : "f13",
+      "type" : "SubProcessCall",
+      "name" : [
+        "Call A-Trust to StartSignature",
+        "Input: SignatureJob",
+        "Output: SignatureDocumentData"
+      ],
+      "config" : {
+        "processCall" : "ATrust/StartSignature:call(com.axonivy.connector.atrust.bo.SignatureJob)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.signatureDocumentData" : "result.signatureDocumentData"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "signatureJob", "type" : "com.axonivy.connector.atrust.bo.SignatureJob" }
+          ],
+          "map" : {
+            "param.signatureJob" : "in.signatureJob"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 528, "y" : 128 },
+        "size" : { "width" : 192, "height" : 60 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : [
+        "Prepare Input of A-Trust call",
+        "Input: SignatureJob"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.atrust.IvyScriptCmsHelper;",
+            "import com.axonivy.connector.atrust.bo.SignatureJob;",
+            "import ch.ivyteam.ivy.cm.ContentObjectValue;",
+            "import java.nio.file.Files;",
+            "import java.nio.file.Path;",
+            "import ch.ivyteam.ivy.workflow.document.IDocument;",
+            "",
+            "//Get first doc from CMS",
+            "ContentObjectValue docContent = IvyScriptCmsHelper.getContentObjectValue(\"/TestData/ATrustTestDoc\");",
+            "        ",
+            "// Prepare data for Signature job",
+            "SignatureJob signatureJob = new SignatureJob();",
+            "signatureJob.taskId = ivy.task.getId();",
+            "signatureJob.documentName = \"ATrustTestDoc.pdf\";",
+            "signatureJob.pdfDocument = docContent.read().bytes();",
+            "signatureJob.signStampCoordinatesX0 = 30.7;",
+            "signatureJob.signStampCoordinatesX1 = 60.2;",
+            "signatureJob.signStampCoordinatesY0 = 5.5;",
+            "signatureJob.signStampCoordinatesY1 = 14.4;",
+            "signatureJob.signStampPageNumber = 1;",
+            "",
+            "in.signatureJob = signatureJob;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 128 },
+        "size" : { "width" : 176, "height" : 60 }
+      },
+      "connect" : { "id" : "f6", "to" : "f13" }
+    } ]
+}
