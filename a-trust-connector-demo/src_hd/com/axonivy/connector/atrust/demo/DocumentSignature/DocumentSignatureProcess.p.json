@@ -191,6 +191,7 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.jsf.primefaces.stream.InputStreamSupplier;",
             "import java.nio.file.Files;",
             "import org.primefaces.model.DefaultStreamedContent;",
             "import java.io.InputStream;",
@@ -200,7 +201,7 @@
             "",
             "//Read doc as stream content",
             "InputStream inputStream = ivy.case.documents().get(in.selectedDocument.getId()).read().asStream();",
-            "in.streamedContent = DefaultStreamedContent.builder().stream(new ch.ivyteam.ivy.jsf.primefaces.legazy.DummySupplier(inputStream)).contentType(contentType).name(in.selectedDocument.getName()).build();"
+            "in.streamedContent = DefaultStreamedContent.builder().stream(InputStreamSupplier.stream(inputStream)).contentType(contentType).name(in.selectedDocument.getName()).build();"
           ]
         }
       },

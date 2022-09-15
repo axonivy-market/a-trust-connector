@@ -107,7 +107,7 @@
             "//remove data from session, because PDF documents could use lots of space",
             "ATrustSignerSessionHelper.clearSessionData();",
             "ITask requestTask = ivy.wf.findTask(in.referenceTaskId);",
-            "String targetUrl = ivy.html.taskstartref(requestTask);",
+            "String targetUrl = requestTask.getStartLink().getAbsolute();",
             "",
             "//redirect user to task",
             "IHttpRequest httpRequest = ivy.request as IHttpRequest;",
@@ -329,6 +329,9 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.jsf.primefaces.stream.InputStreamSupplier;",
+            "import ch.ivyteam.ivy.workflow.document.IDocument;",
+            "import ch.ivyteam.ivy.jsf.primefaces.stream.InputStreamSupplier;",
             "import com.axonivy.connector.atrust.enums.SignatureStatus;",
             "import com.axonivy.connector.atrust.bo.SignatureDocumentData;",
             "import com.axonivy.connector.atrust.util.ATrustSignerSessionHelper;",
@@ -346,9 +349,8 @@
             "",
             "String docName = \"SIGNED_\" + sr.documentName;",
             "String contentType = \"application/pdf\";",
-            "StreamedContent generatedSignatureDocument = DefaultStreamedContent.builder().stream(new ch.ivyteam.ivy.jsf.primefaces.legazy.DummySupplier(new ByteArrayInputStream(sr.getPdfDocument()))).contentType(contentType).name(docName).build();",
             "ICase requestCase = requestTask.getCase().getBusinessCase();",
-            "requestCase.documents().add(new Path(docName)).write().withContentFrom(generatedSignatureDocument.getStream());",
+            "requestCase.documents().add(new Path(docName)).write().withContentFrom(new Binary(sr.getPdfDocument()));",
             "",
             "SignatureDocumentData signatureDocumentData = new SignatureDocumentData();",
             "signatureDocumentData.documentName = docName;",
