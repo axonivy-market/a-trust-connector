@@ -1,0 +1,454 @@
+{
+  "format" : "9.4.20",
+  "id" : "1797F203890511D1",
+  "data" : "com.axonivy.connector.atrust.EndSignatureData",
+  "elements" : [ {
+      "id" : "f9",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 688, "y" : 608 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f45" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 368, "y" : 608 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f7", "condition" : "in.signatureAppliedSuccessfully" },
+        { "id" : "f14", "to" : "f10", "via" : [ { "x" : 368, "y" : 512 } ], "label" : {
+            "name" : "error",
+            "segment" : 1.46,
+            "offset" : { "x" : 0, "y" : -16 }
+          } }
+      ]
+    }, {
+      "id" : "f20",
+      "type" : "Script",
+      "name" : [
+        "Check for valid hash",
+        "and get data from session"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.atrust.util.ATrustSignerSessionHelper;",
+            "import com.axonivy.connector.atrust.restricted.SignatureSessionContainer;",
+            "import ch.ivyteam.ivy.bpm.error.BpmError;",
+            "",
+            "SignatureSessionContainer container = ATrustSignerSessionHelper.getContainerObjectFromSession();",
+            "if( in.callbackSafetyHash.length() == 0 ) {",
+            "  BpmError.create(\"com:axonivy:connector:atrust:callback:nohash\")",
+            "    .withMessage(\"Illegal start of callback process. No callbackSafetyHash parameter provided.\")",
+            "    .throwError();",
+            "}",
+            "else if( !container.callbackSafetyHash.equals(in.callbackSafetyHash) ) {",
+            "  BpmError.create(\"com:axonivy:connector:atrust:callback:hashmismatch\")",
+            "    .withMessage(\"Signature ticket in session does not match callback by A-Trust. No parallel signature of multiple documents allowed.\")",
+            "    .throwError();",
+            "}",
+            "",
+            "//after hash is verified, get data from session container and remove it from the session",
+            "ATrustSignerSessionHelper.clearSessionData();",
+            "",
+            "in.aTrustTicketID = container.aTrustTicketID;",
+            "in.referenceTaskId = container.referenceTaskId;",
+            "in.callbackUrlAfterSignature = container.callbackUrlAfterSignature;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 224 },
+        "size" : { "width" : 176, "height" : 60 }
+      },
+      "connect" : { "id" : "f37", "to" : "f23" }
+    }, {
+      "id" : "f79",
+      "type" : "Script",
+      "name" : [
+        "Forward to calling process",
+        "callback URL"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.request.IHttpRequest;",
+            "import ch.ivyteam.ivy.request.IHttpResponse;",
+            "",
+            "IHttpRequest httpRequest = ivy.request as IHttpRequest;",
+            "IHttpResponse httpResponse = ivy.response as IHttpResponse;",
+            "",
+            "httpResponse.sendRedirect(in.callbackUrlAfterSignature);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1336, "y" : 224 },
+        "size" : { "width" : 176, "height" : 60 }
+      }
+    }, {
+      "id" : "f45",
+      "type" : "Script",
+      "name" : [
+        "Remove SignatureResult from session",
+        "Redirect user to task"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.atrust.util.ATrustSignerSessionHelper;",
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "import ch.ivyteam.ivy.request.IHttpResponse;",
+            "import ch.ivyteam.ivy.request.IHttpRequest;",
+            "",
+            "//remove data from session, because PDF documents could use lots of space",
+            "ATrustSignerSessionHelper.clearSessionData();",
+            "ITask requestTask = ivy.wf.findTask(in.referenceTaskId);",
+            "String targetUrl = ivy.html.taskstartref(requestTask);",
+            "",
+            "//redirect user to task",
+            "IHttpRequest httpRequest = ivy.request as IHttpRequest;",
+            "IHttpResponse httpResponse = ivy.response as IHttpResponse;",
+            "httpResponse.sendRedirect(targetUrl);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 880, "y" : 608 },
+        "size" : { "width" : 240, "height" : 60 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "RequestStart",
+      "name" : "start(callbackSafetyHash)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "callbackSafetyHash", "type" : "String" }
+          ],
+          "map" : {
+            "out.callbackSafetyHash" : "param.callbackSafetyHash"
+          }
+        },
+        "showInStartList" : false,
+        "outLink" : "start.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 224 },
+        "labelOffset" : { "x" : 45, "y" : 47 },
+        "icon" : "res:/webContent/icons/atrust-icon.png?small",
+        "color" : "NodeStyle3"
+      },
+      "connect" : { "id" : "f28", "to" : "f20" }
+    }, {
+      "id" : "f19",
+      "type" : "Script",
+      "name" : [
+        "Set successful",
+        "flag to TRUE"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "in.signatureResult.referenceTaskId = in.referenceTaskId;",
+            "in.signatureResult.signatureAppliedSuccessfully = true;",
+            "in.signatureResult.aTrustTicketID = in.aTrustTicketID;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 808, "y" : 128 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : { "id" : "f36", "to" : "f3", "via" : [ { "x" : 1008, "y" : 128 } ] }
+    }, {
+      "id" : "f3",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 1008, "y" : 224 }
+      },
+      "connect" : [
+        { "id" : "f33", "to" : "f21" }
+      ]
+    }, {
+      "id" : "f47",
+      "type" : "Script",
+      "name" : "Verify SignatureResult",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.atrust.util.ATrustSignerSessionHelper;",
+            "import com.axonivy.connector.atrust.restricted.SignatureResult;",
+            "import ch.ivyteam.ivy.bpm.error.BpmError;",
+            "",
+            "//get signature result from session (as we only handle one siganture per user at a time, we do not need more parameters)",
+            "SignatureResult sr = ATrustSignerSessionHelper.getSignatureResultFromSession();",
+            "if( #sr == null ) {",
+            "  BpmError.create(\"com:axonivy:connector:atrust:documentsignature:nosessiondata\").withMessage(\"No signature result data present in current user session\").throwError();",
+            "}",
+            "",
+            "in.signatureAppliedSuccessfully = sr.signatureAppliedSuccessfully;",
+            "in.referenceTaskId = sr.referenceTaskId;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 608 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : { "id" : "f12", "to" : "f6" }
+    }, {
+      "id" : "f4",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 624, "y" : 224 }
+      },
+      "connect" : [
+        { "id" : "f26", "to" : "f25", "via" : [ { "x" : 624, "y" : 320 } ], "label" : {
+            "name" : "resultCode != 0",
+            "segment" : 1.48,
+            "offset" : { "x" : 0, "y" : -8 }
+          }, "condition" : "in.resultCode != 0" },
+        { "id" : "f34", "to" : "f24", "label" : {
+            "name" : "no doc or no cert",
+            "segment" : 0.52,
+            "offset" : { "x" : 1, "y" : -12 }
+          }, "condition" : "in.signatureResult.pdfDocument.size() == 0  || in.signatureResult.certificateB64.length() == 0" },
+        { "id" : "f30", "to" : "f19", "via" : [ { "x" : 624, "y" : 128 } ], "label" : {
+            "name" : "no error",
+            "segment" : 1.04,
+            "offset" : { "x" : 4, "y" : -8 }
+          } }
+      ]
+    }, {
+      "id" : "f24",
+      "type" : "Script",
+      "name" : "Set not signed error message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "in.signatureResult.referenceTaskId = in.referenceTaskId;",
+            "in.signatureResult.aTrustTicketID = in.aTrustTicketID;",
+            "in.signatureResult.errorMessage = \"No signed document provided. Maybe cancelled by user.\";",
+            "in.signatureResult.signatureAppliedSuccessfully = false;",
+            "in.signatureResult.documentName = null;",
+            "in.signatureResult.pdfDocument = null;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 832, "y" : 224 },
+        "size" : { "width" : 176, "height" : 60 }
+      },
+      "connect" : { "id" : "f32", "to" : "f3" }
+    }, {
+      "id" : "f23",
+      "type" : "WebServiceCall",
+      "name" : [
+        "Call Handysignatur service",
+        "EndSignature"
+      ],
+      "config" : {
+        "clientId" : "1797F21DA09F10E5",
+        "port" : "HttpsEndpoint",
+        "inputParams" : {
+          "parameters.aPIKey" : "ivy.var.ATrust_APIKey",
+          "parameters.ticket" : "in.aTrustTicketID"
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.resultCode" : "wsResponse.endSignatureResult",
+            "out.signatureResult.certificateB64" : "wsResponse.certificateB64",
+            "out.signatureResult.documentName" : "wsResponse.documentName",
+            "out.signatureResult.pdfDocument" : "wsResponse.documentData"
+          }
+        },
+        "operation" : "EndSignature",
+        "exceptionHandler" : "com:axonivy:connector:atrust:endsignature:exception",
+        "timeout" : "0"
+      },
+      "visual" : {
+        "at" : { "x" : 472, "y" : 224 },
+        "size" : { "width" : 176, "height" : 60 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "boundaries" : [ {
+          "id" : "f22",
+          "type" : "ErrorBoundaryEvent",
+          "config" : {
+            "errorCode" : "com:axonivy:connector:atrust:endsignature:exception",
+            "output" : {
+              "map" : {
+                "out" : "in",
+                "out.signatureResult.documentName" : "null",
+                "out.signatureResult.errorMessage" : "error.getLocalizedMessage()",
+                "out.signatureResult.pdfDocument" : "null",
+                "out.signatureResult.signatureAppliedSuccessfully" : "false"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 536, "y" : 256 }
+          },
+          "connect" : { "id" : "f27", "to" : "f3", "via" : [ { "x" : 536, "y" : 387 }, { "x" : 1008, "y" : 387 } ] }
+        } ],
+      "connect" : { "id" : "f35", "to" : "f4" }
+    }, {
+      "id" : "f21",
+      "type" : "Script",
+      "name" : [
+        "Store signature result",
+        "to session"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.atrust.util.ATrustSignerSessionHelper;",
+            "",
+            "ATrustSignerSessionHelper.saveToSession(in.signatureResult);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1136, "y" : 224 },
+        "size" : { "width" : 144, "height" : 60 }
+      },
+      "connect" : { "id" : "f31", "to" : "f79" }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : [
+        "Add signed doc to case",
+        "Store data to business data"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.atrust.enums.SignatureStatus;",
+            "import com.axonivy.connector.atrust.bo.SignatureDocumentData;",
+            "import com.axonivy.connector.atrust.util.ATrustSignerSessionHelper;",
+            "import com.axonivy.connector.atrust.restricted.SignatureResult;",
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "import java.io.ByteArrayInputStream;",
+            "import ch.ivyteam.ivy.workflow.document.Path;",
+            "import org.primefaces.model.DefaultStreamedContent;",
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import org.primefaces.model.StreamedContent;",
+            "",
+            "SignatureResult sr = ATrustSignerSessionHelper.getSignatureResultFromSession();",
+            "//attached SIGNED Doc to request case",
+            "ITask requestTask = ivy.wf.findTask(in.referenceTaskId);",
+            "",
+            "String docName = \"SIGNED_\" + sr.documentName;",
+            "String contentType = \"application/pdf\";",
+            "StreamedContent generatedSignatureDocument = DefaultStreamedContent.builder().stream(new ch.ivyteam.ivy.jsf.primefaces.legazy.DummySupplier(new ByteArrayInputStream(sr.getPdfDocument()))).contentType(contentType).name(docName).build();",
+            "ICase requestCase = requestTask.getCase().getBusinessCase();",
+            "requestCase.documents().add(new Path(docName)).write().withContentFrom(generatedSignatureDocument.getStream());",
+            "",
+            "SignatureDocumentData signatureDocumentData = new SignatureDocumentData();",
+            "signatureDocumentData.documentName = docName;",
+            "signatureDocumentData.pdfDocument = sr.pdfDocument;",
+            "signatureDocumentData.signatureStatus = SignatureStatus.SIGNED;",
+            "signatureDocumentData.signatureTicket = sr.aTrustTicketID;",
+            "",
+            "//save to repo",
+            "String dataObjectId = ivy.repo.save(signatureDocumentData).getId();",
+            "requestTask.customFields().stringField(\"referenceSignDocId\").set(dataObjectId);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 528, "y" : 608 },
+        "size" : { "width" : 176, "height" : 60 }
+      },
+      "connect" : { "id" : "f13", "to" : "f9" }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Store result to repo",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.atrust.util.ATrustSignerSessionHelper;",
+            "import com.axonivy.connector.atrust.enums.SignatureStatus;",
+            "import com.axonivy.connector.atrust.bo.SignatureDocumentData;",
+            "import com.axonivy.connector.atrust.restricted.SignatureResult;",
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "",
+            "SignatureResult sr = ATrustSignerSessionHelper.getSignatureResultFromSession();",
+            "in.referenceTaskId = sr.referenceTaskId;",
+            "",
+            "//attached SIGNED Doc to request case",
+            "ITask requestTask = ivy.wf.findTask(in.referenceTaskId);",
+            "",
+            "SignatureDocumentData signatureDocumentData = new SignatureDocumentData();",
+            "signatureDocumentData.signatureStatus = SignatureStatus.NOT_SIGN;",
+            "signatureDocumentData.signatureTicket = sr.aTrustTicketID;",
+            "signatureDocumentData.lastSignatureError = sr.errorMessage;",
+            "",
+            "//save to repo",
+            "String dataObjectId = ivy.repo.save(signatureDocumentData).getId();",
+            "requestTask.customFields().stringField(\"referenceSignDocId\").set(dataObjectId);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 496, "y" : 512 }
+      },
+      "connect" : { "id" : "f15", "to" : "f9", "via" : [ { "x" : 688, "y" : 512 } ] }
+    }, {
+      "id" : "f25",
+      "type" : "Script",
+      "name" : "Set generic error message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "in.signatureResult.referenceTaskId = in.referenceTaskId;",
+            "in.signatureResult.aTrustTicketID = in.aTrustTicketID;",
+            "in.signatureResult.errorMessage = \"End Signature Web Service Error: Code \" + in.resultCode;",
+            "in.signatureResult.signatureAppliedSuccessfully = false;",
+            "in.signatureResult.documentName = null;",
+            "in.signatureResult.pdfDocument = null;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 824, "y" : 320 },
+        "size" : { "width" : 160, "height" : 60 }
+      },
+      "connect" : { "id" : "f29", "to" : "f3", "via" : [ { "x" : 1008, "y" : 320 } ] }
+    }, {
+      "id" : "f39",
+      "type" : "RequestStart",
+      "name" : "SignatureCallBack.ivp",
+      "config" : {
+        "callSignature" : "SignatureCallBack",
+        "outLink" : "SignatureCallBack.ivp",
+        "showInStartList" : false
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 608 },
+        "labelOffset" : { "x" : 19, "y" : 37 }
+      },
+      "connect" : { "id" : "f48", "to" : "f47" }
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "A-Trust Signature",
+        "offset" : 32,
+        "size" : 416,
+        "lanes" : [ {
+            "name" : "End Signature",
+            "size" : 416
+          } ]
+      } ],
+    "colors" : {
+      "NodeStyle3" : "rgb(255, 0, 0)"
+    }
+  }
+}

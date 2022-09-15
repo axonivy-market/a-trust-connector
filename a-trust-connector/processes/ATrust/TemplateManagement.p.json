@@ -1,0 +1,279 @@
+{
+  "format" : "9.4.20",
+  "id" : "1797F20B0709EDE7",
+  "data" : "com.axonivy.connector.atrust.TemplateManagementData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f5",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 544, "y" : 512 },
+        "icon" : "res:/webContent/icons/atrust-icon.png?small",
+        "color" : "NodeStyle3"
+      }
+    }, {
+      "id" : "f3",
+      "type" : "CallSubStart",
+      "name" : "AddTemplateATrust(File)",
+      "config" : {
+        "callSignature" : "AddTemplateATrust",
+        "input" : {
+          "params" : [
+            { "name" : "templateFile", "type" : "File" }
+          ],
+          "map" : {
+            "out.myIvyFile" : "param.templateFile"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "templateData", "type" : "com.axonivy.connector.atrust.bo.TemplateData" }
+          ],
+          "map" : {
+            "result.templateData" : "in.result"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 128 },
+        "labelOffset" : { "x" : 64, "y" : 37 },
+        "icon" : "res:/webContent/icons/atrust-icon.png?small",
+        "color" : "NodeStyle3"
+      },
+      "connect" : { "id" : "f12", "to" : "f91" }
+    }, {
+      "id" : "f4",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 640, "y" : 320 },
+        "icon" : "res:/webContent/icons/atrust-icon.png?small",
+        "color" : "NodeStyle3"
+      }
+    }, {
+      "id" : "f91",
+      "type" : "Script",
+      "name" : [
+        "Transform file to",
+        "byte array"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.nio.file.Files;",
+            "import java.nio.file.Path;",
+            "",
+            "Path path = in.myIvyFile.getJavaFile().toPath();",
+            "in.documentByteArray = Files.readAllBytes(path);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 128 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : { "id" : "f94", "to" : "f90" }
+    }, {
+      "id" : "f103",
+      "type" : "WebServiceCall",
+      "name" : "Delete Template on HandySignatur",
+      "config" : {
+        "clientId" : "1797F21DA09F10E5",
+        "port" : "HttpsEndpoint",
+        "inputParams" : {
+          "parameters.aPIKey" : "ivy.var.ATrust_APIKey",
+          "parameters.sigTemplateId" : "in.templateId"
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.result.resultCode" : "wsResponse"
+          }
+        },
+        "operation" : "DeleteTemplate",
+        "exceptionHandler" : "com:axonivy:connector:atrust:template:delete:exception",
+        "timeout" : "0"
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 320 },
+        "size" : { "width" : 208, "height" : 60 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "boundaries" : [ {
+          "id" : "f2",
+          "type" : "ErrorBoundaryEvent",
+          "name" : "com:axonivy:connector:atrust:template:delete:exception",
+          "config" : {
+            "errorCode" : "com:axonivy:connector:atrust:template:delete:exception"
+          },
+          "visual" : {
+            "at" : { "x" : 440, "y" : 352 },
+            "labelOffset" : { "x" : 0, "y" : 15 }
+          },
+          "connect" : { "id" : "f16", "to" : "f4", "via" : [ { "x" : 640, "y" : 352 } ] }
+        } ],
+      "connect" : { "id" : "f10", "to" : "f4" }
+    }, {
+      "id" : "f13",
+      "type" : "CallSubStart",
+      "name" : "DeleteTemplateATrust(Number)",
+      "config" : {
+        "callSignature" : "DeleteTemplateATrust",
+        "input" : {
+          "params" : [
+            { "name" : "templateId", "type" : "Number" }
+          ],
+          "map" : {
+            "out.templateId" : "param.templateId"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "resultCode", "type" : "Integer" }
+          ],
+          "map" : {
+            "result.resultCode" : "in.result.resultCode"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 320 },
+        "labelOffset" : { "x" : 85, "y" : 37 },
+        "icon" : "res:/webContent/icons/atrust-icon.png?small",
+        "color" : "NodeStyle3"
+      },
+      "connect" : { "id" : "f11", "to" : "f103" }
+    }, {
+      "id" : "f6",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 736, "y" : 128 },
+        "icon" : "res:/webContent/icons/atrust-icon.png?small",
+        "color" : "NodeStyle3"
+      }
+    }, {
+      "id" : "f7",
+      "type" : "WebServiceCall",
+      "name" : "Get List Template",
+      "config" : {
+        "clientId" : "1797F21DA09F10E5",
+        "port" : "HttpsEndpoint",
+        "inputParams" : {
+          "parameters.aPIKey" : "ivy.var.ATrust_APIKey"
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.result.listTemplates" : "wsResponse.list",
+            "out.result.resultCode" : "wsResponse.listTemplateResult"
+          }
+        },
+        "operation" : "ListTemplate",
+        "exceptionHandler" : "com:axonivy:connector:atrust:template:getall:exception",
+        "timeout" : "0"
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 512 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "boundaries" : [ {
+          "id" : "f17",
+          "type" : "ErrorBoundaryEvent",
+          "name" : "com:axonivy:connector:atrust:template:getall:exception",
+          "config" : {
+            "errorCode" : "com:axonivy:connector:atrust:template:getall:exception"
+          },
+          "visual" : {
+            "at" : { "x" : 312, "y" : 544 },
+            "labelOffset" : { "x" : 0, "y" : 15 }
+          },
+          "connect" : { "id" : "f18", "to" : "f5", "via" : [ { "x" : 544, "y" : 544 } ] }
+        } ],
+      "connect" : { "id" : "f9", "to" : "f5" }
+    }, {
+      "id" : "f8",
+      "type" : "CallSubStart",
+      "name" : "GetListTemplate()",
+      "config" : {
+        "callSignature" : "GetListTemplate",
+        "result" : {
+          "params" : [
+            { "name" : "templateData", "type" : "com.axonivy.connector.atrust.bo.TemplateData" }
+          ],
+          "map" : {
+            "result.templateData" : "in.result"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 512 },
+        "labelOffset" : { "x" : 45, "y" : 37 },
+        "icon" : "res:/webContent/icons/atrust-icon.png?small",
+        "color" : "NodeStyle3"
+      },
+      "connect" : { "id" : "f14", "to" : "f7" }
+    }, {
+      "id" : "f90",
+      "type" : "WebServiceCall",
+      "name" : [
+        "Add template to",
+        "HandySignatur"
+      ],
+      "config" : {
+        "clientId" : "1797F21DA09F10E5",
+        "port" : "HttpsEndpoint",
+        "inputParams" : {
+          "parameters.aPIKey" : "ivy.var.ATrust_APIKey",
+          "parameters.templateData" : "in.documentByteArray"
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.result.resultCode" : "wsResponse.uploadTemplateResult",
+            "out.result.sigTemplateId" : "wsResponse.sigTemplateId"
+          }
+        },
+        "operation" : "UploadTemplate",
+        "exceptionHandler" : "com:axonivy:connector:atrust:template:add:exception",
+        "timeout" : "0"
+      },
+      "visual" : {
+        "at" : { "x" : 536, "y" : 128 },
+        "size" : { "width" : 128, "height" : 60 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "boundaries" : [ {
+          "id" : "f0",
+          "type" : "ErrorBoundaryEvent",
+          "name" : "com:axonivy:connector:atrust:template:add:exception",
+          "config" : {
+            "errorCode" : "com:axonivy:connector:atrust:template:add:exception"
+          },
+          "visual" : {
+            "at" : { "x" : 576, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 15 }
+          },
+          "connect" : { "id" : "f1", "to" : "f6", "via" : [ { "x" : 736, "y" : 160 } ] }
+        } ],
+      "connect" : { "id" : "f15", "to" : "f6" }
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "Template Management",
+        "offset" : 32,
+        "size" : 576,
+        "lanes" : [ {
+            "name" : "Upload Template",
+            "size" : 192
+          }, {
+            "name" : "Delete Template",
+            "size" : 192
+          }, {
+            "name" : "Get Template",
+            "size" : 192
+          } ]
+      } ],
+    "colors" : {
+      "NodeStyle3" : "rgb(255, 0, 0)"
+    }
+  }
+}
