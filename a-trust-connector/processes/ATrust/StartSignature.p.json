@@ -58,7 +58,7 @@
             "in.callbackSafetyHash = UUID.randomUUID().toString();",
             "",
             "// Internal callback url which will be redirect at end of sign step",
-            "in.internalCallbackUrl = ivy.html.startref(\"ATrust/EndSignature/start.ivp\") + \"?callbackSafetyHash=\" + in.callbackSafetyHash;"
+            "in.internalCallbackUrl = ivy.html.startRef(\"ATrust/EndSignature/start.ivp\") + \"?callbackSafetyHash=\" + in.callbackSafetyHash;"
           ]
         }
       },

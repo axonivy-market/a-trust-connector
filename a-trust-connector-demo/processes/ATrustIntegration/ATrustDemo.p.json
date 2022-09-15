@@ -109,11 +109,19 @@
           "config" : {
             "output" : {
               "code" : [
+                "import java.nio.file.Files;",
+                "import java.util.Optional;",
+                "import java.nio.file.Path;",
+                "import ch.ivyteam.ivy.cm.ContentObject;",
+                "",
+                "",
                 "//Create a file that will hold the template",
                 "in.myIvyFile = new File(\"Template.xml\", true);",
                 "",
                 "//Save result in java File of ivy File",
-                "ivy.cms.getContentObjectValue(\"/Templates/SampleSignatureSeal\", ivy.session.contentLocale).exportContentToFile(in.myIvyFile.getJavaFile(), null);"
+                "List<byte> covBytes = ivy.cms.co(\"/Templates/SampleSignatureSeal\").getBytes().toTypedList(byte.class);",
+                "Path filePath = in.myIvyFile.getJavaFile().toPath();",
+                "Files.write(filePath, covBytes);"
               ]
             }
           },
