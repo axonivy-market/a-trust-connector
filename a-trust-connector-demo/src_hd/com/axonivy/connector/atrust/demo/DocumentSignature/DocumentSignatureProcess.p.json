@@ -1,0 +1,564 @@
+{
+  "format" : "9.4.20",
+  "id" : "1798259395763051",
+  "data" : "com.axonivy.connector.atrust.demo.DocumentSignature.DocumentSignatureData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f22",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "renderTable()",
+      "config" : {
+        "callSignature" : "renderTable",
+        "guid" : "179825FCCA8D7B69"
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 32 },
+        "labelOffset" : { "x" : 21, "y" : 35 }
+      },
+      "connect" : { "id" : "f33", "to" : "f32" }
+    }, {
+      "id" : "f27",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "upload(FileUploadEvent)",
+      "config" : {
+        "callSignature" : "upload",
+        "input" : {
+          "params" : [
+            { "name" : "event", "type" : "org.primefaces.event.FileUploadEvent" }
+          ],
+          "map" : {
+            "out.uploadedFile" : "param.event.getFile()"
+          }
+        },
+        "guid" : "179825FCCA8A85E1"
+      },
+      "visual" : {
+        "at" : { "x" : 960, "y" : 32 },
+        "labelOffset" : { "x" : 51, "y" : 35 }
+      },
+      "connect" : { "id" : "f41", "to" : "f40" }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : [
+        "Prepare Input of A-Trust call",
+        "Input: SignatureJob"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.nio.file.Files;",
+            "import java.nio.file.Path;",
+            "import ch.ivyteam.ivy.workflow.document.IDocument;",
+            "",
+            "//Get first doc from case",
+            "IDocument document = ivy.case.documents().getAll().get(0);",
+            "Path path = document.read().asJavaFile().toPath();",
+            "",
+            "// Prepare data for Signature job",
+            "//SignatureJob signatureJob = new SignatureJob();",
+            "in.signatureJob.taskId = ivy.task.getId();",
+            "in.signatureJob.documentName = document.getName();",
+            "in.signatureJob.pdfDocument = Files.readAllBytes(path);",
+            "in.signatureJob.signStampCoordinatesX0 = 30.7;",
+            "in.signatureJob.signStampCoordinatesX1 = 60.2;",
+            "in.signatureJob.signStampCoordinatesY0 = 5.5;",
+            "in.signatureJob.signStampCoordinatesY1 = 14.4;",
+            "in.signatureJob.signStampPageNumber = 1;",
+            "",
+            "//in.signatureJob = signatureJob;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 704 },
+        "size" : { "width" : 176, "height" : 60 }
+      },
+      "connect" : { "id" : "f45", "to" : "f13" }
+    }, {
+      "id" : "f12",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "How to integrate:",
+        "- Add a **Call** element to your process. It calls to   ***ATrust/StartSignature*** process with start method is   ***call(SignatureJob).***",
+        "- Prepare data for  **SignatureJob**  object:",
+        "\t// Example data for Signature job",
+        "\tSignatureJob signatureJob = new SignatureJob();",
+        "\tsignatureJob.taskId = ivy.task.getId(); // Current request task id",
+        "\tsignatureJob.documentName; // Document name",
+        "\tsignatureJob.pdfDocument; // Document in byte array format",
+        "\tsignatureJob.signStampCoordinatesX0 = 30.7; // example for postion of stamp",
+        "\tsignatureJob.signStampCoordinatesX1 = 60.2; // example for postion of stamp",
+        "\tsignatureJob.signStampCoordinatesY0 = 5.5; // example for postion of stamp",
+        "\tsignatureJob.signStampCoordinatesY1 = 14.4; // example for postion of stamp",
+        "\tsignatureJob.callbackUrlAfterSignature; // Call back url after signature, if leave with empty, the default callback url will be called",
+        "\tsignatureJob.signStampPageNumber; // Number of page where stamp will be sign on",
+        "",
+        "",
+        "- The return object is  **SignatureDocumentData**.",
+        "- After success, a document will be added to this case with the prefix     **SIGNED_** if the doc is **signed**.",
+        "- Add a customfield name \"**referenceSignDocId**\" to this task to track the result of the signing process.",
+        "- The referenceSignDocId is the ID of the data object saved in ivy business data (ivy.repo)"
+      ],
+      "visual" : {
+        "at" : { "x" : 520, "y" : 960 },
+        "size" : { "width" : 864, "height" : 380 },
+        "description" : [
+          "How to integrate:",
+          "- Add a Call element to your process. It calls to   ATrust/StartSignature process with start method is   call(SignatureJob).",
+          "- Prepare data for  SignatureJob  object:",
+          "\t// Example data for Signature job",
+          "\tSignatureJob signatureJob = new SignatureJob();",
+          "\tsignatureJob.taskId = ivy.task.getId(); // Current request task id",
+          "\tsignatureJob.documentName; // Document name",
+          "\tsignatureJob.pdfDocument; // Document in byte array format",
+          "\tsignatureJob.signStampCoordinatesX0 = 30.7; // example for postion of stamp",
+          "\tsignatureJob.signStampCoordinatesX1 = 60.2; // example for postion of stamp",
+          "\tsignatureJob.signStampCoordinatesY0 = 5.5; // example for postion of stamp",
+          "\tsignatureJob.signStampCoordinatesY1 = 14.4; // example for postion of stamp",
+          "\tsignatureJob.callbackUrlAfterSignature; // Call back url after signature, if leave with empty, the default callback url will be called",
+          "\tsignatureJob.signStampPageNumber; // Number of page where stamp will be sign on",
+          "",
+          "",
+          "- The return object is  SignatureDocumentData.",
+          "- After success, a document will be added to this case with the prefix     SIGNED_ if the doc is signed.",
+          "- Add a customfield name \"referenceSignDocId\" to this task to track the result of the signing process.",
+          "- The referenceSignDocId is the ID of the data object saved in ivy business data (ivy.repo)"
+        ],
+        "color" : "NodeStyle4"
+      }
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : "Get Message",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.atrust.enums.SignatureStatus;",
+            "import com.axonivy.connector.atrust.bo.SignatureDocumentData;",
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "String dataObjectId = ivy.task.customFields().stringField(\"referenceSignDocId\").getOrNull();",
+            "",
+            "SignatureDocumentData signatureDocumentData = ivy.repo.find(dataObjectId, SignatureDocumentData.class) as SignatureDocumentData;",
+            "if ( #signatureDocumentData != null ) {",
+            "  FacesMessage message = new FacesMessage();",
+            "  String summryMessage = \"\";",
+            "  if ( signatureDocumentData.signatureStatus == SignatureStatus.SIGNED ) {",
+            "    summryMessage = String.format(\"Ticket: %s. Status: %s.\", signatureDocumentData.signatureTicket, signatureDocumentData.signatureStatus);",
+            "    message.severity = FacesMessage.SEVERITY_INFO;",
+            "  }",
+            "  else {",
+            "    summryMessage = String.format(\"Ticket: %s. Status: %s. Error message: %s\", signatureDocumentData.signatureTicket, signatureDocumentData.signatureStatus, signatureDocumentData.lastSignatureError);",
+            "    message.severity = FacesMessage.SEVERITY_ERROR;",
+            "  }",
+            "",
+            "  message.setSummary(summryMessage);",
+            "  FacesContext.getCurrentInstance().addMessage(null, message);",
+            "",
+            "  in.disableSignButton = signatureDocumentData.signatureStatus == SignatureStatus.SIGNED;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 128 }
+      },
+      "connect" : { "id" : "f50", "to" : "f35", "via" : [ { "x" : 448, "y" : 264 } ] }
+    }, {
+      "id" : "f19",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Integration",
+        "****",
+        "UPDATE A-TRUST CUSTOM VARS IN GLOBAL VARIABLE of A-TRUST-CONNECTOR project:",
+        "- ****ATrust.APIKey    ****: API Key for A-Trust Handysignatur api",
+        "- ****ATrust.EndpointUri ****  : The endpoint uri of A-Trust Handysignatur Signatur-box webservice.",
+        "- ****ATrust.TemplateId    ****: The ID of the signature template to be used.**"
+      ],
+      "visual" : {
+        "at" : { "x" : 344, "y" : 504 },
+        "size" : { "width" : 528, "height" : 108 },
+        "color" : "NodeStyle4"
+      }
+    }, {
+      "id" : "f38",
+      "type" : "Script",
+      "name" : "Download selected doc",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.nio.file.Files;",
+            "import org.primefaces.model.DefaultStreamedContent;",
+            "import java.io.InputStream;",
+            "",
+            "//Get content type",
+            "String contentType = Files.probeContentType(in.selectedDocument.read().asJavaFile().toPath());",
+            "",
+            "//Read doc as stream content",
+            "InputStream inputStream = ivy.case.documents().get(in.selectedDocument.getId()).read().asStream();",
+            "in.streamedContent = DefaultStreamedContent.builder().stream(new ch.ivyteam.ivy.jsf.primefaces.legazy.DummySupplier(inputStream)).contentType(contentType).name(in.selectedDocument.getName()).build();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1184, "y" : 128 },
+        "size" : { "width" : 144, "height" : 60 }
+      },
+      "connect" : { "id" : "f24", "to" : "f11" }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "sign()",
+      "config" : {
+        "callSignature" : "sign",
+        "input" : {
+          "map" : {
+            "out.disableSignButton" : "true"
+          }
+        },
+        "guid" : "179825FCCA8B2961"
+      },
+      "visual" : {
+        "at" : { "x" : 128, "y" : 704 },
+        "labelOffset" : { "x" : 7, "y" : 35 }
+      },
+      "connect" : { "id" : "f31", "to" : "f10" }
+    }, {
+      "id" : "f42",
+      "type" : "Alternative",
+      "name" : "exist?",
+      "visual" : {
+        "at" : { "x" : 960, "y" : 192 },
+        "labelOffset" : { "x" : 47, "y" : 12 }
+      },
+      "connect" : [
+        { "id" : "f49", "to" : "f35", "via" : [ { "x" : 768, "y" : 192 } ], "condition" : "in.doesDocumentExist" },
+        { "id" : "f48", "to" : "f34" }
+      ]
+    }, {
+      "id" : "f34",
+      "type" : "Script",
+      "name" : "Add file to case",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import javax.faces.application.FacesMessage;",
+            "import ch.ivyteam.ivy.workflow.document.IDocument;",
+            "",
+            "//Add the new file to case",
+            "ivy.case.documents().add(in.uploadedFile.getFileName()).write().withContentFrom(in.uploadedFile.getInputStream());",
+            "",
+            "//Update message",
+            "FacesMessage message = new FacesMessage(String.format(\"Upload file %s to case %s successfully\", in.uploadedFile.getFileName(), ivy.case.getId()));",
+            "FacesContext.getCurrentInstance().addMessage(\"form:upload-message\", message);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 960, "y" : 264 }
+      },
+      "boundaries" : [ {
+          "id" : "f16",
+          "type" : "ErrorBoundaryEvent",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import javax.faces.context.FacesContext;",
+                "import javax.faces.application.FacesMessage;",
+                "",
+                "//Update message",
+                "FacesMessage message = new FacesMessage(String.format(\"Upload file %s to case failed: %s\", in.uploadedFile.getFileName(), error.getLocalizedMessage()));",
+                "message.severity = FacesMessage.SEVERITY_ERROR;",
+                "FacesContext.getCurrentInstance().addMessage(\"form:upload-message\", message);"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 992, "y" : 296 }
+          },
+          "connect" : { "id" : "f51", "to" : "f26", "via" : [ { "x" : 992, "y" : 376 } ] }
+        } ],
+      "connect" : { "id" : "f47", "to" : "f35" }
+    }, {
+      "id" : "f20",
+      "type" : "Script",
+      "name" : [
+        "Disable sign document if state is inprogress",
+        "Add message"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.atrust.enums.SignatureStatus;",
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "in.disableSignButton = in.signatureDocumentData.#signatureStatus == SignatureStatus.INPROGRESS;",
+            "",
+            "if ( in.signatureDocumentData.#signatureStatus != SignatureStatus.SIGNED ) {",
+            "  String summryMessage = String.format( \"Ticket: %s. Status: %s. Error message: %s\", in.signatureDocumentData.#signatureTicket, in.signatureDocumentData.#signatureStatus, in.signatureDocumentData.#lastSignatureError);",
+            "  FacesMessage message = new FacesMessage(summryMessage);",
+            "  message.severity = FacesMessage.SEVERITY_ERROR;",
+            "  FacesContext.getCurrentInstance().addMessage(null, message);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 824, "y" : 704 },
+        "size" : { "width" : 272, "height" : 60 }
+      },
+      "connect" : { "id" : "f28", "to" : "f30" }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "179825FCCA8E48E3"
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 32 },
+        "labelOffset" : { "x" : -8, "y" : 33 }
+      },
+      "connect" : { "id" : "f21", "to" : "f14" }
+    }, {
+      "id" : "f13",
+      "type" : "SubProcessCall",
+      "name" : [
+        "Call A-Trust to StartSignature",
+        "Input: SignatureJob",
+        "Output: SignatureDocumentData"
+      ],
+      "config" : {
+        "processCall" : "ATrust/StartSignature:call(com.axonivy.connector.atrust.bo.SignatureJob)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.signatureDocumentData" : "result.signatureDocumentData"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "signatureJob", "type" : "com.axonivy.connector.atrust.bo.SignatureJob" }
+          ],
+          "map" : {
+            "param.signatureJob" : "in.signatureJob"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 704 },
+        "size" : { "width" : 192, "height" : 60 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "connect" : { "id" : "f23", "to" : "f20" }
+    }, {
+      "id" : "f7",
+      "type" : "ProcessAnnotation",
+      "name" : "Get first doc in current case",
+      "visual" : {
+        "at" : { "x" : 360, "y" : 632 },
+        "size" : { "width" : 160, "height" : 30 }
+      },
+      "connect" : { "id" : "f0", "to" : "f10" }
+    }, {
+      "id" : "f35",
+      "type" : "Script",
+      "name" : "Check disable upload",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "",
+            "//Disable upload",
+            "in.disableUpload = ivy.case.documents().getAll().size() > 0;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 768, "y" : 264 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : { "id" : "f44", "to" : "f26" }
+    }, {
+      "id" : "f29",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "delete()",
+      "config" : {
+        "callSignature" : "delete",
+        "guid" : "179825FCCA9A86D2"
+      },
+      "visual" : {
+        "at" : { "x" : 768, "y" : 32 },
+        "labelOffset" : { "x" : -2, "y" : 35 }
+      },
+      "connect" : { "id" : "f37", "to" : "f36" }
+    }, {
+      "id" : "f18",
+      "type" : "ProcessAnnotation",
+      "name" : "**Your process**",
+      "visual" : {
+        "at" : { "x" : 168, "y" : 64 },
+        "size" : { "width" : 208, "height" : 112 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1184, "y" : 264 }
+      }
+    }, {
+      "id" : "f25",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "download(IDocument)",
+      "config" : {
+        "callSignature" : "download",
+        "result" : {
+          "params" : [
+            { "name" : "streamContent", "type" : "org.primefaces.model.StreamedContent" }
+          ],
+          "map" : {
+            "result.streamContent" : "in.streamedContent"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "document", "type" : "ch.ivyteam.ivy.workflow.document.IDocument" }
+          ],
+          "map" : {
+            "out.selectedDocument" : "param.document"
+          }
+        },
+        "guid" : "179825FCCA9E1AF5"
+      },
+      "visual" : {
+        "at" : { "x" : 1184, "y" : 32 },
+        "labelOffset" : { "x" : -5, "y" : 35 }
+      },
+      "connect" : { "id" : "f39", "to" : "f38" }
+    }, {
+      "id" : "f40",
+      "type" : "Script",
+      "name" : "Validation",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import javax.faces.application.FacesMessage;",
+            "import ch.ivyteam.ivy.workflow.document.Path;",
+            "",
+            "//Find doc in case by name",
+            "String fileName = in.uploadedFile.getFileName();",
+            "in.doesDocumentExist = ivy.case.documents().get(new Path(fileName)) != null;",
+            "",
+            "if (in.doesDocumentExist) {",
+            "  //Update message",
+            "  FacesMessage message = new FacesMessage(String.format(\"Document %s already exists\", fileName));",
+            "  message.setSeverity(FacesMessage.SEVERITY_ERROR);",
+            "  FacesContext.getCurrentInstance().addMessage(\"form:upload-message\", message);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 960, "y" : 128 }
+      },
+      "connect" : { "id" : "f43", "to" : "f42" }
+    }, {
+      "id" : "f36",
+      "type" : "Script",
+      "name" : "Remove doc",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import javax.faces.application.FacesMessage;",
+            "",
+            "//Remove selected doc",
+            "ivy.case.documents().delete(in.selectedDocument.getId());",
+            "",
+            "//Update message",
+            "FacesMessage message = new FacesMessage(String.format(\"%s has deleted\", in.selectedDocument.getName()));",
+            "FacesContext.getCurrentInstance().addMessage(\"form:upload-message\", message);",
+            "",
+            "in.selectedDocument = null;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 768, "y" : 128 }
+      },
+      "connect" : { "id" : "f52", "to" : "f35" }
+    }, {
+      "id" : "f14",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 320, "y" : 160 }
+      }
+    }, {
+      "id" : "f26",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 768, "y" : 376 }
+      }
+    }, {
+      "id" : "f30",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1016, "y" : 704 }
+      }
+    }, {
+      "id" : "f32",
+      "type" : "Script",
+      "name" : "Get all docs in case",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.document.IDocument;",
+            "",
+            "in.documents = ivy.case.documents().getAll();",
+            "in.disableSignButton = in.documents.size() == 0;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 128 }
+      },
+      "connect" : { "id" : "f17", "to" : "f35", "via" : [ { "x" : 608, "y" : 264 } ] }
+    }, {
+      "id" : "f15",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "loadStatus()",
+      "config" : {
+        "callSignature" : "loadStatus",
+        "guid" : "179825FCCA9E3708"
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 32 },
+        "labelOffset" : { "x" : 16, "y" : 35 }
+      },
+      "connect" : { "id" : "f46", "to" : "f8" }
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "Example to integrate in your process",
+        "offset" : 416,
+        "size" : 792,
+        "lanes" : [ ]
+      } ],
+    "colors" : {
+      "NodeStyle4" : "rgb(0, 128, 0)"
+    }
+  }
+}

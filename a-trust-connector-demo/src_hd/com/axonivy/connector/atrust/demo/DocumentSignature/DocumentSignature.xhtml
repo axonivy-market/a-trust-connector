@@ -35,7 +35,7 @@
 					mode="advanced" auto="true"
 					chooseIcon="si si-add-small"
 					fileLimit="1"
-					fileUploadListener="#{logic.upload}"
+					listener="#{logic.upload}"
 					process="@this form:document-table"
 					update="@this form:document-table form:signature-document form:upload-message"
 					label="Upload new file"
@@ -48,7 +48,7 @@
 					value="#{data.documents}"
 					var="document"
 					emptyMessage="No files are found!"
-					styleClass="margin-top-10">
+					styleClass="margin-top-10" lazy="false">
 					<f:event type="preRenderComponent" listener="#{logic.renderTable()}" />
 				
 					<f:facet name="header">Document of case</f:facet>

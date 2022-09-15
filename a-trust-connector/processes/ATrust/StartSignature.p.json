@@ -1,0 +1,282 @@
+{
+  "format" : "9.4.20",
+  "id" : "1797F1F35CA9D09F",
+  "data" : "com.axonivy.connector.atrust.StartSignatureData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Set signature output",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.atrust.enums.SignatureStatus;",
+            "",
+            "in.signatureDocumentData.resultCode = in.resultCode;",
+            "in.signatureDocumentData.signatureTicket = in.signatureTicket;",
+            "in.signatureDocumentData.lastSignatureError = \"\";",
+            "in.signatureDocumentData.signatureStatus = SignatureStatus.INPROGRESS;",
+            "in.signatureDocumentData.documentName = in.signatureJob.documentName;",
+            "in.signatureDocumentData.pdfDocument = null;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1024, "y" : 224 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : { "id" : "f38", "to" : "f41" }
+    }, {
+      "id" : "f7",
+      "type" : "Alternative",
+      "name" : "resultCode != 0",
+      "visual" : {
+        "at" : { "x" : 672, "y" : 224 },
+        "labelOffset" : { "x" : 50, "y" : -97 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f8", "via" : [ { "x" : 672, "y" : 128 } ], "condition" : "in.resultCode != 0" },
+        { "id" : "f13", "to" : "f12", "label" : {
+            "name" : "no error",
+            "segment" : 0.53,
+            "offset" : { "x" : 0, "y" : -13 }
+          } }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "Script",
+      "name" : [
+        "Prepare callback parameters",
+        "for EndSignature step"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.UUID;",
+            "",
+            "// Create a ramdom key for callback parameters",
+            "in.callbackSafetyHash = UUID.randomUUID().toString();",
+            "",
+            "// Internal callback url which will be redirect at end of sign step",
+            "in.internalCallbackUrl = ivy.html.startref(\"ATrust/EndSignature/start.ivp\") + \"?callbackSafetyHash=\" + in.callbackSafetyHash;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 224 },
+        "size" : { "width" : 192, "height" : 60 }
+      },
+      "connect" : { "id" : "f9", "to" : "f4" }
+    }, {
+      "id" : "f42",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 1376, "y" : 224 }
+      },
+      "connect" : [
+        { "id" : "f19", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "Script",
+      "name" : [
+        "Store signature job",
+        "to user's session"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.atrust.util.ATrustSignerSessionHelper;",
+            "import com.axonivy.connector.atrust.restricted.SignatureSessionContainer;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "",
+            "SignatureSessionContainer container = new SignatureSessionContainer();",
+            "container.aTrustTicketID = in.signatureTicket;",
+            "container.callbackSafetyHash = in.callbackSafetyHash;",
+            "container.callbackUrlAfterSignature = in.signatureJob.callbackUrlAfterSignature;",
+            "container.referenceTaskId = in.signatureJob.taskId;",
+            "",
+            "if (StringUtils.isEmpty(container.callbackUrlAfterSignature)) {",
+            "  container.callbackUrlAfterSignature = ivy.html.startRef(\"ATrust/EndSignature/SignatureCallBack.ivp\");",
+            "}",
+            "",
+            "ATrustSignerSessionHelper.saveToSession(container);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 848, "y" : 224 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : { "id" : "f43", "to" : "f10" }
+    }, {
+      "id" : "f3",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 1472, "y" : 224 },
+        "icon" : "res:/webContent/icons/atrust-icon.png?small",
+        "color" : "NodeStyle3"
+      }
+    }, {
+      "id" : "f41",
+      "type" : "Script",
+      "name" : [
+        "Reset request task",
+        "and forward to EndSignature"
+      ],
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.TaskState;",
+            "import java.util.Arrays;",
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "import ch.ivyteam.ivy.request.IHttpRequest;",
+            "import ch.ivyteam.ivy.request.IHttpResponse;",
+            "",
+            "// Reset request task",
+            "ITask requestTask = ivy.wf.findTask(in.signatureJob.taskId);",
+            "List<TaskState> statesCanReset = Arrays.asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, TaskState.READY_FOR_JOIN, TaskState.FAILED);",
+            "if (statesCanReset.contains(#requestTask.getState())) {",
+            "  requestTask.reset();",
+            "}",
+            "",
+            "// Redirect to EndSignature with safety hash",
+            "IHttpRequest httpRequest = ivy.request as IHttpRequest;",
+            "IHttpResponse httpResponse = ivy.response as IHttpResponse;",
+            "",
+            "httpResponse.sendRedirect(in.forwardTargetUrl);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1224, "y" : 224 },
+        "size" : { "width" : 176, "height" : 60 }
+      },
+      "connect" : { "id" : "f16", "to" : "f42" }
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : "Set generic error message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.atrust.enums.SignatureStatus;",
+            "",
+            "in.signatureDocumentData.resultCode = in.resultCode;",
+            "in.signatureDocumentData.signatureTicket = in.signatureTicket;",
+            "in.signatureDocumentData.lastSignatureError = \"Start Signature Web Service Error: Code \" + in.resultCode;",
+            "in.signatureDocumentData.signatureStatus = SignatureStatus.FAILED;",
+            "in.signatureDocumentData.pdfDocument = null;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 864, "y" : 128 },
+        "size" : { "width" : 160, "height" : 60 }
+      },
+      "connect" : { "id" : "f44", "to" : "f42", "via" : [ { "x" : 1376, "y" : 128 } ] }
+    }, {
+      "id" : "f4",
+      "type" : "WebServiceCall",
+      "name" : [
+        "Call Handysignatur service",
+        "StartSignature"
+      ],
+      "config" : {
+        "clientId" : "1797F21DA09F10E5",
+        "port" : "HttpsEndpoint",
+        "inputParams" : {
+          "parameters.aPIKey" : "ivy.var.ATrust_APIKey",
+          "parameters.documentData" : "in.signatureJob.pdfDocument",
+          "parameters.documentName" : "in.signatureJob.documentName",
+          "parameters.errorURL" : "in.internalCallbackUrl",
+          "parameters.page" : "in.signatureJob.signStampPageNumber > 0 ? in.signatureJob.signStampPageNumber : 1",
+          "parameters.redirectURL" : "in.internalCallbackUrl",
+          "parameters.sigTemplateId" : "ivy.var.ATrust_TemplateId.toNumber()",
+          "parameters.x0" : "in.signatureJob.signStampCoordinatesX0",
+          "parameters.x1" : "in.signatureJob.signStampCoordinatesX1",
+          "parameters.y0" : "in.signatureJob.signStampCoordinatesY0",
+          "parameters.y1" : "in.signatureJob.signStampCoordinatesY1"
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.forwardTargetUrl" : "wsResponse.handySignaturUrl",
+            "out.resultCode" : "wsResponse.startSignatureTemplateExResult",
+            "out.signatureTicket" : "wsResponse.ticket"
+          }
+        },
+        "operation" : "StartSignatureTemplateEx",
+        "exceptionHandler" : "com:axonivy:connector:atrust:startsignature:exception",
+        "timeout" : "0"
+      },
+      "visual" : {
+        "at" : { "x" : 520, "y" : 224 },
+        "size" : { "width" : 176, "height" : 60 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "boundaries" : [ {
+          "id" : "f6",
+          "type" : "ErrorBoundaryEvent",
+          "config" : {
+            "errorCode" : "com:axonivy:connector:atrust:startsignature:exception",
+            "output" : {
+              "map" : {
+                "out" : "in",
+                "out.signatureDocumentData.lastSignatureError" : "error.getCause().getLocalizedMessage()"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 584, "y" : 256 }
+          },
+          "connect" : { "id" : "f17", "to" : "f42", "via" : [ { "x" : 584, "y" : 321 }, { "x" : 1376, "y" : 321 } ] }
+        } ],
+      "connect" : { "id" : "f15", "to" : "f7" }
+    }, {
+      "id" : "f5",
+      "type" : "CallSubStart",
+      "name" : "call(SignatureJob)",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "signatureJob", "type" : "com.axonivy.connector.atrust.bo.SignatureJob" }
+          ],
+          "map" : {
+            "out.signatureJob" : "param.signatureJob"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "signatureDocumentData", "type" : "com.axonivy.connector.atrust.bo.SignatureDocumentData" }
+          ],
+          "map" : {
+            "result.signatureDocumentData" : "in.signatureDocumentData"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 224 },
+        "labelOffset" : { "x" : 44, "y" : 37 },
+        "icon" : "res:/webContent/icons/atrust-icon.png?small",
+        "color" : "NodeStyle3"
+      },
+      "connect" : { "id" : "f11", "to" : "f14" }
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "A-Trust Single Signature",
+        "offset" : 32,
+        "size" : 448,
+        "lanes" : [ {
+            "name" : "StartSignatureTemplateEx",
+            "size" : 384
+          } ]
+      } ],
+    "colors" : {
+      "NodeStyle3" : "rgb(255, 0, 0)"
+    }
+  }
+}
