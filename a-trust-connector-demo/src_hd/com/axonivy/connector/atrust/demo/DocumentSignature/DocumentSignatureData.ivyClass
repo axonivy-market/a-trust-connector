@@ -13,7 +13,7 @@ documents 'Documents of case' #fieldComment
 documents PERSISTENT #fieldModifier
 selectedDocument ch.ivyteam.ivy.workflow.document.IDocument #field
 selectedDocument PERSISTENT #fieldModifier
-uploadedFile org.primefaces.model.UploadedFile #field
+uploadedFile org.primefaces.model.file.UploadedFile #field
 uploadedFile PERSISTENT #fieldModifier
 streamedContent org.primefaces.model.StreamedContent #field
 streamedContent PERSISTENT #fieldModifier
