@@ -1,8 +1,10 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "1797F20B0709EDE7",
-  "data" : "com.axonivy.connector.atrust.TemplateManagementData",
   "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.atrust.TemplateManagementData"
+  },
   "elements" : [ {
       "id" : "f5",
       "type" : "CallSubEnd",
