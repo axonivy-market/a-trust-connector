@@ -1,7 +1,9 @@
 {
-  "format" : "9.4.20",
+  "format" : "10.0.0",
   "id" : "1797F203890511D1",
-  "data" : "com.axonivy.connector.atrust.EndSignatureData",
+  "config" : {
+    "data" : "com.axonivy.connector.atrust.EndSignatureData"
+  },
   "elements" : [ {
       "id" : "f9",
       "type" : "Alternative",
