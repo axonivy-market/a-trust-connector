@@ -9,3 +9,5 @@ on:
 jobs:
   build:
     uses: axonivy-market/github-workflows/.github/workflows/dev.yml@v2
+    with:
+      ivyVersion: nightly-10
