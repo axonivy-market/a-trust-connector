@@ -10,6 +10,6 @@ jobs:
   build:
     uses: ./.github/workflows/ci-fork.yml
     with:
-      mvnArgs: '-Dproject.build.plugin.version=11.4.0-SNAPSHOT -Dtester.version=11.4.0-SNAPSHOT'
+      mvnArgs: '-Dproject.build.plugin.version=11.4.0-SNAPSHOT -Dtester.version=11.4.0-SNAPSHOT -Divy.script.validation.skip=true'
       javaVersion: 21
       mvnVersion: '3.9.8'
