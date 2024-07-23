@@ -1,0 +1,67 @@
+name: Reusable CI-Build
+
+on: 
+  workflow_call:
+    inputs:
+      mvnArgs:
+        type: string
+        required: false
+      javaVersion:
+        type: number
+        default: 17
+      mvnVersion:
+        type: string
+        default: 3.6.3
+    secrets:
+      mvnArgs:
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Java JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ inputs.javaVersion }}
+        distribution: temurin
+
+    - name: Set up Maven
+      uses: stCarolas/setup-maven@v5
+      with:
+        maven-version: ${{ inputs.mvnVersion }}
+
+    - name: Verify Maven version
+      run: mvn --version
+
+    - name: Build with Maven
+      run: mvn clean verify -Dmaven.test.failure.ignore=true --batch-mode ${{ inputs.mvnArgs }} ${{ secrets.mvnArgs }}
+
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()
+      with:
+        junit_files: |
+          */target/*-reports/*.xml
+          !*/target/*-reports/failsafe-summary.xml
+
+    - name: Archive build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        path: |
+          */target/*.iar
+          *product/target/*.zip
+
+    - name: Archive test reports
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: test-reports
+        retention-days: 5
+        path: |
+          */target/testEngineOut.log
+          */target/selenide/*
+          */target/ivyEngine/deploy/*/*.deploymentLog

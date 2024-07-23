@@ -8,4 +8,8 @@ on:
 
 jobs:
   build:
-    uses: axonivy-market/github-workflows/.github/workflows/dev.yml@v2
+    uses: ./.github/workflows/ci-fork.yml
+    with:
+      mvnArgs: '-Dproject.build.plugin.version=11.4.0-SNAPSHOT -Dtester.version=11.4.0-SNAPSHOT'
+      javaVersion: 21
+      mvnVersion: '3.9.8'
