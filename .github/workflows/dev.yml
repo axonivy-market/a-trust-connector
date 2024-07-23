@@ -8,8 +8,7 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/ci-fork.yml
+    uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v3
     with:
-      mvnArgs: '-Dproject.build.plugin.version=11.4.0-SNAPSHOT -Dtester.version=11.4.0-SNAPSHOT -Divy.script.validation.skip=true'
-      javaVersion: 21
-      mvnVersion: '3.9.8'
+      # temporary: disable script validation ... connector uses an invalid variable name!
+      mvnArgs: '-Divy.script.validation.skip=true'
