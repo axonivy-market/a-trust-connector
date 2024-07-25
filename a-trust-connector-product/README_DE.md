@@ -1,12 +1,13 @@
-TODO Axon Ivy’s [A-Trust](https://www.a-trust.at) connector helps you to accelerate process automation initiatives by integrating **A-Trust HandySignatur** into your process application within no time. **A-Trust** with the mobile phone signature, you can clearly authenticate yourself on the Internet. It is your personal signature on the net, which is equivalent to the handwritten signature by law. This connector:
+[A-Trust](https://www.a-trust.at) ist ein österreichisches Unternehmen, das elektronische Services, wie digitale Signaturen und Zertifikate, anbietet,
+um eine sichere Online-Kommunikation zu gewährleisten. Die **Signaturbox** von A-Trust ist eine Lösung für digitale Signaturen, mit der 
+Benutzer Dokumente sicher digital signieren können, um Authentizität (**Wer** signiert) und Integrität (**Was** wird signiert) zu gewährleisten.
 
-*	Is based on **SOAP** web service technologies.
-*	Provides access to the core features of **A-Trust** to virtually sign PDFs.
-*	Supports you with an easy-to-copy demo implementation to reduce your integration effort.
-*	Enables low code citizen developers to enhance existing business processes with mobile phone signature features.
-*	This is only working in Austria.
+- Basiert auf REST Web Service Technologien.
+- Signiert PDFs.
+- Unterstützt dich mit einer  Demo-Implementierung, um deinen Integrationsaufwand zu reduzieren.
+- Ermöglicht es low code citizen developers bestehende Geschäftsprozesse mit Handy-Signaturfunktionen zu erweitern.
 
-
+Für die Nutzung von A-Trust benötigst Du einen Account, den Dir https://www.a-trust.at/de/produkte/qualifizierte_signaturservices/xidentity/ erstellt.
 
 ## Demo
 
