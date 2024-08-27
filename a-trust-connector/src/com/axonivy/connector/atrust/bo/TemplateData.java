@@ -14,7 +14,8 @@ public class TemplateData implements Serializable {
 	private Integer resultCode;
 	private String listTemplates;
 
-	public TemplateData() { }
+	public TemplateData() {
+	}
 
 	public Integer getSigTemplateId() {
 		return sigTemplateId;

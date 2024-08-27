@@ -14,3 +14,9 @@ internalCallbackUrl String #field
 internalCallbackUrl 'Internal Callback URL of this interface. (Here we prepare all data before we forward to callback URL of calling process)' #fieldComment
 signatureTicket String #field
 signatureTicket 'Ticket ID from A-Trust' #fieldComment
+integrateNotInFrame Boolean #field
+integrateNotInFrame 'This indicator set for old approach using TaskTemplate8 - non iframe' #fieldComment
+errorCallbackUrl String #field
+errorCallbackUrl 'Error callback URL of this interface.' #fieldComment
+signDocument at.a.trust.rest.api.client.SignDocument #field
+signDocument 'Wrapper object for adding new doc to sign batch' #fieldComment

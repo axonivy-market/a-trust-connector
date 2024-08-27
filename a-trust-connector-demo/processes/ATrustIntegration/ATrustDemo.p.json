@@ -8,280 +8,28 @@
       "id" : "f10",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 880, "y" : 480 }
+        "at" : { "x" : 784, "y" : 496 }
       }
-    }, {
-      "id" : "S62",
-      "type" : "ScriptBpmnElement",
-      "name" : "Print output",
-      "elements" : [ {
-          "id" : "S62-g0",
-          "type" : "EmbeddedStart",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 256 }
-          },
-          "parentConnector" : "f26",
-          "connect" : { "id" : "S62-f2", "to" : "S62-f1" }
-        }, {
-          "id" : "S62-g1",
-          "type" : "EmbeddedEnd",
-          "visual" : {
-            "at" : { "x" : 576, "y" : 256 }
-          },
-          "parentConnector" : "f12"
-        }, {
-          "id" : "S62-f1",
-          "type" : "Script",
-          "name" : "console log",
-          "config" : {
-            "security" : "system",
-            "output" : {
-              "code" : "ivy.log.info(\"A-Trust call result code {0}\", in.templateData.resultCode);"
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 272, "y" : 256 }
-          },
-          "connect" : { "id" : "S62-f0", "to" : "S62-g1" }
-        } ],
-      "visual" : {
-        "at" : { "x" : 776, "y" : 672 }
-      },
-      "connect" : { "id" : "f12", "to" : "f19" }
     }, {
       "id" : "f11",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 576, "y" : 320 }
+        "at" : { "x" : 481, "y" : 312 }
       }
-    }, {
-      "id" : "S60",
-      "type" : "ScriptBpmnElement",
-      "name" : "Print output",
-      "elements" : [ {
-          "id" : "S60-g0",
-          "type" : "EmbeddedStart",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 256 }
-          },
-          "parentConnector" : "f29",
-          "connect" : { "id" : "S60-f2", "to" : "S60-f1" }
-        }, {
-          "id" : "S60-g1",
-          "type" : "EmbeddedEnd",
-          "visual" : {
-            "at" : { "x" : 576, "y" : 256 }
-          },
-          "parentConnector" : "f23"
-        }, {
-          "id" : "S60-f1",
-          "type" : "Script",
-          "name" : "console log",
-          "config" : {
-            "output" : {
-              "code" : [
-                "ivy.log.info(\"A-Trust call resultCode {0}\", in.templateData.resultCode);",
-                "ivy.log.info(\"A-Trust call list of template {0}\", in.templateData.listTemplates);"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 288, "y" : 256 }
-          },
-          "connect" : { "id" : "S60-f0", "to" : "S60-g1" }
-        } ],
-      "visual" : {
-        "at" : { "x" : 600, "y" : 832 }
-      },
-      "connect" : { "id" : "f23", "to" : "f20" }
-    }, {
-      "id" : "S11",
-      "type" : "ScriptBpmnElement",
-      "name" : [
-        "Get TemplateSiegel from CMS",
-        "/Templates/SampleSignatureSeal"
-      ],
-      "elements" : [ {
-          "id" : "S11-f89",
-          "type" : "Script",
-          "name" : [
-            "Get TemplateSiegel from CMS",
-            "/Templates/SampleSignatureSeal"
-          ],
-          "config" : {
-            "output" : {
-              "code" : [
-                "import com.axonivy.connector.atrust.IvyScriptCmsHelper;",
-                "import ch.ivyteam.ivy.cm.ContentObjectValue;",
-                "import java.nio.file.Files;",
-                "import java.util.Optional;",
-                "import java.nio.file.Path;",
-                "",
-                "",
-                "//Create a file that will hold the template",
-                "in.myIvyFile = new File(\"Template.xml\", true);",
-                "",
-                "//Save result in java File of ivy File",
-                "ContentObjectValue cov = IvyScriptCmsHelper.getContentObjectValue(\"/Templates/SampleSignatureSeal\");",
-                "Path filePath = in.myIvyFile.getJavaFile().toPath();",
-                "Files.write(filePath, cov.read().bytes());"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 368, "y" : 160 },
-            "size" : { "width" : 208, "height" : 60 }
-          },
-          "connect" : { "id" : "S11-f1", "to" : "S11-g1" }
-        }, {
-          "id" : "S11-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 9, "y" : 34 }
-          },
-          "parentConnector" : "f28",
-          "connect" : { "id" : "S11-f0", "to" : "S11-f89" }
-        }, {
-          "id" : "S11-g1",
-          "type" : "EmbeddedEnd",
-          "name" : "out 1",
-          "visual" : {
-            "at" : { "x" : 704, "y" : 160 },
-            "labelOffset" : { "x" : -1, "y" : 37 }
-          },
-          "parentConnector" : "f7"
-        } ],
-      "visual" : {
-        "at" : { "x" : 304, "y" : 480 },
-        "size" : { "width" : 208, "height" : 60 }
-      },
-      "connect" : { "id" : "f7", "to" : "S21" }
     }, {
       "id" : "f25",
       "type" : "ProcessAnnotation",
       "name" : [
-        "**UPDATE** **A-TRUST CUSTOM VARS IN GLOBAL VARIABLE** of **A-TRUST-CONNECTOR**  project:",
-        "- **ATrust.APIKey  **: API Key for A-Trust Handysignatur api",
-        "-** ****ATrust.EndpointUri**   : The endpoint uri of A-Trust Handysignatur Signatur-box webservice.",
-        "- **ATrust.TemplateId   **: The ID of the signature template to be used."
+        "UPDATE A-TRUST CUSTOM VARS IN VARIABLE of A-TRUST-CONNECTOR  project:",
+        "- ATrust.APIKey: API Key for A-Trust Handysignatur api",
+        "- ATrust.EndpointUri: The endpoint uri of A-Trust Handysignatur Signatur-box webservice.",
+        "- ATrust.TemplateId: The ID of the signature template to be used."
       ],
       "visual" : {
-        "at" : { "x" : 440, "y" : 216 },
-        "size" : { "width" : 720, "height" : 92 },
+        "at" : { "x" : 384, "y" : 213 },
+        "size" : { "width" : 640, "height" : 86 },
         "color" : "NodeStyle3"
       }
-    }, {
-      "id" : "S21",
-      "type" : "ServiceBpmnElement",
-      "name" : [
-        "Call ATrust/TemplateManagement",
-        "AddTemplateATrust"
-      ],
-      "elements" : [ {
-          "id" : "S21-f6",
-          "type" : "SubProcessCall",
-          "name" : "ATrust/TemplateManagement",
-          "config" : {
-            "processCall" : "ATrust/TemplateManagement:AddTemplateATrust(File)",
-            "output" : {
-              "map" : {
-                "out" : "in",
-                "out.templateData" : "result.templateData"
-              }
-            },
-            "call" : {
-              "params" : [
-                { "name" : "templateFile", "type" : "File" }
-              ],
-              "map" : {
-                "param.templateFile" : "in.myIvyFile"
-              }
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 344, "y" : 160 },
-            "size" : { "width" : 176, "height" : 60 },
-            "icon" : "res:/webContent/icons/atrust-icon.png"
-          },
-          "connect" : { "id" : "S21-f1", "to" : "S21-g1" }
-        }, {
-          "id" : "S21-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 8, "y" : 34 }
-          },
-          "parentConnector" : "f7",
-          "connect" : { "id" : "S21-f0", "to" : "S21-f6" }
-        }, {
-          "id" : "S21-g1",
-          "type" : "EmbeddedEnd",
-          "name" : "out 1",
-          "visual" : {
-            "at" : { "x" : 624, "y" : 160 },
-            "labelOffset" : { "x" : 22, "y" : 25 }
-          },
-          "parentConnector" : "f14"
-        } ],
-      "visual" : {
-        "at" : { "x" : 560, "y" : 480 },
-        "size" : { "width" : 208, "height" : 60 }
-      },
-      "connect" : { "id" : "f14", "to" : "S61" }
-    }, {
-      "id" : "S51",
-      "type" : "ServiceBpmnElement",
-      "name" : [
-        "Call ATrust/TemplateManagement",
-        "GetListTemplate"
-      ],
-      "elements" : [ {
-          "id" : "S51-f21",
-          "type" : "SubProcessCall",
-          "name" : "ATrust/TemplateManagement",
-          "config" : {
-            "processCall" : "ATrust/TemplateManagement:GetListTemplate()",
-            "output" : {
-              "map" : {
-                "out" : "in",
-                "out.templateData" : "result.templateData"
-              }
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 360, "y" : 160 },
-            "size" : { "width" : 176, "height" : 60 },
-            "icon" : "res:/webContent/icons/atrust-icon.png"
-          },
-          "connect" : { "id" : "S51-f1", "to" : "S51-g1" }
-        }, {
-          "id" : "S51-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 18, "y" : 25 }
-          },
-          "parentConnector" : "f8",
-          "connect" : { "id" : "S51-f0", "to" : "S51-f21" }
-        }, {
-          "id" : "S51-g1",
-          "type" : "EmbeddedEnd",
-          "name" : "out 1",
-          "visual" : {
-            "at" : { "x" : 720, "y" : 160 },
-            "labelOffset" : { "x" : 22, "y" : 25 }
-          },
-          "parentConnector" : "f29"
-        } ],
-      "visual" : {
-        "at" : { "x" : 328, "y" : 832 },
-        "size" : { "width" : 208, "height" : 60 }
-      },
-      "connect" : { "id" : "f29", "to" : "S60" }
     }, {
       "id" : "f15",
       "type" : "RequestStart",
@@ -296,259 +44,98 @@
         "tags" : "demo"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 320 },
+        "at" : { "x" : 96, "y" : 312 },
         "labelOffset" : { "x" : 49, "y" : 37 }
       },
       "connect" : { "id" : "f6", "to" : "f3" }
-    }, {
-      "id" : "f16",
-      "type" : "RequestStart",
-      "name" : "DeleteTemplateATrust.ivp",
-      "config" : {
-        "callSignature" : "DeleteTemplateATrust",
-        "outLink" : "DeleteTemplateATrust.ivp"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 672 },
-        "labelOffset" : { "x" : 60, "y" : 37 }
-      },
-      "connect" : { "id" : "f27", "to" : "S31" }
     }, {
       "id" : "f4",
       "type" : "RequestStart",
       "name" : "AddTemplateATrust.ivp",
       "config" : {
         "callSignature" : "AddTemplateATrust",
-        "outLink" : "AddTemplateATrust.ivp"
+        "outLink" : "AddTemplateATrust.ivp",
+        "case" : { }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 480 },
+        "at" : { "x" : 96, "y" : 496 },
         "labelOffset" : { "x" : 52, "y" : 37 }
       },
-      "connect" : { "id" : "f28", "to" : "S11" }
+      "connect" : { "id" : "f26", "to" : "f89" }
     }, {
       "id" : "f17",
       "type" : "RequestStart",
       "name" : "GetListTemplate.ivp",
       "config" : {
         "callSignature" : "GetListTemplate",
-        "outLink" : "GetListTemplate.ivp"
+        "outLink" : "GetListTemplate.ivp",
+        "case" : { }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 832 },
-        "labelOffset" : { "x" : 39, "y" : 37 }
+        "at" : { "x" : 104, "y" : 944 },
+        "labelOffset" : { "x" : 17, "y" : 33 }
       },
-      "connect" : { "id" : "f8", "to" : "S51" }
+      "connect" : { "id" : "f14", "to" : "f7" }
     }, {
       "id" : "f21",
       "type" : "ProcessAnnotation",
       "name" : [
-        "**Add your Signature Template to A-Trust Handy Signatur**",
+        "Add your Signature Template to A-Trust Handy Signature",
         "Template should be a xml file"
       ],
       "visual" : {
-        "at" : { "x" : 296, "y" : 424 },
+        "at" : { "x" : 280, "y" : 424 },
         "size" : { "width" : 432, "height" : 44 }
-      }
-    }, {
-      "id" : "S31",
-      "type" : "ScriptBpmnElement",
-      "name" : [
-        "Prepare Template id ",
-        "which will be deleted"
-      ],
-      "elements" : [ {
-          "id" : "S31-f100",
-          "type" : "Script",
-          "name" : "Passes a template id which you want to delete",
-          "config" : {
-            "security" : "system",
-            "output" : {
-              "code" : [
-                "// Remove there code and replace by your template Id",
-                "in.templateId = 15656;"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 272, "y" : 160 },
-            "size" : { "width" : 272, "height" : 60 }
-          },
-          "connect" : { "id" : "S31-f1", "to" : "S31-g1" }
-        }, {
-          "id" : "S31-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 18, "y" : 25 }
-          },
-          "parentConnector" : "f27",
-          "connect" : { "id" : "S31-f0", "to" : "S31-f100" }
-        }, {
-          "id" : "S31-g1",
-          "type" : "EmbeddedEnd",
-          "name" : "out 1",
-          "visual" : {
-            "at" : { "x" : 480, "y" : 160 },
-            "labelOffset" : { "x" : 22, "y" : 25 }
-          },
-          "parentConnector" : "f13"
-        } ],
-      "visual" : {
-        "at" : { "x" : 272, "y" : 672 },
-        "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f13", "to" : "S41" }
+      "connect" : { "id" : "f13", "to" : "f4" }
     }, {
       "id" : "f22",
       "type" : "ProcessAnnotation",
       "name" : [
-        "**Remove a** **Signature Template on A-Trust Handy Signatur**",
+        "Remove a Signature Template on A-Trust Handy Signatur",
         "You should provide exactly templateID"
       ],
       "visual" : {
-        "at" : { "x" : 304, "y" : 608 },
-        "size" : { "width" : 448, "height" : 44 }
-      }
-    }, {
-      "id" : "S41",
-      "type" : "ServiceBpmnElement",
-      "name" : [
-        "Call ATrust/TemplateManagement",
-        "DeleteTemplateATrust"
-      ],
-      "elements" : [ {
-          "id" : "S41-f0",
-          "type" : "SubProcessCall",
-          "name" : "ATrust/TemplateManagement",
-          "config" : {
-            "processCall" : "ATrust/TemplateManagement:DeleteTemplateATrust(Number)",
-            "output" : {
-              "map" : {
-                "out" : "in",
-                "out.templateData.resultCode" : "result.resultCode"
-              }
-            },
-            "call" : {
-              "params" : [
-                { "name" : "templateId", "type" : "Number" }
-              ],
-              "map" : {
-                "param.templateId" : "in.templateId"
-              }
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 344, "y" : 160 },
-            "size" : { "width" : 176, "height" : 60 },
-            "icon" : "res:/webContent/icons/atrust-icon.png"
-          },
-          "connect" : { "id" : "S41-f2", "to" : "S41-g1" }
-        }, {
-          "id" : "S41-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : -5, "y" : 35 }
-          },
-          "parentConnector" : "f13",
-          "connect" : { "id" : "S41-f1", "to" : "S41-f0" }
-        }, {
-          "id" : "S41-g1",
-          "type" : "EmbeddedEnd",
-          "name" : "out 1",
-          "visual" : {
-            "at" : { "x" : 672, "y" : 160 },
-            "labelOffset" : { "x" : 22, "y" : 25 }
-          },
-          "parentConnector" : "f26"
-        } ],
-      "visual" : {
-        "at" : { "x" : 536, "y" : 672 },
-        "size" : { "width" : 208, "height" : 60 }
+        "at" : { "x" : 280, "y" : 608 },
+        "size" : { "width" : 432, "height" : 44 }
       },
-      "connect" : { "id" : "f26", "to" : "S62" }
+      "connect" : { "id" : "f8", "to" : "f34" }
     }, {
       "id" : "f18",
       "type" : "ProcessAnnotation",
       "name" : [
-        "**Sign your docs by A-Trust**",
+        "** Sign your docs by A-Trust",
         "Your process opens a dialog.",
         "This dialog allows the user uploads a document.",
         "Then he can press sign the doc. Integration code will be call, then user will be redirect to A-Trust identification page."
       ],
       "visual" : {
-        "at" : { "x" : 400, "y" : 112 },
+        "at" : { "x" : 384, "y" : 112 },
         "size" : { "width" : 640, "height" : 92 },
         "color" : "NodeStyle4"
       }
     }, {
-      "id" : "S61",
-      "type" : "ScriptBpmnElement",
-      "name" : "Print output",
-      "elements" : [ {
-          "id" : "S61-g0",
-          "type" : "EmbeddedStart",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 256 }
-          },
-          "parentConnector" : "f14",
-          "connect" : { "id" : "S61-f2", "to" : "S61-f1" }
-        }, {
-          "id" : "S61-g1",
-          "type" : "EmbeddedEnd",
-          "visual" : {
-            "at" : { "x" : 576, "y" : 256 }
-          },
-          "parentConnector" : "f9"
-        }, {
-          "id" : "S61-f1",
-          "type" : "Script",
-          "name" : "console log",
-          "config" : {
-            "security" : "system",
-            "output" : {
-              "code" : [
-                "ivy.log.info(\"A-Trust call result code {0}\", in.templateData.resultCode);",
-                "ivy.log.info(\"A-Trust call template id {0}\", in.templateData.sigTemplateId);",
-                "",
-                "// prepare data for delete template",
-                "ivy.session.setAttribute(\"deleteTemplateId\", in.templateData.sigTemplateId);"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 272, "y" : 256 }
-          },
-          "connect" : { "id" : "S61-f0", "to" : "S61-g1" }
-        } ],
-      "visual" : {
-        "at" : { "x" : 776, "y" : 480 }
-      },
-      "connect" : { "id" : "f9", "to" : "f10" }
-    }, {
       "id" : "f20",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 744, "y" : 832 }
+        "at" : { "x" : 569, "y" : 944 }
       }
     }, {
       "id" : "f24",
       "type" : "ProcessAnnotation",
       "name" : [
-        "**Get all****  ****your Signature Templates info on A-Trust Handy Signatur**",
+        "Get all your Signature Templates info on A-Trust Handy Signatur",
         "It returns your templates name and ids"
       ],
       "visual" : {
-        "at" : { "x" : 328, "y" : 776 },
-        "size" : { "width" : 496, "height" : 44 }
-      }
+        "at" : { "x" : 279, "y" : 832 },
+        "size" : { "width" : 430, "height" : 50 }
+      },
+      "connect" : { "id" : "f23", "to" : "f17" }
     }, {
       "id" : "f3",
       "type" : "UserTask",
-      "name" : "DocumentSignature",
+      "name" : "Sign a Document",
       "config" : {
         "dialogId" : "com.axonivy.connector.atrust.demo.DocumentSignature",
         "startMethod" : "start()",
@@ -561,22 +148,181 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 320 },
-        "size" : { "width" : 128, "height" : 60 }
+        "at" : { "x" : 272, "y" : 312 },
+        "size" : { "width" : 128, "height" : 60 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
       },
       "connect" : { "id" : "f5", "to" : "f11" }
     }, {
-      "id" : "f19",
+      "id" : "f34",
+      "type" : "RequestStart",
+      "name" : "DeleteSignatureTemplate.ivp",
+      "config" : {
+        "callSignature" : "DeleteSignatureTemplate",
+        "outLink" : "DeleteSignatureTemplate.ivp",
+        "case" : { }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 704 },
+        "labelOffset" : { "x" : 25, "y" : 41 }
+      },
+      "connect" : { "id" : "f0", "to" : "f2" }
+    }, {
+      "id" : "f35",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 880, "y" : 672 }
+        "at" : { "x" : 784, "y" : 704 }
       }
+    }, {
+      "id" : "f40",
+      "type" : "SubProcessCall",
+      "name" : [
+        "ATrust/TemplateManagement",
+        "DeleteSignatureTemplate(Integer)"
+      ],
+      "config" : {
+        "processCall" : "ATrust/TemplateManagement:DeleteTemplateATrust(Number)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.templateData.resultCode" : "result.resultCode"
+          },
+          "code" : "ivy.log.info(\"A-Trust: resultCode {0}\", in.templateData.resultCode);"
+        },
+        "call" : {
+          "params" : [
+            { "name" : "templateId", "type" : "Number" }
+          ],
+          "map" : {
+            "param.templateId" : "in.templateId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 569, "y" : 704 },
+        "size" : { "width" : 223, "height" : 72 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "connect" : { "id" : "f36", "to" : "f35" }
+    }, {
+      "id" : "f12",
+      "type" : "SubProcessCall",
+      "name" : "ATrust/TemplateManagement",
+      "config" : {
+        "processCall" : "ATrust/TemplateManagement:AddTemplateATrust(File)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.templateData" : "result.templateData"
+          },
+          "code" : [
+            "ivy.log.info(\"A-Trust call result code {0}\", out.templateData.resultCode);",
+            "ivy.log.info(\"A-Trust call template id {0}\", out.templateData.sigTemplateId);"
+          ]
+        },
+        "call" : {
+          "params" : [
+            { "name" : "templateFile", "type" : "File" }
+          ],
+          "map" : {
+            "param.templateFile" : "in.myIvyFile"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 568, "y" : 496 },
+        "size" : { "width" : 176, "height" : 60 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "connect" : { "id" : "f9", "to" : "f10" }
+    }, {
+      "id" : "f7",
+      "type" : "SubProcessCall",
+      "name" : [
+        "ATrust/TemplateManagement",
+        "GetListTemplate()"
+      ],
+      "config" : {
+        "processCall" : "ATrust/TemplateManagement:GetListTemplate()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.signatureTemplates" : "result.templates",
+            "out.templateData" : "result.templateData"
+          },
+          "code" : [
+            "ivy.log.info(\"A-Trust: resultCode {0}\", in.templateData.resultCode);",
+            "ivy.log.info(\"A-Trust: List of template {0}\", in.templateData.listTemplates);",
+            "ivy.log.info(\"A-Trust: New SignatureTemplates {0}\", result.templates);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 944 },
+        "size" : { "width" : 176, "height" : 60 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "connect" : { "id" : "f19", "to" : "f20" }
+    }, {
+      "id" : "f2",
+      "type" : "SubProcessCall",
+      "name" : [
+        "ATrust/TemplateManagement",
+        "GetListTemplate()",
+        "Get first result"
+      ],
+      "config" : {
+        "processCall" : "ATrust/TemplateManagement:GetListTemplate()",
+        "output" : {
+          "code" : [
+            "if (result.templates.templateList.size() == 0) {",
+            "  ivy.log.warn(\"A-Trust: No template available!\");",
+            "} else {",
+            "  in.templateId = result.templates.templateList.get(0).getId();",
+            "  ivy.log.warn(\"A-Trust: Template {0} will be deleted!\", in.templateId);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 704 },
+        "size" : { "width" : 194, "height" : 78 }
+      },
+      "connect" : { "id" : "f1", "to" : "f40" }
+    }, {
+      "id" : "f89",
+      "type" : "Script",
+      "name" : [
+        "Get TemplateSiegel from CMS",
+        "/Templates/SampleSignatureSeal"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.io.FileUtils;",
+            "import com.axonivy.connector.atrust.IvyScriptCmsHelper;",
+            "import ch.ivyteam.ivy.cm.ContentObjectValue;",
+            "",
+            "//Create a file that will hold the template",
+            "in.myIvyFile = new File(\"Template.xml\", true);",
+            "ContentObjectValue cov = IvyScriptCmsHelper.getContentObjectValue(\"/Templates/SampleSignatureSeal\");",
+            "//Save result in java File of ivy File",
+            "IvyScriptCmsHelper.copyContentObjectValueToFile(cov, in.myIvyFile);",
+            "ivy.log.info(\"A-Trust: Found template {0}\", cov.toString());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 496 },
+        "size" : { "width" : 208, "height" : 60 }
+      },
+      "connect" : { "id" : "f27", "to" : "f12" }
     } ],
   "layout" : {
     "lanes" : [ {
         "name" : "Example to integrate in your process",
         "offset" : 32,
-        "size" : 896,
+        "size" : 992,
         "lanes" : [ ]
       } ],
     "colors" : {

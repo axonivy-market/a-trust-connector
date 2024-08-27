@@ -1,0 +1,40 @@
+.document-table-component .align-center-column {
+	text-align: center;
+}
+
+.document-table-component .margin-top-10 {
+	margin-top: 10px;
+}
+
+.document-table-component .document-action-column {
+	width: 100px;
+}
+
+.document-table-component .document-size-column {
+	width: 150px;
+}
+
+.document-table-component .document-type-column {
+	width: 200px;
+}
+
+.document-table-component .document-name-column span {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.word-break {
+	word-break: break-all;
+}
+
+.full-size {
+	width: 100%;
+	height: 100%;
+}
+
+.atrust-sign-frame {
+	width: 100%;
+	height: 100%;
+	border: none;
+}
