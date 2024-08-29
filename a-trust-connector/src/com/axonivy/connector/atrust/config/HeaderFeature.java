@@ -8,12 +8,14 @@ import javax.ws.rs.client.ClientRequestFilter;
 import javax.ws.rs.core.Feature;
 import javax.ws.rs.core.FeatureContext;
 
+import com.axonivy.connector.atrust.constant.Constants;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import ch.ivyteam.ivy.rest.client.FeatureConfig;
 
 public class HeaderFeature implements Feature {
 	public static final String REQUIRED_HEADER_KEY = "X-API-KEY";
+	public static final String REQUESTED_BY = "X-Requested-By";;
 	public static final String API_KEY = "AUTH.apiKey";
 
 	@Override
@@ -35,6 +37,7 @@ public class HeaderFeature implements Feature {
 		@Override
 		public void filter(ClientRequestContext context) throws IOException {
 			context.getHeaders().add(REQUIRED_HEADER_KEY, apiKey);
+			context.getHeaders().add(REQUESTED_BY, Constants.IVY);
 		}
 	}
 }

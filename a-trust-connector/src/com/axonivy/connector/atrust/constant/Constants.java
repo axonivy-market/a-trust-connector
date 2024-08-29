@@ -2,6 +2,7 @@ package com.axonivy.connector.atrust.constant;
 
 public class Constants {
 
+	public static final String IVY = "ivy";
 	public static final String SIGNED_PREFIX = "SIGNED_";
 	public static final String SEMICOLON = ";";
 	public static final String PDF = ".pdf";

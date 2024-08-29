@@ -155,8 +155,7 @@
         },
         "templateParams" : {
           "templateId" : "in.templateId"
-        },
-        "responseCode" : "ivy.log.warn(\"Delete template {0}\", response);"
+        }
       },
       "visual" : {
         "at" : { "x" : 312, "y" : 304 }

@@ -67,14 +67,10 @@ public class ATrustProcessTest {
 		RestClients clients = RestClients.of(app);
 		RestClient atrustRestClient = clients.find(ATRUST_REST_CLIENT);
 		var mockClient = atrustRestClient.toBuilder()
-				.features(List.of(JsonFeature.class.getName(),
-						HeaderFeature.class.getName(),
-						MultiPartFeature.class.getName(),
-						OpenApiJsonFeature.class.getName()))
-				.property("AUTH.apiKey", "apiKey")
-				.property("PATH.serverUrl", "serverUrl")
-				.property("PATH.signBox", "signBox")
-				.toRestClient();
+				.features(List.of(JsonFeature.class.getName(), HeaderFeature.class.getName(),
+						MultiPartFeature.class.getName(), OpenApiJsonFeature.class.getName()))
+				.property("AUTH.apiKey", "apiKey").property("PATH.serverUrl", "serverUrl")
+				.property("PATH.signBox", "signBox").toRestClient();
 		clients.set(mockClient);
 	}
 

@@ -97,7 +97,7 @@
         { "id" : "f0", "to" : "S20", "label" : {
             "name" : "yes"
           }, "condition" : "org.apache.commons.lang3.StringUtils.isNoneBlank(in.signatureTicket)" },
-        { "id" : "f6", "to" : "f1", "label" : {
+        { "id" : "f15", "to" : "f7", "label" : {
             "name" : "no",
             "segment" : 0.13
           } }
@@ -260,14 +260,14 @@
                 "output" : {
                   "map" : {
                     "out" : "in",
-                    "out.signatureDocumentData.lastSignatureError" : "error.getCause().getLocalizedMessage()"
+                    "out.signatureDocumentData.lastSignatureError" : "error.getErrorMessage()"
                   }
                 }
               },
               "visual" : {
-                "at" : { "x" : 552, "y" : 192 }
+                "at" : { "x" : 552, "y" : 194 }
               },
-              "connect" : { "id" : "S10-f8", "to" : "S10-f4" }
+              "connect" : { "id" : "S10-f4", "to" : "S10-f1" }
             } ],
           "connect" : { "id" : "S10-f3", "to" : "S10-g1" }
         }, {
@@ -287,12 +287,6 @@
             "at" : { "x" : 672, "y" : 160 }
           },
           "parentConnector" : "f48"
-        }, {
-          "id" : "S10-f4",
-          "type" : "TaskEnd",
-          "visual" : {
-            "at" : { "x" : 552, "y" : 280 }
-          }
         }, {
           "id" : "S10-f5",
           "type" : "Script",
@@ -333,6 +327,13 @@
             "at" : { "x" : 344, "y" : 160 }
           },
           "connect" : { "id" : "S10-f10", "to" : "S10-f0" }
+        }, {
+          "id" : "S10-f1",
+          "type" : "CallSubEnd",
+          "visual" : {
+            "at" : { "x" : 552, "y" : 296 },
+            "icon" : "res:/webContent/icons/atrust-icon.png?small"
+          }
         } ],
       "visual" : {
         "at" : { "x" : 328, "y" : 192 },
@@ -449,12 +450,14 @@
             "at" : { "x" : 512, "y" : 256 },
             "size" : { "width" : 160, "height" : 60 }
           },
-          "connect" : { "id" : "S20-f10", "to" : "S20-f6" }
+          "connect" : { "id" : "S20-f12", "to" : "S20-f11" }
         }, {
-          "id" : "S20-f6",
-          "type" : "TaskEnd",
+          "id" : "S20-f11",
+          "type" : "CallSubEnd",
           "visual" : {
-            "at" : { "x" : 512, "y" : 344 }
+            "at" : { "x" : 512, "y" : 352 },
+            "icon" : "res:/webContent/icons/atrust-icon.png?small",
+            "color" : "NodeStyle3"
           }
         } ],
       "visual" : {
@@ -584,12 +587,6 @@
       },
       "connect" : { "id" : "f4", "to" : "f12" }
     }, {
-      "id" : "f1",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 448, "y" : 288 }
-      }
-    }, {
       "id" : "f8",
       "type" : "Script",
       "name" : [
@@ -628,6 +625,14 @@
             "name" : "yes"
           } }
       ]
+    }, {
+      "id" : "f7",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 296 },
+        "icon" : "res:/webContent/icons/atrust-icon.png?small",
+        "color" : "NodeStyle3"
+      }
     } ],
   "layout" : {
     "lanes" : [ {
