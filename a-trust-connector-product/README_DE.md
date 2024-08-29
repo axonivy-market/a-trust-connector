@@ -67,14 +67,28 @@ Before any signing interactions between the **Axon Ivy Engine** and the **A-Trus
    ```
    Variables:
       ATrust:
-           # API Key for "A-Trust Handysignature API"
-           APIKey: ''
-           # The Server URL under which the SigBox Server is reachable
-           ServerUrl: ''
-           # The SignBox belong to your ATrust server
-           SignBox: ''
-           # The default signature template ID to be used
-           TemplateId: 0
+        # API Key for "A-Trust Handysignature API"
+        APIKey: ''
+    
+        # The Server URL under which the SigBox Server is reachable
+        ServerUrl: ''
+        
+        # The SignBox belong to your ATrust server
+        SignBox: ''
+    
+        # The default signature template ID to be used
+        TemplateId: 0
+    
+        # To config the Handy-Signature view in iframe. The Details can be found on the A-Trust Website https://labs.a-trust.at/developer/Handy-Signatur.aspx.
+        HandySignaturParameter:
+          # For setting width of frame.
+          Width: 350
+          # For setting height of frame.
+          Height: 350
+          # For setting background color of frame.
+          BackgroundColor: 0
+          # For setting phone number of frame.
+          PhoneNumber: 0
    ```
 
 4. Save the changed settings.
