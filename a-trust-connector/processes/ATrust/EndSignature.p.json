@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "1797F203890511D1",
   "config" : {
     "data" : "com.axonivy.connector.atrust.EndSignatureData"
@@ -19,44 +19,47 @@
             "import com.axonivy.connector.atrust.util.IvyUtils;",
             "import com.axonivy.connector.atrust.validator.ATrustSignValidator;",
             "",
-            "ATrustSignValidator.validateSignHashAndTicket(in.callbackSafetyHash, in.aTrustTicketID, in.referenceTaskId);",
+            "ATrustSignValidator.validateSignHashAndTicket(in.callbackSafetyHash, in.atrustTicketId, in.referenceTaskId);",
             "String signatureDocumentDataId = IvyUtils.findTask(in.referenceTaskId).customFields().stringField(ATrustCustomField.SIGNATURE_DOCUMENT_DATA_ID.getKey()).getOrNull();",
             "in.signatureDocumentData = IvyUtils.queryRepoById(signatureDocumentDataId, SignatureDocumentData.class) as SignatureDocumentData;"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 368, "y" : 224 },
-        "size" : { "width" : 176, "height" : 60 }
+        "size" : { "width" : 176 }
       },
-      "connect" : { "id" : "f16", "to" : "f2" }
+      "connect" : [
+        { "id" : "f16", "to" : "f2" }
+      ]
     }, {
       "id" : "f79",
       "type" : "Script",
       "name" : "Do Post-Signing step",
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import com.axonivy.connector.atrust.service.ATrustService;",
             "ATrustService.doPostSigning(in.referenceTaskId, in.resultCode, in.signatureDocumentData);"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 776, "y" : 224 },
-        "size" : { "width" : 176, "height" : 60 }
+        "size" : { "width" : 176 }
       }
     }, {
       "id" : "f5",
       "type" : "RequestStart",
       "name" : "start",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "params" : [
             { "name" : "callbackSafetyHash", "type" : "String", "desc" : "The SafetyHash was sumited by AxonIvy" },
-            { "name" : "requestTaskId", "type" : "Long" },
+            { "name" : "requestTaskId", "type" : "Long", "desc" : "" },
             { "name" : "ticket", "type" : "String", "desc" : "Signed ticket of A-Trust" }
           ],
           "map" : {
@@ -65,36 +68,35 @@
             "out.referenceTaskId" : "param.requestTaskId"
           }
         },
-        "showInStartList" : false,
-        "outLink" : "start.ivp",
-        "case" : { }
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 224 },
         "labelOffset" : { "x" : 9, "y" : 33 },
-        "icon" : "res:/webContent/icons/atrust-icon.png?small",
-        "color" : "NodeStyle3"
+        "color" : "NodeStyle3",
+        "icon" : "res:/webContent/icons/atrust-icon.png?small"
       },
-      "connect" : { "id" : "f7", "to" : "f3" }
+      "connect" : [
+        { "id" : "f7", "to" : "f3" }
+      ]
     }, {
       "id" : "f2",
       "type" : "SubProcessCall",
       "name" : "ATrust downloadSignDoc",
       "config" : {
         "processCall" : "ATrust/StartSignature:downloadSignedDoc(com.axonivy.connector.atrust.bo.SignatureDocumentData)",
+        "call" : {
+          "map" : {
+            "param.signatureDocument" : "in.signatureDocumentData"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.resultCode" : "result.resultCode",
             "out.signatureDocumentData" : "result.signatureDocumentData"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "signatureDocument", "type" : "com.axonivy.connector.atrust.bo.SignatureDocumentData" }
-          ],
-          "map" : {
-            "param.signatureDocument" : "in.signatureDocumentData"
           }
         }
       },
@@ -102,13 +104,15 @@
         "at" : { "x" : 568, "y" : 224 },
         "icon" : "res:/webContent/icons/atrust-icon.png"
       },
-      "connect" : { "id" : "f0", "to" : "f79" }
+      "connect" : [
+        { "id" : "f0", "to" : "f79" }
+      ]
     }, {
       "id" : "f1",
       "type" : "RequestStart",
       "name" : "start(callbackSafetyHash)",
       "config" : {
-        "callSignature" : "start",
+        "signature" : "start",
         "input" : {
           "params" : [
             { "name" : "callbackSafetyHash", "type" : "String", "desc" : "The SafetyHash was sumited by AxonIvy" }
@@ -117,17 +121,19 @@
             "out.callbackSafetyHash" : "param.callbackSafetyHash"
           }
         },
-        "showInStartList" : false,
-        "outLink" : "start.ivp",
-        "case" : { }
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 120 },
         "labelOffset" : { "x" : 17, "y" : 33 },
-        "icon" : "res:/webContent/icons/atrust-icon.png?small",
-        "color" : "NodeStyle3"
+        "color" : "NodeStyle3",
+        "icon" : "res:/webContent/icons/atrust-icon.png?small"
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f3",
       "type" : "Alternative",
@@ -145,7 +151,9 @@
         "at" : { "x" : 152, "y" : 64 },
         "size" : { "width" : 164, "height" : 44 }
       },
-      "connect" : { "id" : "f9", "to" : "f1" }
+      "connect" : [
+        { "id" : "f9", "to" : "f1" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {

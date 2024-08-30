@@ -35,7 +35,6 @@ import ch.ivyteam.ivy.environment.AppFixture;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.rest.client.RestClient;
 import ch.ivyteam.ivy.rest.client.RestClients;
-import ch.ivyteam.ivy.rest.client.mapper.JsonFeature;
 import ch.ivyteam.ivy.scripting.objects.CompositeObject;
 import ch.ivyteam.ivy.scripting.objects.File;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -67,7 +66,7 @@ public class ATrustProcessTest {
 		RestClients clients = RestClients.of(app);
 		RestClient atrustRestClient = clients.find(ATRUST_REST_CLIENT);
 		var mockClient = atrustRestClient.toBuilder()
-				.features(List.of(JsonFeature.class.getName(), HeaderFeature.class.getName(),
+				.features(List.of(HeaderFeature.class.getName(),
 						MultiPartFeature.class.getName(), OpenApiJsonFeature.class.getName()))
 				.property("AUTH.apiKey", "apiKey").property("PATH.serverUrl", "serverUrl")
 				.property("PATH.signBox", "signBox").toRestClient();
