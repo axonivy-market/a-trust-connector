@@ -7,23 +7,23 @@
 		<ui:define name="title">#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/demo/DocumentSignature/DemoATrust')}</ui:define>
 		<ui:define name="content">
 			<h:outputStylesheet name="layouts/styles/atrust.css" />
-			<h:form id="form" styleClass="document-table-component p-grid p-align-baseline">
+			<h:form id="form" styleClass="document-table-component grid align-items-baseline">
 				<p:growl id="upload-message" redisplay="false" />
 
-				<h2 class="p-col-12 p-p-0">
+				<h2 class="col-12 p-0">
 					<h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/demo/DocumentSignature/ATrustHeader')}"
 						escape="false" />
 				</h2>
 
-				<h3 class="p-col-12 p-p-0">#{ivy.cms.co('/Labels/UploadYourDoc')}</h3>
+				<h3 class="col-12 p-0">#{ivy.cms.co('/Labels/UploadYourDoc')}</h3>
 				<p:dataTable id="document-table" widgetVar="fileTableVar" value="#{data.documents}" var="document"
-					emptyMessage="#{ivy.cms.co('/Labels/NoFilesAreFound')}" styleClass="margin-top-10 p-col-12" lazy="false">
+					emptyMessage="#{ivy.cms.co('/Labels/NoFilesAreFound')}" styleClass="margin-top-10 col-12" lazy="false">
 					<f:event type="preRenderComponent" listener="#{logic.renderTable()}" />
 
 					<f:facet name="header">
-						<div class="p-grid p-align-center p-mt-2">
-							<div class="p-col-6 p-py-0 p-pl-2">#{ivy.cms.co('/Labels/DocumentOfCase')}</div>
-							<div class="p-col-6 p-py-0 p-text-right">
+						<div class="grid align-items-center mt-2">
+							<div class="col-6 py-0 pl-2">#{ivy.cms.co('/Labels/DocumentOfCase')}</div>
+							<div class="col-6 py-0 text-right">
 								<p:fileUpload id="document-upload" value="#{data.uploadedFile}" mode="simple" skinSimple="true" auto="true"
 									process="@this" fileLimit="1" update="form" listener="#{logic.upload}" allowTypes="/(\.|\/)(pdf)$/"
 									accept=".pdf" disabled="#{data.isSignFinished}" />
@@ -53,14 +53,14 @@
 				<h:inputHidden required="true" value="#{data.uploadedDocumentName}"
 					requiredMessage="At least one document must be uploaded" />
 
-				<h3 class="p-col-12 p-m-0 p-px-0">#{ivy.cms.co('/Labels/InputYourInfo')}</h3>
-				<div class="p-col-12 p-pt-0">
+				<h3 class="col-12 m-0 px-0">#{ivy.cms.co('/Labels/InputYourInfo')}</h3>
+				<div class="col-12 pt-0">
 					<h4>#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/demo/DocumentSignature/RequiredProperties')}</h4>
 					<h:outputText
 						value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/demo/DocumentSignature/RequiredParamsHints')}" />
 					<f:event listener="#{logic.getListTemplate()}" type="preRenderComponent" />
-					<h:panelGrid id="required-properties" styleClass="p-col-12 p-p-0" columns="4"
-						columnClasses="p-col-2 p-field p-text-right, p-col-4 p-field ui-fluid, p-col-2 p-field p-text-right, p-col-4 p-field ui-fluid">
+					<h:panelGrid id="required-properties" styleClass="col-12 p-0" columns="4"
+						columnClasses="col-2 field text-right, col-4 field ui-fluid, col-2 field text-right, col-4 field ui-fluid">
 						<p:outputLabel value="#{ivy.cms.co('/Labels/Location')}" for="location" />
 						<p:inputText id="location" required="true" value="#{data.signatureJob.location}"
 							disabled="#{data.isSignFinished}" />
@@ -83,11 +83,11 @@
 					</h:panelGrid>
 				</div>
 
-				<div class="p-col-12 p-pt-0">
+				<div class="col-12 pt-0">
 					<h4>#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/demo/DocumentSignature/AdditionalProperties')}</h4>
 					<h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/demo/DocumentSignature/AdditionalHints')}" />
-					<h:panelGrid id="additional-properties" styleClass="p-col-12 p-p-0" columns="4"
-						columnClasses="p-col-2 p-field p-text-right, p-col-4 p-field ui-fluid, p-col-2 p-field p-text-right, p-col-4 p-field ui-fluid">
+					<h:panelGrid id="additional-properties" styleClass="col-12 p-0" columns="4"
+						columnClasses="col-2 field text-right, col-4 field ui-fluid, col-2 field text-right, col-4 field ui-fluid">
 						<p:outputLabel value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/demo/DocumentSignature/TheXPosition')}"
 							for="x-position" />
 						<p:inputNumber id="x-position" value="#{data.signatureJob.signStampCoordinatesX0}"
@@ -124,33 +124,33 @@
 					</h:panelGrid>
 				</div>
 
-				<div class="p-col-12 p-px-0 p-text-right">
-					<div class="p-col-12 p-p-0 p-text-left">
+				<div class="col-12 px-0 text-right">
+					<div class="col-12 p-0 text-left">
 						<h3>#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/demo/DocumentSignature/SignDocument')}</h3>
 						<ul>
 							<li>#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/demo/DocumentSignature/SignatureByATrust')}</li>
 							<li>#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/demo/DocumentSignature/SignInFrame')}</li>
 						</ul>
 					</div>
-					<h:panelGroup layout="block" styleClass="p-col-12 p-p-0 p-text-left"
+					<h:panelGroup layout="block" styleClass="col-12 p-0 text-left"
 						rendered="#{not empty data.handySignatureURL and !data.signatureJob.isEmbeddedInframe}">
 						<h:outputText
 							value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/demo/DocumentSignature/YourATrustIsReadyMessage')}" />
 						<p:commandButton value="#{ivy.cms.co('/Labels/Sign')}" oncomplete="openSigningPage();" process="@this"
-							update="@this" partialSubmit="true" styleClass="p-ml-3" icon="pi pi-arrow-up-right" />
+							update="@this" partialSubmit="true" styleClass="ml-3" icon="pi pi-arrow-up-right" />
 					</h:panelGroup>
-					<p:commandLink value="#{ivy.cms.co('/Labels/Close')}" styleClass="p-mr-3"
+					<p:commandLink value="#{ivy.cms.co('/Labels/Close')}" styleClass="mr-3"
 						actionListener="#{ivyWorkflowView.cancelToHome()}" process="@this" rendered="#{!data.isSignFinished}" />
 
 					<p:commandButton id="signature-document" actionListener="#{logic.sign}" update="@this form" process="@this form"
 						value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/demo/DocumentSignature/SignDocument')}"
-						styleClass="p-ml-3 signature-button margin-top-10" icon="si si-business-contract-handshake-sign"
+						styleClass="ml-3 signature-button margin-top-10" icon="si si-business-contract-handshake-sign"
 						disabled="#{data.disableSignButton}" rendered="#{!data.isSignFinished}" />
 
 					<p:commandButton id="signature-document-inframe" actionListener="#{logic.signInFrame}" update="form"
 						process="@this form"
 						value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/demo/DocumentSignature/SignDocumentInFrame')}"
-						styleClass="p-ml-3 signature-button margin-top-10" icon="si si-advertising-megaphone-2"
+						styleClass="ml-3 signature-button margin-top-10" icon="si si-advertising-megaphone-2"
 						oncomplete="if (!args.validationFailed) { PF('sign-doc-iframe').show(); }" disabled="#{data.disableSignButton}"
 						rendered="#{!data.isSignFinished}" />
 
@@ -172,7 +172,7 @@
 					//<![CDATA[
 					function openSigningPage() {
 						if (window.self !== window.top) {
-							window.location = '#{ivy.html.applicationHomeRef()}';
+							window.location = '#{ivy.html.applicationHomeLink().getRelative()}';
 							window.open('#{data.handySignatureURL}', '_blank')
 									.focus();
 						} else {

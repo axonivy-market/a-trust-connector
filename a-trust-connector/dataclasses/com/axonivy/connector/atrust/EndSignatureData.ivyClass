@@ -6,6 +6,6 @@ callbackSafetyHash String #field
 callbackSafetyHash 'Hash code generated for more safety in internal callback link.' #fieldComment
 referenceTaskId Long #field
 referenceTaskId 'Reuqest task id. Will be used to add signed document.' #fieldComment
-aTrustTicketID String #field
-aTrustTicketID 'Ticket ID from A-Trust signature inbox.' #fieldComment
+atrustTicketId String #field
+atrustTicketId 'Ticket ID from A-Trust signature inbox.' #fieldComment
 signatureDocumentData com.axonivy.connector.atrust.bo.SignatureDocumentData #field

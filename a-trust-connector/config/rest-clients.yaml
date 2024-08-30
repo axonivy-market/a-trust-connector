@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json-schema.axonivy.com/app/11.3.1/rest-clients.json
 RestClients:
   #Format of REST URL is: https://{serverUrl}/{signBox}/v2
   #E.g: https://testbox.a-trust.at/testboxrest/v2
@@ -6,7 +7,6 @@ RestClients:
     Url: https://{serverUrl}/{signBox}/v2
     Icon: res:/webContent/icons/atrust-icon.png
     Features:
-    - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
     - com.axonivy.connector.atrust.config.HeaderFeature
     - org.glassfish.jersey.media.multipart.MultiPartFeature
     - com.axonivy.connector.atrust.config.OpenApiJsonFeature

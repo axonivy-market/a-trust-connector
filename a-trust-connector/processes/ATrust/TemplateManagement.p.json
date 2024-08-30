@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "1797F20B0709EDE7",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,10 +10,10 @@
       "type" : "CallSubStart",
       "name" : "AddTemplateATrust(File)",
       "config" : {
-        "callSignature" : "AddTemplateATrust",
+        "signature" : "AddTemplateATrust",
         "input" : {
           "params" : [
-            { "name" : "templateFile", "type" : "File" }
+            { "name" : "templateFile", "type" : "File", "desc" : "" }
           ],
           "map" : {
             "out.ivyFile" : "param.templateFile"
@@ -21,7 +21,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "templateData", "type" : "com.axonivy.connector.atrust.bo.TemplateData" }
+            { "name" : "templateData", "type" : "com.axonivy.connector.atrust.bo.TemplateData", "desc" : "" }
           ],
           "map" : {
             "result.templateData" : "in.result"
@@ -31,27 +31,29 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 128 },
         "labelOffset" : { "x" : 64, "y" : 37 },
-        "icon" : "res:/webContent/icons/atrust-icon.png?small",
-        "color" : "NodeStyle3"
+        "color" : "NodeStyle3",
+        "icon" : "res:/webContent/icons/atrust-icon.png?small"
       },
-      "connect" : { "id" : "f32", "to" : "f27" }
+      "connect" : [
+        { "id" : "f32", "to" : "f27" }
+      ]
     }, {
       "id" : "f4",
       "type" : "CallSubEnd",
       "visual" : {
         "at" : { "x" : 544, "y" : 304 },
-        "icon" : "res:/webContent/icons/atrust-icon.png?small",
-        "color" : "NodeStyle3"
+        "color" : "NodeStyle3",
+        "icon" : "res:/webContent/icons/atrust-icon.png?small"
       }
     }, {
       "id" : "f13",
       "type" : "CallSubStart",
       "name" : "DeleteTemplateATrust(Number)",
       "config" : {
-        "callSignature" : "DeleteTemplateATrust",
+        "signature" : "DeleteTemplateATrust",
         "input" : {
           "params" : [
-            { "name" : "templateId", "type" : "Number" }
+            { "name" : "templateId", "type" : "Number", "desc" : "" }
           ],
           "map" : {
             "out.templateId" : "param.templateId"
@@ -59,7 +61,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "resultCode", "type" : "Integer" }
+            { "name" : "resultCode", "type" : "Integer", "desc" : "" }
           ],
           "map" : {
             "result.resultCode" : "in.result.resultCode"
@@ -69,20 +71,22 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 304 },
         "labelOffset" : { "x" : 85, "y" : 37 },
-        "icon" : "res:/webContent/icons/atrust-icon.png?small",
-        "color" : "NodeStyle3"
+        "color" : "NodeStyle3",
+        "icon" : "res:/webContent/icons/atrust-icon.png?small"
       },
-      "connect" : { "id" : "f25", "to" : "f9" }
+      "connect" : [
+        { "id" : "f25", "to" : "f9" }
+      ]
     }, {
       "id" : "f8",
       "type" : "CallSubStart",
       "name" : "GetListTemplate()",
       "config" : {
-        "callSignature" : "GetListTemplate",
+        "signature" : "GetListTemplate",
         "result" : {
           "params" : [
-            { "name" : "templateData", "type" : "com.axonivy.connector.atrust.bo.TemplateData" },
-            { "name" : "templates", "type" : "at.a.trust.rest.api.client.SignatureTemplates" }
+            { "name" : "templateData", "type" : "com.axonivy.connector.atrust.bo.TemplateData", "desc" : "" },
+            { "name" : "templates", "type" : "at.a.trust.rest.api.client.SignatureTemplates", "desc" : "" }
           ],
           "map" : {
             "result.templateData" : "in.result",
@@ -93,35 +97,43 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 496 },
         "labelOffset" : { "x" : 45, "y" : 37 },
-        "icon" : "res:/webContent/icons/atrust-icon.png?small",
-        "color" : "NodeStyle3"
+        "color" : "NodeStyle3",
+        "icon" : "res:/webContent/icons/atrust-icon.png?small"
       },
-      "connect" : { "id" : "f24", "to" : "f22" }
+      "connect" : [
+        { "id" : "f24", "to" : "f22" }
+      ]
     }, {
       "id" : "f20",
       "type" : "CallSubEnd",
       "visual" : {
         "at" : { "x" : 544, "y" : 496 },
-        "icon" : "res:/webContent/icons/atrust-icon.png?small",
-        "color" : "NodeStyle3"
+        "color" : "NodeStyle3",
+        "icon" : "res:/webContent/icons/atrust-icon.png?small"
       }
     }, {
       "id" : "f22",
       "type" : "RestClientCall",
       "name" : "Get all Templates",
       "config" : {
-        "path" : "/templates",
-        "clientId" : "69b7fe41-3196-40bf-9458-b723c0bcc2b2",
-        "clientErrorCode" : "com:axonivy:connector:atrust:template:getall:exception",
-        "statusErrorCode" : "com:axonivy:connector:atrust:template:getall:exception",
-        "responseMapping" : {
-          "out.signatureTemplates" : "result"
+        "target" : {
+          "clientId" : "69b7fe41-3196-40bf-9458-b723c0bcc2b2",
+          "path" : "/templates"
         },
-        "resultType" : "at.a.trust.rest.api.client.SignatureTemplates",
-        "responseCode" : [
-          "// For backward compatible",
-          "in.result = com.axonivy.connector.atrust.convertor.SignConvertor.convertToTemplateData(result, response.getStatus());"
-        ]
+        "response" : {
+          "entity" : {
+            "type" : "at.a.trust.rest.api.client.SignatureTemplates",
+            "map" : {
+              "out.signatureTemplates" : "result"
+            },
+            "code" : [
+              "// For backward compatible",
+              "in.result = com.axonivy.connector.atrust.convertor.SignConvertor.convertToTemplateData(result, response.getStatus());"
+            ]
+          },
+          "clientError" : "com:axonivy:connector:atrust:template:getall:exception",
+          "statusError" : "com:axonivy:connector:atrust:template:getall:exception"
+        }
       },
       "visual" : {
         "at" : { "x" : 312, "y" : 496 }
@@ -137,24 +149,34 @@
             "at" : { "x" : 344, "y" : 538 },
             "labelOffset" : { "x" : 73, "y" : 33 }
           },
-          "connect" : { "id" : "f17", "to" : "f20", "via" : [ { "x" : 544, "y" : 538 } ] }
+          "connect" : [
+            { "id" : "f17", "to" : "f20", "via" : [ { "x" : 544, "y" : 538 } ] }
+          ]
         } ],
-      "connect" : { "id" : "f21", "to" : "f20" }
+      "connect" : [
+        { "id" : "f21", "to" : "f20" }
+      ]
     }, {
       "id" : "f9",
       "type" : "RestClientCall",
       "name" : "Delte a template by ID",
       "config" : {
-        "path" : "/templates/{templateId}",
-        "clientId" : "69b7fe41-3196-40bf-9458-b723c0bcc2b2",
-        "clientErrorCode" : "com:axonivy:connector:atrust:template:delete:exception",
         "method" : "DELETE",
-        "statusErrorCode" : "com:axonivy:connector:atrust:template:delete:exception",
-        "responseMapping" : {
-          "out.result.resultCode" : "response.getStatus()"
+        "target" : {
+          "clientId" : "69b7fe41-3196-40bf-9458-b723c0bcc2b2",
+          "path" : "/templates/{templateId}",
+          "templateParams" : {
+            "templateId" : "in.templateId"
+          }
         },
-        "templateParams" : {
-          "templateId" : "in.templateId"
+        "response" : {
+          "entity" : {
+            "map" : {
+              "out.result.resultCode" : "response.getStatus()"
+            }
+          },
+          "clientError" : "com:axonivy:connector:atrust:template:delete:exception",
+          "statusError" : "com:axonivy:connector:atrust:template:delete:exception"
         }
       },
       "visual" : {
@@ -171,43 +193,57 @@
             "at" : { "x" : 352, "y" : 338 },
             "labelOffset" : { "x" : 25, "y" : 33 }
           },
-          "connect" : { "id" : "f16", "to" : "f4", "via" : [ { "x" : 544, "y" : 338 } ] }
+          "connect" : [
+            { "id" : "f16", "to" : "f4", "via" : [ { "x" : 544, "y" : 338 } ] }
+          ]
         } ],
-      "connect" : { "id" : "f7", "to" : "f4" }
+      "connect" : [
+        { "id" : "f7", "to" : "f4" }
+      ]
     }, {
       "id" : "f26",
       "type" : "CallSubEnd",
       "visual" : {
         "at" : { "x" : 544, "y" : 128 },
-        "icon" : "res:/webContent/icons/atrust-icon.png?small",
-        "color" : "NodeStyle3"
+        "color" : "NodeStyle3",
+        "icon" : "res:/webContent/icons/atrust-icon.png?small"
       }
     }, {
       "id" : "f27",
       "type" : "RestClientCall",
       "name" : "Create a template",
       "config" : {
-        "bodyObjectMapping" : {
-          "param.file" : "in.myIvyFile.getJavaFile()"
-        },
-        "clientId" : "69b7fe41-3196-40bf-9458-b723c0bcc2b2",
         "method" : "POST",
-        "statusErrorCode" : "com:axonivy:connector:atrust:template:add:exception",
-        "bodyObjectType" : "at.a.trust.rest.api.client.TemplatesBody",
-        "bodyInputType" : "FORM",
-        "responseCode" : [
-          "import com.axonivy.connector.atrust.util.ATrustResponseUtils;",
-          "out.result.sigTemplateId = ATrustResponseUtils.extractTemplateIdFromResponse(response);"
-        ],
-        "bodyForm" : {
-          "template" : "in.ivyFile.getJavaFile()"
+        "target" : {
+          "clientId" : "69b7fe41-3196-40bf-9458-b723c0bcc2b2",
+          "path" : "/templates"
         },
-        "path" : "/templates",
-        "clientErrorCode" : "com:axonivy:connector:atrust:template:add:exception",
-        "responseMapping" : {
-          "out.result.resultCode" : "response.getStatus()"
+        "body" : {
+          "type" : "FORM",
+          "mediaType" : "multipart/form-data",
+          "form" : {
+            "template" : [ "in.ivyFile.getJavaFile()" ]
+          },
+          "entity" : {
+            "type" : "at.a.trust.rest.api.client.TemplatesBody",
+            "map" : {
+              "param.file" : "in.myIvyFile.getJavaFile()"
+            }
+          }
         },
-        "bodyMediaType" : "multipart/form-data"
+        "response" : {
+          "entity" : {
+            "map" : {
+              "out.result.resultCode" : "response.getStatus()"
+            },
+            "code" : [
+              "import com.axonivy.connector.atrust.util.ATrustResponseUtils;",
+              "out.result.sigTemplateId = ATrustResponseUtils.extractTemplateIdFromResponse(response);"
+            ]
+          },
+          "clientError" : "com:axonivy:connector:atrust:template:add:exception",
+          "statusError" : "com:axonivy:connector:atrust:template:add:exception"
+        }
       },
       "visual" : {
         "at" : { "x" : 312, "y" : 128 }
@@ -223,9 +259,13 @@
             "at" : { "x" : 344, "y" : 162 },
             "labelOffset" : { "x" : 13, "y" : 33 }
           },
-          "connect" : { "id" : "f1", "to" : "f26", "via" : [ { "x" : 544, "y" : 162 } ] }
+          "connect" : [
+            { "id" : "f1", "to" : "f26", "via" : [ { "x" : 544, "y" : 162 } ] }
+          ]
         } ],
-      "connect" : { "id" : "f29", "to" : "f26" }
+      "connect" : [
+        { "id" : "f29", "to" : "f26" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {

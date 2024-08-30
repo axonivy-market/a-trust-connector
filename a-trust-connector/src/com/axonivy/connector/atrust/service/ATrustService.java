@@ -142,18 +142,18 @@ public class ATrustService {
 	}
 
 	public static String getCallbackInFrameUrl() {
-		return Ivy.html().applicationHomeRef() + SIGNATURE_RETURN_PAGE;
+		return getCurrentRequestAbsolutePath() + SIGNATURE_RETURN_PAGE;
 	}
 
 	public static String getErrorCallbackInFrameUrl() {
-		return Ivy.html().applicationHomeRef() + SIGNATURE_CANCEL_PAGE;
+		return getCurrentRequestAbsolutePath() + SIGNATURE_CANCEL_PAGE;
 	}
 
 	public static String getCallbackSafetyHashUrl(String uuid) {
 		if (StringUtils.isBlank(uuid)) {
 			uuid = UUID.randomUUID().toString();
 		}
-		return Ivy.html().startRef(END_SIGNATURE_PAGE)
+		return Ivy.html().startLink(END_SIGNATURE_PAGE).getAbsolute()
 				+ String.format(FIRST_URL_PARAM_PATTERN, CALLBACK_HASH.getKey(), uuid)
 				+ String.format(URL_PARAM_PATTERN, TASK_ID.getKey(), Ivy.wfTask().getId());
 	}
@@ -198,5 +198,9 @@ public class ATrustService {
 			return Long.valueOf(templateId);
 		}
 		return null;
+	}
+
+	private static String getCurrentRequestAbsolutePath() {
+		return Ivy.html().applicationHomeLink().getAbsolute();
 	}
 }

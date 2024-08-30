@@ -8,8 +8,4 @@ on:
 
 jobs:
   build:
-    uses: axonivy-market/github-workflows/.github/workflows/dev.yml@v3
-    with:
-      # temporary: disable script validation ... connector uses a variable not compatible with 11.4!
-      mvnArgs: '-Divy.script.validation.skip=true'
-
+    uses: axonivy-market/github-workflows/.github/workflows/dev.yml@v4
