@@ -37,12 +37,6 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>com.axonivy.ivy.webtest</groupId>
-      <artifactId>web-tester</artifactId>
-      <version>${tester.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>com.axonivy.connector.atrust</groupId>
       <artifactId>a-trust-connector-demo</artifactId>
       <version>${project.version}</version>
