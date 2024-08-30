@@ -1,14 +1,1 @@
 WebServiceClients:
-  #A-Trust Handy Signatur service
-  ATrustHandysignaturService:
-    Id: 1797F21DA09F10E5
-    ServiceClass: at.a_trust.mobile.pdf.client.HandySignaturPdf
-    WsdlUrl: https://handy-signatur.at/demosignaturbox/intern/HandySignaturPdf.svc?wsdl
-    Icon: res:/webContent/icons/atrust-icon.png
-    WsCallLibrary: CXF
-    Features:
-    - ch.ivyteam.ivy.webservice.exec.cxf.feature.policy.IgnoreAllPoliciesFeature
-    - org.apache.cxf.ws.addressing.WSAddressingFeature
-    Endpoints:
-      HttpsEndpoint:
-      - <%=ivy.var.ATrust_EndpointUri%>

@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><classpath>
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
 	<classpathentry kind="src" path="src">
 		<attributes>
 			<attribute name="optional" value="true"/>
@@ -9,7 +10,6 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	
 	<classpathentry kind="src" path="src_wsproc">
 		<attributes>
 			<attribute name="optional" value="true"/>
@@ -24,11 +24,11 @@
 	<classpathentry exported="true" kind="con" path="IVY_CONTAINER"/>
 	<classpathentry kind="con" path="WEBAPP_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry exported="true" kind="lib" path="lib_ws/client/cxfClient_1797F21DA09F10E5.jar"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="output" path="classes"/>
+	<classpathentry exported="true" kind="lib" path="lib/generated/rest/jaxRsClient_69b7fe41-3196-40bf-9458-b723c0bcc2b2.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>

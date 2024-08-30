@@ -1,0 +1,669 @@
+openapi: 3.0.0
+info:
+  title: A-Trust Connector API
+  version: 1.0.0
+paths:
+  /templates:
+    post:
+      summary: Create a new template
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                template:
+                  type: string
+                  format: binary
+              required:
+                - template
+      responses:
+        '201':
+          description: Successfully created
+          headers:
+            location:
+              description: The location header contains the URL of the template.
+              schema:
+                type: string
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+    get:
+      summary: Retrieve a list of templates
+      description: This endpoint retrieves a list of templates.
+      responses:
+        '200':
+          description: A list of templates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignatureTemplates'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Templates not found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+  /templates/{templateId}:
+    get:
+      summary: Retrieve a specific template by ID
+      description: This endpoint retrieves a specific template using its ID.
+      parameters:
+        - name: templateId
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 11351
+          description: The ID of the template to retrieve
+      responses:
+        '200':
+          description: The requested template as an XML file
+          content:
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/SignatureTemplate'
+          headers:
+            content-disposition:
+              description: Indicates that the content should be treated as an attachment
+              schema:
+                type: string
+                example: >-
+                  attachment; filename=template_11351.xml;
+                  filename*=UTF-8''template_11351.xml
+            content-encoding:
+              description: The encoding used on the data
+              schema:
+                type: string
+                example: gzip
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Template not found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+    put:
+      summary: Update a specific template by ID
+      description: This endpoint updates a specific template using its ID.
+      parameters:
+        - name: templateId
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 11351
+          description: The ID of the template to update
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                template:
+                  type: string
+                  format: binary
+              required:
+                - template
+      responses:
+        '200':
+          description: The template was successfully updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Template updated successfully
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+    delete:
+      summary: Delete a specific template by ID
+      description: This endpoint deletes a specific template using its ID.
+      parameters:
+        - name: templateId
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 11351
+          description: The ID of the template to delete
+      responses:
+        '204':
+          description: The template was successfully deleted
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+  /signaturebatches:
+    post:
+      summary: Create a new signature batch
+      description: >-
+        This endpoint creates a new signature batch and provides URLs for
+        redirection upon success or error.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SignatureBatch'
+      parameters:
+        - name: x-api-key
+          in: header
+          required: true
+          schema:
+            type: string
+          description: API key for authentication
+      responses:
+        '201':
+          description: Signature batch created successfully
+          headers:
+            location:
+              description: URI of the newly created signature batch
+              schema:
+                type: string
+                format: uri
+                example: >-
+                  https://testbox.a-trust.at/testboxrest/v2/signaturebatches/b3384a8bb5e24e1c8e127fe8fa89eaf2
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+  /signaturebatches/{ticketId}/documents:
+    post:
+      summary: Submit a document for signing
+      parameters:
+        - name: ticketId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The Ticket ID of the signature batch
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SignDocument'
+      responses:
+        '200':
+          description: Document submitted successfully
+          headers:
+            Location:
+              description: URL to the created document resource
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    example: >-
+                      https://testbox.a-trust.at/testboxrest/v2/signaturebatches/b3384a8bb5e24e1c8e127fe8fa89eaf2/documents/0
+        4XX:
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+        5XX:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+  /signaturebatches/{ticketId}/mobileSignature:
+    post:
+      summary: Initiate a mobile signature process
+      parameters:
+        - name: ticketId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The Ticket ID of the signature batch
+      responses:
+        '200':
+          description: Mobile signature process initiated successfully
+          headers:
+            Location:
+              description: URL to the mobile signature resource
+              schema:
+                type: string
+        4XX:
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+        5XX:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+  /signaturebatches/{ticketId}/sealsignature:
+    post:
+      summary: Initiate a seal signature process
+      parameters:
+        - name: ticketId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The Ticket ID of the signature batch
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+      responses:
+        '200':
+          description: Seal signature process initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SealSignatureResponse'
+        4XX:
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+        5XX:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+  /signaturebatches/{ticketId}/documents/{documentId}:
+    delete:
+      summary: Get a specific document from a signature batch
+      parameters:
+        - name: ticketId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the signature batch
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the document to be deleted
+      responses:
+        '200':
+          description: Successful get the document content for downloading
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+          headers:
+            Content-Disposition:
+              description: >
+                Indicates that the content is meant to be downloaded as an attachment;
+                the filename suggests what the file should be named when saved.
+              schema:
+                type: string
+                example: attachment; filename=test.pdf; filename*=UTF-8''test.pdf
+            Content-Length:
+              description: The size of the file in bytes
+              schema:
+                type: integer
+                example: 797337
+            Content-Type:
+              description: The MIME type of the file
+              schema:
+                type: string
+                example: application/pdf
+        4XX:
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+        5XX:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+  /signaturebatches/{ticketId}/certificate:
+    get:
+      summary: Retrieve the certificate for a signature batch
+      parameters:
+        - name: ticketId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the signature batch
+      responses:
+        '200':
+          description: Certificate retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignatureCertificate'
+        4XX:
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+        5XX:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATrustErrorMeta'
+components:
+  responses:
+    UnauthorizedError:
+      description: API key is missing or invalid
+    ErrorResponse:
+      description: Error response with status and trace ID
+      content:
+        application/problem+json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 410
+              traceId:
+                type: string
+                example: 00-9073778f038c41f35b46cdb4252d5b21-ee1784d6547dad60-00
+            required:
+              - status
+              - traceId
+  schemas:
+    TemplateMeta:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 11350
+        description:
+          type: string
+          example: Sisi
+      required:
+        - id
+        - description
+    SignatureTemplates:
+      type: object
+      properties:
+        templateList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateMeta'
+      required:
+        - templateList
+    SealSignatureResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        traceId:
+          type: string
+      required:
+        - status
+        - traceId
+    SignatureCertificate:
+      type: object
+      properties:
+        certificate:
+          type: string
+          description: The certificate associated with the signature batch
+        issuedTo:
+          type: object
+          properties:
+            country:
+              type: string
+            stateOrProvince:
+              type: string
+            locality:
+              type: string
+            organization:
+              type: string
+            commonName:
+              type: string
+            alternativeNames:
+              type: string
+      required:
+        - certificate
+    SignatureTemplate:
+      type: object
+      properties:
+        Description:
+          type: object
+          properties:
+            author:
+              type: string
+              example: A-Trust GmBh
+            name:
+              type: string
+              example: Sisi
+            description:
+              type: string
+              example: A-Trust Standard Signatur Siegel
+          required:
+            - author
+            - name
+            - description
+        Position:
+          type: object
+          properties:
+            type:
+              type: string
+              example: absolute
+            x:
+              type: number
+              format: float
+              example: 25
+            'y':
+              type: number
+              format: float
+              example: 25
+            w:
+              type: number
+              format: float
+              example: 296
+            h:
+              type: number
+              format: float
+              example: 180
+            page:
+              type: integer
+              example: 1
+          required:
+            - type
+            - x
+            - 'y'
+            - w
+            - h
+            - page
+        B64bgImage:
+          type: string
+          example: Base64Content
+        Fields:
+          type: object
+          properties:
+            Label:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: signer
+                  x:
+                    type: number
+                    format: float
+                    example: 175
+                  'y':
+                    type: number
+                    format: float
+                    example: 15
+                  w:
+                    type: number
+                    format: float
+                    example: 500
+                  h:
+                    type: number
+                    format: float
+                    example: 32
+                  center:
+                    type: boolean
+                    example: false
+                  wrap:
+                    type: boolean
+                    example: false
+                  fgColor:
+                    type: string
+                    example: (0,0,0)
+                  bgColor:
+                    type: string
+                    example: (255, 255, 255)
+                  textSize:
+                    type: integer
+                    example: 26
+                required:
+                  - type
+                  - x
+                  - 'y'
+                  - w
+                  - h
+                  - center
+                  - wrap
+                  - fgColor
+                  - bgColor
+                  - textSize
+          required:
+            - Label
+    SignatureBatch:
+      type: object
+      properties:
+        RedirectUrl:
+          type: string
+          format: uri
+          example: http://localhost:8081/default-workflow/faces/home.xhtml
+          description: URL to redirect to after a successful operation
+        ErrorUrl:
+          type: string
+          format: uri
+          example: >-
+            http://localhost:8081/designer/pro/a-trust-connector/1797F203890511D1/SignatureCallBack.ivp
+          description: URL to redirect to in case of an error
+      required:
+        - RedirectUrl
+        - ErrorUrl
+    SignDocument:
+      type: object
+      properties:
+        document:
+          type: string
+          format: binary
+          description: The document to be signed
+        location:
+          type: string
+          description: The location related to the document
+        reason:
+          type: string
+          description: The reason for signing the document
+        template:
+          type: string
+          description: The templateID of the template that should be used
+        page:
+          type: string
+          description: page of the signature seal
+        x:
+          type: string
+          description: x0 coordinate in userspace units
+        y:
+          type: string
+          description: y0 coordinate in userspace units
+        w:
+          type: string
+          description: x1 coordinate in userspace units
+        h:
+          type: string
+          description: y1 coordinate in userspace units
+      required:
+        - document
+    ATrustErrorMeta:
+      type: object
+      description: Internal Server Error
+      properties:
+        type:
+          type: string
+          example: https://tools.ietf.org/html/rfc9110#section-15.6.1
+        title:
+          type: string
+          example: An error occurred while processing your request.
+        status:
+          type: integer
+          example: 500
+        traceId:
+          type: string
+          example: 00-86e39f68595377e29078a8501466c5fd-677e1addfde71bcd-00
+        detail:
+          type: string
+          example: Invalid input data

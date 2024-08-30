@@ -2,5 +2,6 @@ TemplateManagementData #class
 com.axonivy.connector.atrust #namespace
 documentByteArray List<Byte> #field
 result com.axonivy.connector.atrust.bo.TemplateData #field
-myIvyFile File #field
+ivyFile File #field
 templateId Number #field
+signatureTemplates at.a.trust.rest.api.client.SignatureTemplates #field

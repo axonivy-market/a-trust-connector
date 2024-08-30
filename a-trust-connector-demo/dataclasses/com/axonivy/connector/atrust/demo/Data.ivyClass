@@ -4,3 +4,4 @@ myIvyFile File #field
 templateData com.axonivy.connector.atrust.bo.TemplateData #field
 templateId Number #field
 templateId PERSISTENT #fieldModifier
+signatureTemplates at.a.trust.rest.api.client.SignatureTemplates #field

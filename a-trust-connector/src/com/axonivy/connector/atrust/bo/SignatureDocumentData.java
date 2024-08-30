@@ -1,5 +1,6 @@
 package com.axonivy.connector.atrust.bo;
 
+import java.io.File;
 import java.io.Serializable;
 
 import com.axonivy.connector.atrust.enums.SignatureStatus;
@@ -10,8 +11,10 @@ public class SignatureDocumentData implements Serializable {
 
 	private String signatureTicket;
 	private SignatureStatus signatureStatus;
+	private String documentId;
 	private String documentName;
 	private byte[] pdfDocument;
+	private File pdfFile;
 	private Integer resultCode;
 	private String lastSignatureError;
 
@@ -31,12 +34,28 @@ public class SignatureDocumentData implements Serializable {
 		this.signatureStatus = signatureStatus;
 	}
 
+	public String getDocumentId() {
+		return documentId;
+	}
+
+	public void setDocumentId(String documentId) {
+		this.documentId = documentId;
+	}
+
 	public String getDocumentName() {
 		return documentName;
 	}
 
 	public void setDocumentName(String documentName) {
 		this.documentName = documentName;
+	}
+
+	public File getPdfFile() {
+		return pdfFile;
+	}
+
+	public void setPdfFile(File pdfFile) {
+		this.pdfFile = pdfFile;
 	}
 
 	public byte[] getPdfDocument() {

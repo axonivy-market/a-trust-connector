@@ -21,3 +21,16 @@ doesDocumentExist Boolean #field
 doesDocumentExist PERSISTENT #fieldModifier
 disableUpload Boolean #field
 disableUpload PERSISTENT #fieldModifier
+handySignatureURL String #field
+handySignatureURL 'The URL (which includes the required session id) to start the Handy-Signature' #fieldComment
+handySignatureURL PERSISTENT #fieldModifier
+templateData at.a.trust.rest.api.client.SignatureTemplates #field
+templateData PERSISTENT #fieldModifier
+templates java.util.List<at.a.trust.rest.api.client.TemplateMeta> #field
+templates PERSISTENT #fieldModifier
+selectedTemplate at.a.trust.rest.api.client.TemplateMeta #field
+selectedTemplate PERSISTENT #fieldModifier
+uploadedDocumentName String #field
+uploadedDocumentName PERSISTENT #fieldModifier
+isSignFinished Boolean #field
+isSignFinished PERSISTENT #fieldModifier

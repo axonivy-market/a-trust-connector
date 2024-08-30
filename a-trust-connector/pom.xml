@@ -4,19 +4,27 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.connector.atrust</groupId>
   <artifactId>a-trust-connector</artifactId>
-  <version>10.0.1-SNAPSHOT</version>
+  <version>10.0.22-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
     <project.build.plugin.version>10.0.16</project.build.plugin.version>
   </properties>
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>maven.axonivy.com</id>
+      <url>https://maven.axonivy.com</url>
+    </repository>
+  </repositories>
   <pluginRepositories>
-    <!-- Snapshot releases are available via sonatype.org -->
     <pluginRepository>
-      <id>sonatype</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
       <snapshots>
         <updatePolicy>always</updatePolicy>
       </snapshots>
+      <id>sonatype</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </pluginRepository>
   </pluginRepositories>
   <build>

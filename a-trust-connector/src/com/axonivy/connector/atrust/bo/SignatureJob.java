@@ -9,12 +9,17 @@ public class SignatureJob implements Serializable {
 	private Long taskId;
 	private String documentName;
 	private byte[] pdfDocument;
+	private Long signTemplateId;
 	private Double signStampCoordinatesX0;
 	private Double signStampCoordinatesX1;
 	private Double signStampCoordinatesY0;
 	private Double signStampCoordinatesY1;
 	private String callbackUrlAfterSignature;
 	private Long signStampPageNumber;
+	private String location;
+	private String reason;
+	private Boolean isEmbeddedInframe;
+	private Boolean isSealSignature;
 
 	public SignatureJob() { }
 
@@ -22,26 +27,37 @@ public class SignatureJob implements Serializable {
 	 * @param taskId                    {@link #setTaskId(Long)}
 	 * @param documentName              {@link #setDocumentName(String)}
 	 * @param pdfDocument               {@link #setPdfDocument(byte[])}
+	 * @param signTemplateId            {@link #setSignTemplateId(Long)}
 	 * @param signStampCoordinatesX0    {@link #setSignStampCoordinatesX0(Double)}
 	 * @param signStampCoordinatesX1    {@link #setSignStampCoordinatesX1(Double)}
 	 * @param signStampCoordinatesY0    {@link #setSignStampCoordinatesY0(Double)}
 	 * @param signStampCoordinatesY1    {@link #setSignStampCoordinatesY1(Double)}
 	 * @param callbackUrlAfterSignature {@link #setCallbackUrlAfterSignature(String)}
 	 * @param signStampPageNumber       {@link #setSignStampPageNumber(Long)}
+	 * @param location                  {@link #setLocation(String)}
+	 * @param reason                    {@link #setReason(String)}
+	 * @param isEmbeddedInframe         {@link #setIsEmbeddedInframe(Boolean)}
+	 * @param isSealSignature           {@link #setIsSealSignature(Boolean)}
 	 */
-	public SignatureJob(Long taskId, String documentName, byte[] pdfDocument, Double signStampCoordinatesX0,
-			Double signStampCoordinatesX1, Double signStampCoordinatesY0, Double signStampCoordinatesY1,
-			String callbackUrlAfterSignature, Long signStampPageNumber) {
+	public SignatureJob(Long taskId, String documentName, byte[] pdfDocument, Long signTemplateId,
+			Double signStampCoordinatesX0, Double signStampCoordinatesX1, Double signStampCoordinatesY0,
+			Double signStampCoordinatesY1, String callbackUrlAfterSignature, Long signStampPageNumber,
+			String location, String reason, Boolean isEmbeddedInframe, Boolean isSealSignature) {
 		super();
 		this.taskId = taskId;
 		this.documentName = documentName;
 		this.pdfDocument = pdfDocument;
+		this.signTemplateId = signTemplateId;
 		this.signStampCoordinatesX0 = signStampCoordinatesX0;
 		this.signStampCoordinatesX1 = signStampCoordinatesX1;
 		this.signStampCoordinatesY0 = signStampCoordinatesY0;
 		this.signStampCoordinatesY1 = signStampCoordinatesY1;
 		this.callbackUrlAfterSignature = callbackUrlAfterSignature;
 		this.signStampPageNumber = signStampPageNumber;
+		this.location = location;
+		this.reason = reason;
+		this.isEmbeddedInframe = isEmbeddedInframe;
+		this.isSealSignature = isSealSignature;
 	}
 
 	/**
@@ -84,6 +100,20 @@ public class SignatureJob implements Serializable {
 	 */
 	public void setPdfDocument(byte[] pdfDocument) {
 		this.pdfDocument = pdfDocument;
+	}
+
+	/**
+	 * @return Signature Template Id that used when signing.
+	 */
+	public Long getSignTemplateId() {
+		return signTemplateId;
+	}
+
+	/**
+	 * @param signTemplateId signature template ID that should be used
+	 */
+	public void setSignTemplateId(Long signTemplateId) {
+		this.signTemplateId = signTemplateId;
 	}
 
 	/**
@@ -194,5 +224,62 @@ public class SignatureJob implements Serializable {
 	 */
 	public void setSignStampPageNumber(Long signStampPageNumber) {
 		this.signStampPageNumber = signStampPageNumber;
+	}
+
+	/**
+	 * @return Location of the signature
+	 */
+	public String getLocation() {
+		return location;
+	}
+
+	/**
+	 * @param location Location of the signature
+	 */
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	/**
+	 * @return Reason of the signature
+	 */
+	public String getReason() {
+		return reason;
+	}
+
+	/**
+	 * 
+	 * @param reason Reason of the signature
+	 */
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+	/**
+	 * @return The indicator that HandySignature should be embedded in iframe or not
+	 */
+	public Boolean getIsEmbeddedInframe() {
+		return isEmbeddedInframe;
+	}
+
+	/**
+	 * @param embeddedInframe flat that uses to set HandySignature should be embedded in iframe or not
+	 */
+	public void setIsEmbeddedInframe(Boolean isEmbeddedInframe) {
+		this.isEmbeddedInframe = isEmbeddedInframe;
+	}
+
+	/**
+	 * @return the flat that documents can be signed with a corporate certification (a.sign Seal).
+	 */
+	public Boolean getIsSealSignature() {
+		return isSealSignature;
+	}
+
+	/**
+	 * @param sealSignature to set documents should be signed with a corporate certification (a.sign Seal).
+	 */
+	public void setIsSealSignature(Boolean isSealSignature) {
+		this.isSealSignature = isSealSignature;
 	}
 }

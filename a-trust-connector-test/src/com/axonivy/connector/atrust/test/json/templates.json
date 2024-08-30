@@ -1,0 +1,12 @@
+{
+	"templateList": [
+		{
+			"id": 100,
+			"description": "Sample_Signature_Seal_Axon_ATrust"
+		},
+		{
+			"id": 101,
+			"description": "Sisi"
+		}
+	]
+}
