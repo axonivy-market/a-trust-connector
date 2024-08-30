@@ -56,7 +56,7 @@ public class IvyUtils {
 	}
 
 	public static void redirectToApplicationHome() throws IOException {
-		redirectTo(Ivy.html().applicationHomeRef());
+		redirectTo(Ivy.html().applicationHomeLink().getRelative());
 	}
 
 	public static void addDocToCase(String docName, File content, long caseId, boolean isAddedSignedPrefix) {

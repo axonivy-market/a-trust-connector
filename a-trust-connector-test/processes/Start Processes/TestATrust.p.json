@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "17969069DFA18010",
   "config" : {
     "data" : "com.axonivy.connector.atrust.test.Data"
@@ -9,24 +9,26 @@
       "type" : "RequestStart",
       "name" : "startSignature.ivp",
       "config" : {
-        "callSignature" : "startSignature",
+        "signature" : "startSignature",
         "input" : {
           "params" : [
-            { "name" : "templateId", "type" : "Long" }
+            { "name" : "templateId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.signatureJob.signTemplateId" : "param.templateId"
           }
         },
-        "outLink" : "startSignature.ivp",
-        "showInStartList" : false,
-        "case" : { }
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 128 },
         "labelOffset" : { "x" : 36, "y" : 37 }
       },
-      "connect" : { "id" : "f3", "to" : "f10" }
+      "connect" : [
+        { "id" : "f3", "to" : "f10" }
+      ]
     }, {
       "id" : "f13",
       "type" : "SubProcessCall",
@@ -37,24 +39,21 @@
       ],
       "config" : {
         "processCall" : "ATrust/StartSignature:createSignBatch(com.axonivy.connector.atrust.bo.SignatureJob)",
+        "call" : {
+          "map" : {
+            "param.signatureJob" : "in.signatureJob"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.signatureDocumentData" : "result.signatureDocumentData"
           }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "signatureJob", "type" : "com.axonivy.connector.atrust.bo.SignatureJob" }
-          ],
-          "map" : {
-            "param.signatureJob" : "in.signatureJob"
-          }
         }
       },
       "visual" : {
         "at" : { "x" : 528, "y" : 128 },
-        "size" : { "width" : 192, "height" : 60 },
+        "size" : { "width" : 192 },
         "icon" : "res:/webContent/icons/atrust-icon.png"
       }
     }, {
@@ -65,7 +64,6 @@
         "Input: SignatureJob"
       ],
       "config" : {
-        "security" : "system",
         "output" : {
           "code" : [
             "import com.axonivy.connector.atrust.IvyScriptCmsHelper;",
@@ -86,12 +84,15 @@
             "in.signatureJob.signStampCoordinatesY1 = 14.4;",
             "in.signatureJob.signStampPageNumber = 1;"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 272, "y" : 128 },
-        "size" : { "width" : 176, "height" : 60 }
+        "size" : { "width" : 176 }
       },
-      "connect" : { "id" : "f6", "to" : "f13" }
+      "connect" : [
+        { "id" : "f6", "to" : "f13" }
+      ]
     } ]
 }

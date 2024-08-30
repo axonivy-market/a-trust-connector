@@ -53,7 +53,7 @@ public class ATrustSignMock {
 	public Response addTemplate(@FormDataParam("file") InputStream uploadStream,
 			@FormDataParam("file") FormDataContentDisposition fileMetaData)
 			throws MalformedURLException, URISyntaxException {
-		var location = new URL(Ivy.html().applicationHomeRef() + MOCK_TEMPLATE_LOCATION).toURI();
+		var location = new URL(getRequestUrl() + MOCK_TEMPLATE_LOCATION).toURI();
 		return Response.created(location).build();
 	}
 
@@ -67,8 +67,12 @@ public class ATrustSignMock {
 	@POST
 	@Path(SIGNATURE_BATCHES_PATH)
 	public Response createBatch() throws MalformedURLException, URISyntaxException {
-		var location = new URL(Ivy.html().applicationHomeRef() + MOCK_BATCH_LOCATION).toURI();
+		var location = buildMockBatchLocation();
 		return Response.created(location).build();
+	}
+
+	private java.net.URI buildMockBatchLocation() throws URISyntaxException, MalformedURLException {
+		return new URL(getRequestUrl() + MOCK_BATCH_LOCATION).toURI();
 	}
 
 	@POST
@@ -80,16 +84,15 @@ public class ATrustSignMock {
 			@QueryParam("location") String reason, @QueryParam("template") String template,
 			@QueryParam("page") String page, @QueryParam("x") String x, @QueryParam("y") String y,
 			@QueryParam("w") String w, @QueryParam("h") String h) throws MalformedURLException, URISyntaxException {
-		var locationURL = new URL(Ivy.html().applicationHomeRef() + MOCK_BATCH_LOCATION).toURI();
+		var locationURL = buildMockBatchLocation();
 		return Response.created(locationURL).build();
 	}
 
 	@POST
-	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Path(SIGNATURE_BATCHES_PATH + "/{ticketId}/mobileSignature")
 	public Response createMobileSignature(@PathParam("ticketId") String ticketId)
 			throws MalformedURLException, URISyntaxException {
-		var locationURL = new URL(Ivy.html().applicationHomeRef() + MOCK_BATCH_LOCATION).toURI();
+		var locationURL = buildMockBatchLocation();
 		return Response.created(locationURL).build();
 	}
 
@@ -99,5 +102,9 @@ public class ATrustSignMock {
 		} catch (IOException ex) {
 			throw new RuntimeException("Failed to read resource: " + path);
 		}
+	}
+	
+	private static String getRequestUrl() {
+		return Ivy.html().applicationHomeLink().getAbsolute();
 	}
 }
