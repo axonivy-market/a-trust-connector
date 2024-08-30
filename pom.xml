@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.connector.atrust</groupId>
   <artifactId>a-trust-connector-modules</artifactId>
-  <version>10.0.1</version>
+  <version>10.0.2-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>
@@ -14,7 +14,7 @@
 
   <scm>
     <developerConnection>scm:git:https://github.com/axonivy-market/a-trust-connector.git</developerConnection>
-    <tag>v10.0.1</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <build>
