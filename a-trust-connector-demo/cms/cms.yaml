@@ -1,0 +1,59 @@
+Dialogs:
+  com:
+    axonivy:
+      connector:
+        atrust:
+          demo:
+            DocumentSignature:
+              ATrustHeader: This is an <a href="https://www.a-trust.at/de/handy-signatur/">A-Trust HandySignatur</a> integration example
+              AdditionalHints: The x and y coordinates define a corner of the signature image. It should be noted that the coordinate origin is in the lower-left corner of the PDF file. W and h define the image's second corner. These coordinates are expressed as percentages (page height/page width). The
+                page onto which the signature image is to be placed has to be defined as well. If you entered one of them, you must complete all, otherwise, it will use default.
+              AdditionalProperties: Additional properties
+              Confirmation: Confirmation
+              CoordinateHPlaceholder: The number defines the image's second corner, compute with Y
+              CoordinateWPlaceholder: The number defines the image's second corner, compute with X
+              CoordinateXPlaceholder: The coordinate of the left corner of the PDF
+              CoordinateYPlaceholder: The coordinate of the lower left corner of the PDF
+              CreateASignSession: Create a Sign session
+              DeleteDocMessage: '{0} has been deleted'
+              DemoATrust: Demo A-Trust integration
+              DuplicatedDocument: Document {0} already exists
+              EmbeddedInframe: Embedded Inframe?
+              PageNumber: Page number
+              PageNumberPlaceholder: Page to insert sign stamp
+              RequiredParamsHints: If you are just entering the required parameter (location, reason, and document) without inputting the template. This will result in an invisible signature
+              RequiredProperties: Required properties
+              SignDocument: Sign Document
+              SignDocumentInFrame: Sign Document in Iframe
+              SignInFrame: 'Sign Document in Frame: an Frame will appear and allow user login to ATrust, then user can stay here and sign the doc!'
+              SignInFrameHeader: Sign your document by A-Trust HandySignature
+              SignatureByATrust: 'Signature Document: redirect user to ATrust-HandySignature page, and then user can sign the document! To prevent "Block Popup" feature of web browser, after click on Signature Document button, a new button will be appear and you can click on it to sign.'
+              TheHPosition: H position
+              TheWPosition: W position
+              TheXPosition: X position
+              TheYPosition: Y position
+              TypeToSearchSignatureTemplate: Type signature name or id to search
+              UploadDocumentSuccessfully: Upload file {0} to case {1} successfully
+              YourATrustIsReadyMessage: Your ATrust HandySignature session is created, please click Sign to start
+              YourHandySignature: 'Your handy signature session:'
+Labels:
+  AreYouSureYouToDelete: Are you sure you want to delete this item?
+  AvailableTemplates: Available signature template
+  Close: Close
+  Creator: Creator
+  DocumentOfCase: Document of case
+  FileSize: File size
+  Filename: Filename
+  Finish: Finish
+  Functions: Functions
+  ID: ID
+  InputYourInfo: Input your signature information
+  Location: Location
+  Name: Name
+  'No': 'No'
+  NoFilesAreFound: No files are found!
+  Reason: Reason
+  Sign: Sign
+  Template: Template
+  UploadYourDoc: Upload your doc
+  'Yes': 'Yes'

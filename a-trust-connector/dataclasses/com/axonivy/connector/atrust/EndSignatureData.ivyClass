@@ -8,9 +8,4 @@ referenceTaskId Long #field
 referenceTaskId 'Reuqest task id. Will be used to add signed document.' #fieldComment
 aTrustTicketID String #field
 aTrustTicketID 'Ticket ID from A-Trust signature inbox.' #fieldComment
-signatureAppliedSuccessfully Boolean #field
-signatureAppliedSuccessfully 'True when A-Trust reports successfull signature.' #fieldComment
-signatureResult com.axonivy.connector.atrust.restricted.SignatureResult #field
-signatureResult 'Result object, we prepare for the calling process.' #fieldComment
-callbackUrlAfterSignature String #field
-callbackUrlAfterSignature 'URL of the original calling process. ' #fieldComment
+signatureDocumentData com.axonivy.connector.atrust.bo.SignatureDocumentData #field

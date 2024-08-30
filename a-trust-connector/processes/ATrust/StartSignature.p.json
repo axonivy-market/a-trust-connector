@@ -6,236 +6,52 @@
     "data" : "com.axonivy.connector.atrust.StartSignatureData"
   },
   "elements" : [ {
-      "id" : "f10",
-      "type" : "Script",
-      "name" : "Set signature output",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.connector.atrust.enums.SignatureStatus;",
-            "",
-            "in.signatureDocumentData.resultCode = in.resultCode;",
-            "in.signatureDocumentData.signatureTicket = in.signatureTicket;",
-            "in.signatureDocumentData.lastSignatureError = \"\";",
-            "in.signatureDocumentData.signatureStatus = SignatureStatus.INPROGRESS;",
-            "in.signatureDocumentData.documentName = in.signatureJob.documentName;",
-            "in.signatureDocumentData.pdfDocument = null;"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1024, "y" : 224 },
-        "size" : { "width" : 128, "height" : 60 }
-      },
-      "connect" : { "id" : "f38", "to" : "f41" }
-    }, {
-      "id" : "f7",
-      "type" : "Alternative",
-      "name" : "resultCode != 0",
-      "visual" : {
-        "at" : { "x" : 672, "y" : 224 },
-        "labelOffset" : { "x" : 50, "y" : -97 }
-      },
-      "connect" : [
-        { "id" : "f18", "to" : "f8", "via" : [ { "x" : 672, "y" : 128 } ], "condition" : "in.resultCode != 0" },
-        { "id" : "f13", "to" : "f12", "label" : {
-            "name" : "no error",
-            "segment" : 0.53,
-            "offset" : { "x" : 0, "y" : -13 }
-          } }
-      ]
-    }, {
-      "id" : "f14",
-      "type" : "Script",
-      "name" : [
-        "Prepare callback parameters",
-        "for EndSignature step"
-      ],
-      "config" : {
-        "output" : {
-          "code" : [
-            "import java.util.UUID;",
-            "",
-            "// Create a ramdom key for callback parameters",
-            "in.callbackSafetyHash = UUID.randomUUID().toString();",
-            "",
-            "// Internal callback url which will be redirect at end of sign step",
-            "in.internalCallbackUrl = ivy.html.startRef(\"ATrust/EndSignature/start.ivp\") + \"?callbackSafetyHash=\" + in.callbackSafetyHash;"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 272, "y" : 224 },
-        "size" : { "width" : 192, "height" : 60 }
-      },
-      "connect" : { "id" : "f9", "to" : "f4" }
-    }, {
-      "id" : "f42",
-      "type" : "Alternative",
-      "visual" : {
-        "at" : { "x" : 1376, "y" : 224 }
-      },
-      "connect" : [
-        { "id" : "f19", "to" : "f3" }
-      ]
-    }, {
       "id" : "f12",
       "type" : "Script",
-      "name" : [
-        "Store signature job",
-        "to user's session"
-      ],
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.connector.atrust.util.ATrustSignerSessionHelper;",
-            "import com.axonivy.connector.atrust.restricted.SignatureSessionContainer;",
-            "import org.apache.commons.lang3.StringUtils;",
-            "",
-            "SignatureSessionContainer container = new SignatureSessionContainer();",
-            "container.aTrustTicketID = in.signatureTicket;",
-            "container.callbackSafetyHash = in.callbackSafetyHash;",
-            "container.callbackUrlAfterSignature = in.signatureJob.callbackUrlAfterSignature;",
-            "container.referenceTaskId = in.signatureJob.taskId;",
-            "",
-            "if (StringUtils.isEmpty(container.callbackUrlAfterSignature)) {",
-            "  container.callbackUrlAfterSignature = ivy.html.startRef(\"ATrust/EndSignature/SignatureCallBack.ivp\");",
-            "}",
-            "",
-            "ATrustSignerSessionHelper.saveToSession(container);"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 848, "y" : 224 },
-        "size" : { "width" : 128, "height" : 60 }
-      },
-      "connect" : { "id" : "f43", "to" : "f10" }
-    }, {
-      "id" : "f3",
-      "type" : "CallSubEnd",
-      "visual" : {
-        "at" : { "x" : 1472, "y" : 224 },
-        "icon" : "res:/webContent/icons/atrust-icon.png?small",
-        "color" : "NodeStyle3"
-      }
-    }, {
-      "id" : "f41",
-      "type" : "Script",
-      "name" : [
-        "Reset request task",
-        "and forward to EndSignature"
-      ],
+      "name" : "Update output",
       "config" : {
         "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.workflow.TaskState;",
-            "import java.util.Arrays;",
-            "import ch.ivyteam.ivy.workflow.ITask;",
-            "import ch.ivyteam.ivy.request.IHttpRequest;",
-            "import ch.ivyteam.ivy.request.IHttpResponse;",
-            "",
-            "// Reset request task",
-            "ITask requestTask = ivy.wf.findTask(in.signatureJob.taskId);",
-            "List<TaskState> statesCanReset = Arrays.asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, TaskState.READY_FOR_JOIN, TaskState.FAILED);",
-            "if (statesCanReset.contains(#requestTask.getState())) {",
-            "  requestTask.reset();",
-            "}",
-            "",
-            "// Redirect to EndSignature with safety hash",
-            "IHttpRequest httpRequest = ivy.request as IHttpRequest;",
-            "IHttpResponse httpResponse = ivy.response as IHttpResponse;",
-            "",
-            "httpResponse.sendRedirect(in.forwardTargetUrl);"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1224, "y" : 224 },
-        "size" : { "width" : 176, "height" : 60 }
-      },
-      "connect" : { "id" : "f16", "to" : "f42" }
-    }, {
-      "id" : "f8",
-      "type" : "Script",
-      "name" : "Set generic error message",
-      "config" : {
-        "output" : {
-          "code" : [
+            "import com.axonivy.connector.atrust.util.IvyUtils;",
+            "import com.axonivy.connector.atrust.enums.ATrustCustomField;",
+            "import com.axonivy.connector.atrust.enums.RequestParam;",
+            "import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;",
             "import com.axonivy.connector.atrust.enums.SignatureStatus;",
+            "import com.axonivy.connector.atrust.service.ATrustService;",
             "",
             "in.signatureDocumentData.resultCode = in.resultCode;",
             "in.signatureDocumentData.signatureTicket = in.signatureTicket;",
-            "in.signatureDocumentData.lastSignatureError = \"Start Signature Web Service Error: Code \" + in.resultCode;",
-            "in.signatureDocumentData.signatureStatus = SignatureStatus.FAILED;",
-            "in.signatureDocumentData.pdfDocument = null;"
+            "in.signatureDocumentData.signatureStatus = SignatureStatus.INPROGRESS;",
+            "in.signatureDocumentData.documentName = in.signatureJob.documentName;",
+            "",
+            "BusinessDataInfo signatureDocumentDataInfo = IvyUtils.saveToRepo(in.signatureDocumentData);",
+            "BusinessDataInfo signatureJobInfo = IvyUtils.saveToRepo(in.signatureJob);",
+            "ivy.task.customFields().stringField(ATrustCustomField.SIGNATURE_DOCUMENT_DATA_ID.getKey()).set(signatureDocumentDataInfo.getId());",
+            "ivy.task.customFields().stringField(ATrustCustomField.SIGN_TICKET_ID.getKey()).set(in.signatureTicket);",
+            "ivy.task.customFields().stringField(RequestParam.CALLBACK_HASH.getKey()).set(in.callbackSafetyHash);",
+            "ivy.task.customFields().stringField(ATrustCustomField.SIGNATURE_JOB_ID.getKey()).set(signatureJobInfo.getId());",
+            "",
+            "if (in.signatureJob.isEmbeddedInframe) {",
+            "  in.forwardTargetUrl = in.forwardTargetUrl + ATrustService.generateIFrameParameters();",
+            "}"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 864, "y" : 128 },
-        "size" : { "width" : 160, "height" : 60 }
-      },
-      "connect" : { "id" : "f44", "to" : "f42", "via" : [ { "x" : 1376, "y" : 128 } ] }
-    }, {
-      "id" : "f4",
-      "type" : "WebServiceCall",
-      "name" : [
-        "Call Handysignatur service",
-        "StartSignature"
-      ],
-      "config" : {
-        "clientId" : "1797F21DA09F10E5",
-        "port" : "HttpsEndpoint",
-        "inputParams" : {
-          "parameters.aPIKey" : "ivy.var.ATrust_APIKey",
-          "parameters.documentData" : "in.signatureJob.pdfDocument",
-          "parameters.documentName" : "in.signatureJob.documentName",
-          "parameters.errorURL" : "in.internalCallbackUrl",
-          "parameters.page" : "in.signatureJob.signStampPageNumber > 0 ? in.signatureJob.signStampPageNumber : 1",
-          "parameters.redirectURL" : "in.internalCallbackUrl",
-          "parameters.sigTemplateId" : "ivy.var.ATrust_TemplateId.toNumber()",
-          "parameters.x0" : "in.signatureJob.signStampCoordinatesX0",
-          "parameters.x1" : "in.signatureJob.signStampCoordinatesX1",
-          "parameters.y0" : "in.signatureJob.signStampCoordinatesY0",
-          "parameters.y1" : "in.signatureJob.signStampCoordinatesY1"
-        },
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.forwardTargetUrl" : "wsResponse.handySignaturUrl",
-            "out.resultCode" : "wsResponse.startSignatureTemplateExResult",
-            "out.signatureTicket" : "wsResponse.ticket"
-          }
-        },
-        "operation" : "StartSignatureTemplateEx",
-        "exceptionHandler" : "com:axonivy:connector:atrust:startsignature:exception",
-        "timeout" : "0"
-      },
-      "visual" : {
-        "at" : { "x" : 520, "y" : 224 },
-        "size" : { "width" : 176, "height" : 60 },
+        "at" : { "x" : 944, "y" : 192 },
+        "size" : { "width" : 128, "height" : 60 },
         "icon" : "res:/webContent/icons/atrust-icon.png"
       },
-      "boundaries" : [ {
-          "id" : "f6",
-          "type" : "ErrorBoundaryEvent",
-          "config" : {
-            "errorCode" : "com:axonivy:connector:atrust:startsignature:exception",
-            "output" : {
-              "map" : {
-                "out" : "in",
-                "out.signatureDocumentData.lastSignatureError" : "error.getCause().getLocalizedMessage()"
-              }
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 584, "y" : 256 }
-          },
-          "connect" : { "id" : "f17", "to" : "f42", "via" : [ { "x" : 584, "y" : 321 }, { "x" : 1376, "y" : 321 } ] }
-        } ],
-      "connect" : { "id" : "f15", "to" : "f7" }
+      "connect" : { "id" : "f11", "to" : "f9" }
+    }, {
+      "id" : "f3",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 1200, "y" : 192 },
+        "icon" : "res:/webContent/icons/atrust-icon.png?small",
+        "color" : "NodeStyle3"
+      }
     }, {
       "id" : "f5",
       "type" : "CallSubStart",
@@ -247,34 +63,588 @@
             { "name" : "signatureJob", "type" : "com.axonivy.connector.atrust.bo.SignatureJob" }
           ],
           "map" : {
+            "out.integrateNotInFrame" : "true",
             "out.signatureJob" : "param.signatureJob"
           }
         },
         "result" : {
           "params" : [
+            { "name" : "handySignatureURL", "type" : "String" },
             { "name" : "signatureDocumentData", "type" : "com.axonivy.connector.atrust.bo.SignatureDocumentData" }
           ],
           "map" : {
+            "result.handySignatureURL" : "in.forwardTargetUrl",
             "result.signatureDocumentData" : "in.signatureDocumentData"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 224 },
-        "labelOffset" : { "x" : 44, "y" : 37 },
+        "at" : { "x" : 208, "y" : 104 },
+        "labelOffset" : { "x" : 33, "y" : -15 },
         "icon" : "res:/webContent/icons/atrust-icon.png?small",
         "color" : "NodeStyle3"
       },
-      "connect" : { "id" : "f11", "to" : "f14" }
+      "connect" : { "id" : "f26", "to" : "f25" }
+    }, {
+      "id" : "f21",
+      "type" : "Alternative",
+      "name" : "has ticket?",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 192 },
+        "labelOffset" : { "x" : 16, "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f0", "to" : "S20", "label" : {
+            "name" : "yes"
+          }, "condition" : "org.apache.commons.lang3.StringUtils.isNoneBlank(in.signatureTicket)" },
+        { "id" : "f15", "to" : "f7", "label" : {
+            "name" : "no",
+            "segment" : 0.13
+          } }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "CallSubStart",
+      "name" : "downloadSignedDoc(SignatureDocumentData)",
+      "config" : {
+        "callSignature" : "downloadSignedDoc",
+        "input" : {
+          "params" : [
+            { "name" : "signatureDocument", "type" : "com.axonivy.connector.atrust.bo.SignatureDocumentData" }
+          ],
+          "map" : {
+            "out.signatureDocumentData" : "param.signatureDocument"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "resultCode", "type" : "Integer" },
+            { "name" : "signatureDocumentData", "type" : "com.axonivy.connector.atrust.bo.SignatureDocumentData" }
+          ],
+          "map" : {
+            "result.resultCode" : "in.resultCode",
+            "result.signatureDocumentData" : "in.signatureDocumentData"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 128, "y" : 432 },
+        "labelOffset" : { "x" : 97, "y" : 41 },
+        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+      },
+      "connect" : { "id" : "f45", "to" : "f43" }
+    }, {
+      "id" : "f18",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 488, "y" : 432 },
+        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+      }
+    }, {
+      "id" : "f43",
+      "type" : "RestClientCall",
+      "name" : "Get signed document",
+      "config" : {
+        "path" : "/signaturebatches/{ticketId}/documents/{documentId}",
+        "clientId" : "69b7fe41-3196-40bf-9458-b723c0bcc2b2",
+        "clientErrorCode" : ">> Ignore error",
+        "method" : "DELETE",
+        "statusErrorCode" : ">> Ignore status",
+        "responseMapping" : {
+          "out.resultCode" : "response.getStatus()"
+        },
+        "templateParams" : {
+          "documentId" : "in.signatureDocumentData.documentId",
+          "ticketId" : "in.signatureDocumentData.signatureTicket"
+        },
+        "bodyInputType" : "ENTITY",
+        "responseCode" : [
+          "import com.axonivy.connector.atrust.util.ATrustResponseUtils;",
+          "out.signatureDocumentData.pdfFile = ATrustResponseUtils.download(response, in.signatureDocumentData.documentName).getJavaFile();"
+        ]
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 432 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "connect" : { "id" : "f27", "to" : "f18" }
+    }, {
+      "id" : "f25",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 208, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f47", "to" : "S10" }
+      ]
+    }, {
+      "id" : "f29",
+      "type" : "ProcessAnnotation",
+      "name" : "**DEPRECATED",
+      "visual" : {
+        "at" : { "x" : 112, "y" : 72 },
+        "size" : { "width" : 118, "height" : 38 }
+      },
+      "connect" : { "id" : "f38", "to" : "f5" }
+    }, {
+      "id" : "f40",
+      "type" : "CallSubStart",
+      "name" : "createSignBatch(SignatureJob)",
+      "config" : {
+        "callSignature" : "createSignBatch",
+        "input" : {
+          "params" : [
+            { "name" : "signatureJob", "type" : "com.axonivy.connector.atrust.bo.SignatureJob" }
+          ],
+          "map" : {
+            "out.integrateNotInFrame" : "false",
+            "out.signatureJob" : "param.signatureJob"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "handySignatureURL", "type" : "String" },
+            { "name" : "signatureDocumentData", "type" : "com.axonivy.connector.atrust.bo.SignatureDocumentData" }
+          ],
+          "map" : {
+            "result.handySignatureURL" : "in.forwardTargetUrl",
+            "result.signatureDocumentData" : "in.signatureDocumentData"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 128, "y" : 192 },
+        "labelOffset" : { "x" : 17, "y" : 33 },
+        "icon" : "res:/webContent/icons/atrust-icon.png?small",
+        "color" : "NodeStyle3"
+      },
+      "connect" : { "id" : "f46", "to" : "f25" }
+    }, {
+      "id" : "S10",
+      "type" : "ServiceBpmnElement",
+      "name" : "Create SignBatch",
+      "elements" : [ {
+          "id" : "S10-f0",
+          "type" : "RestClientCall",
+          "name" : [
+            "Create a",
+            "SignBatch"
+          ],
+          "config" : {
+            "bodyForm" : {
+              "RedirectUrl" : "in.internalCallbackUrl",
+              "ErrorUrl" : "in.errorCallbackUrl"
+            },
+            "path" : "/signaturebatches",
+            "clientId" : "69b7fe41-3196-40bf-9458-b723c0bcc2b2",
+            "clientErrorCode" : "com:axonivy:connector:atrust:startsignature:exception",
+            "method" : "POST",
+            "statusErrorCode" : "com:axonivy:connector:atrust:startsignature:exception",
+            "bodyObjectType" : "at.a.trust.rest.api.client.SignatureBatch",
+            "bodyInputType" : "FORM",
+            "bodyMediaType" : "multipart/form-data",
+            "responseCode" : [
+              "import com.axonivy.connector.atrust.util.ATrustResponseUtils;",
+              "out.signatureTicket = ATrustResponseUtils.extractSignBatchTicketFromResponse(response);"
+            ]
+          },
+          "visual" : {
+            "at" : { "x" : 512, "y" : 160 },
+            "icon" : "res:/webContent/icons/atrust-icon.png"
+          },
+          "boundaries" : [ {
+              "id" : "S10-f6",
+              "type" : "ErrorBoundaryEvent",
+              "config" : {
+                "errorCode" : "com:axonivy:connector:atrust:startsignature:exception",
+                "output" : {
+                  "map" : {
+                    "out" : "in",
+                    "out.signatureDocumentData.lastSignatureError" : "error.getErrorMessage()"
+                  }
+                }
+              },
+              "visual" : {
+                "at" : { "x" : 552, "y" : 194 }
+              },
+              "connect" : { "id" : "S10-f4", "to" : "S10-f1" }
+            } ],
+          "connect" : { "id" : "S10-f3", "to" : "S10-g1" }
+        }, {
+          "id" : "S10-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 }
+          },
+          "parentConnector" : "f47",
+          "connect" : { "id" : "S10-f9", "to" : "S10-f5" }
+        }, {
+          "id" : "S10-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 672, "y" : 160 }
+          },
+          "parentConnector" : "f48"
+        }, {
+          "id" : "S10-f5",
+          "type" : "Script",
+          "name" : "Validate inputs",
+          "config" : {
+            "security" : "system",
+            "output" : {
+              "code" : "com.axonivy.connector.atrust.validator.ATrustSignValidator.validateSignatureJobData(in.signatureJob);"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 168, "y" : 160 }
+          },
+          "connect" : { "id" : "S10-f2", "to" : "S10-f7" }
+        }, {
+          "id" : "S10-f7",
+          "type" : "Script",
+          "name" : "Prepare CallbackUrl",
+          "config" : {
+            "security" : "system",
+            "output" : {
+              "code" : [
+                "import java.util.UUID;",
+                "import com.axonivy.connector.atrust.service.ATrustService;",
+                "// Internal callback url which will be redirect at end of sign step",
+                "if (in.signatureJob.isEmbeddedInframe) {",
+                "  in.internalCallbackUrl = ATrustService.getCallbackInFrameUrl();",
+                "  in.errorCallbackUrl = ATrustService.getErrorCallbackInFrameUrl();",
+                "} else {",
+                "  in.callbackSafetyHash = UUID.randomUUID().toString();",
+                "  in.internalCallbackUrl = ATrustService.getCallbackSafetyHashUrl(in.callbackSafetyHash);",
+                "  in.errorCallbackUrl = in.internalCallbackUrl;",
+                "}"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 344, "y" : 160 }
+          },
+          "connect" : { "id" : "S10-f10", "to" : "S10-f0" }
+        }, {
+          "id" : "S10-f1",
+          "type" : "CallSubEnd",
+          "visual" : {
+            "at" : { "x" : 552, "y" : 296 },
+            "icon" : "res:/webContent/icons/atrust-icon.png?small"
+          }
+        } ],
+      "visual" : {
+        "at" : { "x" : 328, "y" : 192 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "connect" : { "id" : "f48", "to" : "f21" }
+    }, {
+      "id" : "S20",
+      "type" : "ServiceBpmnElement",
+      "name" : "Add doc to SignBatch",
+      "elements" : [ {
+          "id" : "S20-f9",
+          "type" : "RestClientCall",
+          "name" : [
+            "Add doc to",
+            "SignBatch"
+          ],
+          "config" : {
+            "clientId" : "69b7fe41-3196-40bf-9458-b723c0bcc2b2",
+            "method" : "POST",
+            "statusErrorCode" : "ivy:error:rest:client",
+            "bodyObjectType" : "at.a.trust.rest.api.client.SignDocument",
+            "bodyInputType" : "FORM",
+            "responseCode" : "out.signatureDocumentData.documentId = com.axonivy.connector.atrust.util.ATrustResponseUtils.extractDocumentIdFromResponse(response);",
+            "bodyForm" : {
+              "document" : "in.signDocument.document",
+              "location" : "in.signDocument.location",
+              "reason" : "in.signDocument.reason",
+              "template" : "in.signDocument.template",
+              "page" : "in.signDocument.page", "x" : "in.signDocument.x", "y" : "in.signDocument.y",
+              "w" : "in.signDocument.w",
+              "h" : "in.signDocument.h"
+            },
+            "path" : "/signaturebatches/{ticketId}/documents",
+            "clientErrorCode" : "ivy:error:rest:client",
+            "responseMapping" : {
+              "out.resultCode" : "response.getStatus()"
+            },
+            "templateParams" : {
+              "ticketId" : "in.signatureTicket"
+            },
+            "resultType" : "at.a.trust.rest.api.client.InlineResponse2001",
+            "bodyMediaType" : "multipart/form-data"
+          },
+          "visual" : {
+            "at" : { "x" : 360, "y" : 160 },
+            "icon" : "res:/webContent/icons/atrust-icon.png"
+          },
+          "connect" : { "id" : "S20-f3", "to" : "S20-f7" }
+        }, {
+          "id" : "S20-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 }
+          },
+          "parentConnector" : "f0",
+          "connect" : { "id" : "S20-f0", "to" : "S20-f2" }
+        }, {
+          "id" : "S20-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 672, "y" : 160 }
+          },
+          "parentConnector" : "f2"
+        }, {
+          "id" : "S20-f2",
+          "type" : "Script",
+          "name" : "Prepare parameters",
+          "config" : {
+            "security" : "system",
+            "output" : {
+              "code" : "in.signDocument = com.axonivy.connector.atrust.service.ATrustService.buildSignDocumentData(in.signatureJob);"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 184, "y" : 160 }
+          },
+          "connect" : { "id" : "S20-f5", "to" : "S20-f9" }
+        }, {
+          "id" : "S20-f7",
+          "type" : "Alternative",
+          "name" : "is success?",
+          "visual" : {
+            "at" : { "x" : 512, "y" : 160 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S20-f4", "to" : "S20-g1", "label" : {
+                "name" : "no error"
+              }, "condition" : "in.resultCode == org.apache.http.HttpStatus.SC_CREATED" },
+            { "id" : "S20-f1", "to" : "S20-f8" }
+          ]
+        }, {
+          "id" : "S20-f8",
+          "type" : "Script",
+          "name" : "Set error message",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import com.axonivy.connector.atrust.util.IvyUtils;",
+                "import com.axonivy.connector.atrust.enums.SignatureStatus;",
+                "",
+                "in.signatureDocumentData.resultCode = in.resultCode;",
+                "in.signatureDocumentData.signatureTicket = in.signatureTicket;",
+                "in.signatureDocumentData.lastSignatureError = IvyUtils.getCMSTranslation(\"/Dialogs/com/axonivy/connector/atrust/LastSignErrorMessage\", in.resultCode);",
+                "in.signatureDocumentData.signatureStatus = SignatureStatus.FAILED;",
+                "in.signatureDocumentData.pdfDocument = null;"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 512, "y" : 256 },
+            "size" : { "width" : 160, "height" : 60 }
+          },
+          "connect" : { "id" : "S20-f12", "to" : "S20-f11" }
+        }, {
+          "id" : "S20-f11",
+          "type" : "CallSubEnd",
+          "visual" : {
+            "at" : { "x" : 512, "y" : 352 },
+            "icon" : "res:/webContent/icons/atrust-icon.png?small",
+            "color" : "NodeStyle3"
+          }
+        } ],
+      "visual" : {
+        "at" : { "x" : 584, "y" : 192 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "connect" : { "id" : "f2", "to" : "S30" }
+    }, {
+      "id" : "S30",
+      "type" : "ServiceBpmnElement",
+      "name" : "Create HandySignature session",
+      "elements" : [ {
+          "id" : "S30-f31",
+          "type" : "Alternative",
+          "name" : "is MobileSignature session?",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 160 },
+            "labelOffset" : { "x" : 16, "y" : -24 }
+          },
+          "connect" : [
+            { "id" : "S30-f39", "to" : "S30-f33", "via" : [ { "x" : 152, "y" : 264 } ], "label" : {
+                "name" : "no",
+                "segment" : 1.12
+              }, "condition" : "in.signatureJob.isSealSignature" },
+            { "id" : "S30-f34", "to" : "S30-f24", "label" : {
+                "name" : "yes"
+              } }
+          ]
+        }, {
+          "id" : "S30-f33",
+          "type" : "RestClientCall",
+          "name" : "Create sealsignature session",
+          "config" : {
+            "bodyForm" : {
+              "location" : "",
+              "reason" : ""
+            },
+            "path" : "/signaturebatches/{ticketId}/sealsignature",
+            "clientId" : "69b7fe41-3196-40bf-9458-b723c0bcc2b2",
+            "clientErrorCode" : "ivy:error:rest:client",
+            "method" : "POST",
+            "statusErrorCode" : "ivy:error:rest:client",
+            "templateParams" : {
+              "ticketId" : "in.signatureTicket"
+            },
+            "resultType" : "at.a.trust.rest.api.client.SealSignatureResponse",
+            "bodyInputType" : "ENTITY"
+          },
+          "visual" : {
+            "at" : { "x" : 296, "y" : 264 },
+            "icon" : "res:/webContent/icons/atrust-icon.png"
+          },
+          "connect" : { "id" : "S30-f37", "to" : "S30-f35", "via" : [ { "x" : 416, "y" : 264 } ] }
+        }, {
+          "id" : "S30-f35",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 416, "y" : 160 }
+          },
+          "connect" : [
+            { "id" : "S30-f1", "to" : "S30-g1" }
+          ]
+        }, {
+          "id" : "S30-f24",
+          "type" : "RestClientCall",
+          "name" : "Create mobileSignature session",
+          "config" : {
+            "bodyObjectMapping" : {
+              "param" : "\"\""
+            },
+            "clientId" : "69b7fe41-3196-40bf-9458-b723c0bcc2b2",
+            "method" : "POST",
+            "statusErrorCode" : "ivy:error:rest:client",
+            "bodyObjectType" : "at.a.trust.rest.api.client.MobileSignatureRequest",
+            "bodyInputType" : "FORM",
+            "responseCode" : [
+              "import com.axonivy.connector.atrust.util.ATrustResponseUtils;",
+              "out.forwardTargetUrl = ATrustResponseUtils.extractHandySignatureUrlFromResponse(response);"
+            ],
+            "bodyForm" : {
+              "location" : "",
+              "reason" : "",
+              "document" : "",
+              "template" : "",
+              "appletwidth" : "450",
+              "appletheight" : "450", "width" : "", "height" : "",
+              "backgroundcolor" : "\"red\"",
+              "redirecttarget" : "\"_parent\"",
+              "telephonenumber" : "1030155411901422"
+            },
+            "path" : "/signaturebatches/{ticketId}/mobileSignature",
+            "clientErrorCode" : "ivy:error:rest:client",
+            "responseMapping" : {
+              "out.resultCode" : "response.getStatus()"
+            },
+            "templateParams" : {
+              "ticketId" : "in.signatureTicket"
+            },
+            "bodyMediaType" : "multipart/form-data"
+          },
+          "visual" : {
+            "at" : { "x" : 296, "y" : 160 },
+            "icon" : "res:/webContent/icons/atrust-icon.png"
+          },
+          "connect" : { "id" : "S30-f36", "to" : "S30-f35" }
+        }, {
+          "id" : "S30-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 }
+          },
+          "parentConnector" : "f2",
+          "connect" : { "id" : "S30-f0", "to" : "S30-f31" }
+        }, {
+          "id" : "S30-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 520, "y" : 160 }
+          },
+          "parentConnector" : "f4"
+        } ],
+      "visual" : {
+        "at" : { "x" : 760, "y" : 192 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "connect" : { "id" : "f4", "to" : "f12" }
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : [
+        "Redirect to",
+        "forwardTargetUrl"
+      ],
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "// Compatibility for old approach",
+            "if (in.integrateNotInFrame) {",
+            "  com.axonivy.connector.atrust.util.IvyUtils.redirectTo(in.forwardTargetUrl);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1088, "y" : 288 },
+        "size" : { "width" : 128, "height" : 60 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      }
+    }, {
+      "id" : "f9",
+      "type" : "Alternative",
+      "name" : "is use frame template?",
+      "visual" : {
+        "at" : { "x" : 1088, "y" : 192 },
+        "labelOffset" : { "x" : 24, "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f14", "to" : "f8", "label" : {
+            "name" : "no"
+          }, "condition" : "in.integrateNotInFrame" },
+        { "id" : "f13", "to" : "f3", "label" : {
+            "name" : "yes"
+          } }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 296 },
+        "icon" : "res:/webContent/icons/atrust-icon.png?small",
+        "color" : "NodeStyle3"
+      }
     } ],
   "layout" : {
     "lanes" : [ {
         "name" : "A-Trust Single Signature",
         "offset" : 32,
-        "size" : 448,
+        "size" : 512,
         "lanes" : [ {
             "name" : "StartSignatureTemplateEx",
-            "size" : 384
+            "size" : 320
+          }, {
+            "name" : "Download document",
+            "size" : 192
           } ]
       } ],
     "colors" : {

@@ -1,0 +1,12 @@
+Dialogs:
+  com:
+    axonivy:
+      connector:
+        atrust:
+          CallbackHasNoHashMessage: Illegal start of callback process. No callbackSafetyHash parameter provided.
+          CannotReadResponseStreamMessage: Unable to read bytes from REST service stream
+          InvalidHashMessage: Signature ticket in session does not match callback by A-Trust. No parallel signature of multiple documents allowed.
+          InvalidParamMessage: Your input data is invalid.
+          MissingParamMessage: Your input data is missing required properties.
+          TemplateNotFoundMessage: Your template is not available on ATrust HandySignature.
+          LastSignErrorMessage: 'Start Signature Web Service Error: Code {0}'
