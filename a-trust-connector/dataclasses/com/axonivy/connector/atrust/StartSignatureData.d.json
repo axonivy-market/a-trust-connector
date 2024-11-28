@@ -1,0 +1,47 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "StartSignatureData",
+  "namespace" : "com.axonivy.connector.atrust",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "resultCode",
+    "type" : "Integer",
+    "comment" : "Result code from A-Trust web service call."
+  }, {
+    "name" : "callbackSafetyHash",
+    "type" : "String",
+    "comment" : "Hash code generated for more safety in internal callback link."
+  }, {
+    "name" : "forwardTargetUrl",
+    "type" : "String",
+    "comment" : "URL for A-Trust. We give it back to caller in order to forward the user to this URL."
+  }, {
+    "name" : "signatureJob",
+    "type" : "com.axonivy.connector.atrust.bo.SignatureJob",
+    "comment" : "Job data for this signature, passed by caller of this interface."
+  }, {
+    "name" : "signatureDocumentData",
+    "type" : "com.axonivy.connector.atrust.bo.SignatureDocumentData",
+    "comment" : "The output of A-Trust signature document data, you will get it back together with signed document in the signature result object."
+  }, {
+    "name" : "internalCallbackUrl",
+    "type" : "String",
+    "comment" : "Internal Callback URL of this interface. (Here we prepare all data before we forward to callback URL of calling process)"
+  }, {
+    "name" : "signatureTicket",
+    "type" : "String",
+    "comment" : "Ticket ID from A-Trust"
+  }, {
+    "name" : "integrateNotInFrame",
+    "type" : "Boolean",
+    "comment" : "This indicator set for old approach using TaskTemplate8 - non iframe"
+  }, {
+    "name" : "errorCallbackUrl",
+    "type" : "String",
+    "comment" : "Error callback URL of this interface."
+  }, {
+    "name" : "signDocument",
+    "type" : "at.a.trust.rest.api.client.SignDocument",
+    "comment" : "Wrapper object for adding new doc to sign batch"
+  } ]
+}

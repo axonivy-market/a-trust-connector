@@ -1,0 +1,20 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "Data",
+  "namespace" : "com.axonivy.connector.atrust.demo",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "myIvyFile",
+    "type" : "File"
+  }, {
+    "name" : "templateData",
+    "type" : "com.axonivy.connector.atrust.bo.TemplateData"
+  }, {
+    "name" : "templateId",
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "signatureTemplates",
+    "type" : "at.a.trust.rest.api.client.SignatureTemplates"
+  } ]
+}
