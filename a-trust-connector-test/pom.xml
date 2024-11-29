@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.connector.atrust</groupId>
   <artifactId>a-trust-connector-test</artifactId>
-  <version>11.3.3-SNAPSHOT</version>
+  <version>12.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
-    <project.build.plugin.version>11.3.0</project.build.plugin.version>
-    <tester.version>11.3.0</tester.version>
+    <project.build.plugin.version>12.0.0</project.build.plugin.version>
+    <tester.version>12.0.0</tester.version>
   </properties>
   <pluginRepositories>
     <!-- Snapshot releases are available via sonatype.org -->

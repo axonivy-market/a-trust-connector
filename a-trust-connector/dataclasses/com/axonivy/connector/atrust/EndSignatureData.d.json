@@ -1,0 +1,26 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "EndSignatureData",
+  "namespace" : "com.axonivy.connector.atrust",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "resultCode",
+    "type" : "Integer",
+    "comment" : "Result code from A-Trust web service call."
+  }, {
+    "name" : "callbackSafetyHash",
+    "type" : "String",
+    "comment" : "Hash code generated for more safety in internal callback link."
+  }, {
+    "name" : "referenceTaskId",
+    "type" : "Long",
+    "comment" : "Reuqest task id. Will be used to add signed document."
+  }, {
+    "name" : "atrustTicketId",
+    "type" : "String",
+    "comment" : "Ticket ID from A-Trust signature inbox."
+  }, {
+    "name" : "signatureDocumentData",
+    "type" : "com.axonivy.connector.atrust.bo.SignatureDocumentData"
+  } ]
+}

@@ -1,6 +1,0 @@
-Data #class
-com.axonivy.connector.atrust.test #namespace
-signatureJob com.axonivy.connector.atrust.bo.SignatureJob #field
-signatureJob PERSISTENT #fieldModifier
-signatureDocumentData com.axonivy.connector.atrust.bo.SignatureDocumentData #field
-signatureDocumentData PERSISTENT #fieldModifier

@@ -1,0 +1,62 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "DocumentSignatureData",
+  "namespace" : "com.axonivy.connector.atrust.demo.DocumentSignature",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "signatureJob",
+    "type" : "com.axonivy.connector.atrust.bo.SignatureJob",
+    "comment" : "The input of A-Trust Signature servive"
+  }, {
+    "name" : "signatureDocumentData",
+    "type" : "com.axonivy.connector.atrust.bo.SignatureDocumentData",
+    "comment" : "The output of A-Trust Signature servive"
+  }, {
+    "name" : "disableSignButton",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "documents",
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.document.IDocument>",
+    "comment" : "Documents of case"
+  }, {
+    "name" : "selectedDocument",
+    "type" : "ch.ivyteam.ivy.workflow.document.IDocument"
+  }, {
+    "name" : "uploadedFile",
+    "type" : "org.primefaces.model.file.UploadedFile"
+  }, {
+    "name" : "streamedContent",
+    "type" : "org.primefaces.model.StreamedContent"
+  }, {
+    "name" : "doesDocumentExist",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "disableUpload",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "handySignatureURL",
+    "type" : "String",
+    "comment" : "The URL (which includes the required session id) to start the Handy-Signature",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "templateData",
+    "type" : "at.a.trust.rest.api.client.SignatureTemplates"
+  }, {
+    "name" : "templates",
+    "type" : "java.util.List<at.a.trust.rest.api.client.TemplateMeta>"
+  }, {
+    "name" : "selectedTemplate",
+    "type" : "at.a.trust.rest.api.client.TemplateMeta"
+  }, {
+    "name" : "uploadedDocumentName",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isSignFinished",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}
