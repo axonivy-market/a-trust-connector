@@ -6,13 +6,11 @@
   "fields" : [ {
     "name" : "signatureJob",
     "type" : "com.axonivy.connector.atrust.bo.SignatureJob",
-    "comment" : "The input of A-Trust Signature servive",
-    "modifiers" : [ "PERSISTENT" ]
+    "comment" : "The input of A-Trust Signature servive"
   }, {
     "name" : "signatureDocumentData",
     "type" : "com.axonivy.connector.atrust.bo.SignatureDocumentData",
-    "comment" : "The output of A-Trust Signature servive",
-    "modifiers" : [ "PERSISTENT" ]
+    "comment" : "The output of A-Trust Signature servive"
   }, {
     "name" : "disableSignButton",
     "type" : "Boolean",
@@ -20,20 +18,16 @@
   }, {
     "name" : "documents",
     "type" : "java.util.List<ch.ivyteam.ivy.workflow.document.IDocument>",
-    "comment" : "Documents of case",
-    "modifiers" : [ "PERSISTENT" ]
+    "comment" : "Documents of case"
   }, {
     "name" : "selectedDocument",
-    "type" : "ch.ivyteam.ivy.workflow.document.IDocument",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.document.IDocument"
   }, {
     "name" : "uploadedFile",
-    "type" : "org.primefaces.model.file.UploadedFile",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "org.primefaces.model.file.UploadedFile"
   }, {
     "name" : "streamedContent",
-    "type" : "org.primefaces.model.StreamedContent",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "org.primefaces.model.StreamedContent"
   }, {
     "name" : "doesDocumentExist",
     "type" : "Boolean",
@@ -49,16 +43,13 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "templateData",
-    "type" : "at.a.trust.rest.api.client.SignatureTemplates",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "at.a.trust.rest.api.client.SignatureTemplates"
   }, {
     "name" : "templates",
-    "type" : "java.util.List<at.a.trust.rest.api.client.TemplateMeta>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<at.a.trust.rest.api.client.TemplateMeta>"
   }, {
     "name" : "selectedTemplate",
-    "type" : "at.a.trust.rest.api.client.TemplateMeta",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "at.a.trust.rest.api.client.TemplateMeta"
   }, {
     "name" : "uploadedDocumentName",
     "type" : "String",
