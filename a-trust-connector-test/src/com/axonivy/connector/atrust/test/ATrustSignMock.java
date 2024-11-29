@@ -3,8 +3,8 @@ package com.axonivy.connector.atrust.test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
@@ -53,7 +53,7 @@ public class ATrustSignMock {
 	public Response addTemplate(@FormDataParam("file") InputStream uploadStream,
 			@FormDataParam("file") FormDataContentDisposition fileMetaData)
 			throws MalformedURLException, URISyntaxException {
-		var location = new URL(getRequestUrl() + MOCK_TEMPLATE_LOCATION).toURI();
+		var location = new URI(getRequestUrl() + MOCK_TEMPLATE_LOCATION);
 		return Response.created(location).build();
 	}
 
@@ -71,8 +71,8 @@ public class ATrustSignMock {
 		return Response.created(location).build();
 	}
 
-	private java.net.URI buildMockBatchLocation() throws URISyntaxException, MalformedURLException {
-		return new URL(getRequestUrl() + MOCK_BATCH_LOCATION).toURI();
+	private URI buildMockBatchLocation() throws URISyntaxException, MalformedURLException {
+		return new URI(getRequestUrl() + MOCK_BATCH_LOCATION);
 	}
 
 	@POST
