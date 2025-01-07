@@ -16,12 +16,6 @@
   <scm>
     <developerConnection>scm:git:https://github.com/axonivy-market/a-trust-connector.git</developerConnection>
   </scm>
-  <properties>
-    <project.groupId>com.axonivy.connector.atrust</project.groupId>
-    <project.artifactId>a-trust-connector-modules</project.artifactId>
-    <project.name></project.name>
-    <project.version>12.0.1-SNAPSHOT</project.version>
-  </properties>
   <build>
     <pluginManagement>
       <plugins>
