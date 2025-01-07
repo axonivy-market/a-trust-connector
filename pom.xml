@@ -11,7 +11,7 @@
     <module>a-trust-connector-demo</module>
     <module>a-trust-connector-test</module>
     <module>a-trust-connector-product</module>
-    <module>a-trustdemo-app</module>
+    <module>a-trust-demo-app</module>
   </modules>
   <scm>
     <developerConnection>scm:git:https://github.com/axonivy-market/a-trust-connector.git</developerConnection>
