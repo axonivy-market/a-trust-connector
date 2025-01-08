@@ -19,7 +19,7 @@ on:
 jobs:
   build:
     uses: nqhoan-org/github-workflows/.github/workflows/release.yml@v6
-      with:
-        version: ${{ inputs.version }}
-        modules: ${{ inputs.modules}}
-        raiseVersion: ${{ inputs.raiseVersion }}
+    with:
+      version: ${{ inputs.version }}
+      modules: ${{ inputs.modules}}
+      raiseVersion: ${{ inputs.raiseVersion }}
