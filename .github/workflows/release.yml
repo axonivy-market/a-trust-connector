@@ -1,7 +1,25 @@
 name: Release-Build
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version"
+        required: false
+        default: ""
+      modules:
+        description: "Comma-separated list of projects will be released"
+        required: false
+        default: ""
+      raiseVersion:
+        description: "Raise POM version to next release version? (true/false)"
+        required: false
+        default: "false"
 
 jobs:
   build:
     uses: nqhoan-org/github-workflows/.github/workflows/release.yml@v6
+      with:
+        version: ${{ inputs.version }}
+        modules: ${{ inputs.modules}}
+        raiseVersion: ${{ inputs.raiseVersion }}
