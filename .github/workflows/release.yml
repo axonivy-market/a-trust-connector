@@ -14,7 +14,8 @@ on:
       raiseVersion:
         description: "Raise POM version to next release version? (true/false)"
         required: false
-        default: "false"
+        default: false
+        type: boolean
 
 jobs:
   build:
