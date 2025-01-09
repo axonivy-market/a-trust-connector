@@ -6,6 +6,9 @@
   <artifactId>a-trust-demo-app</artifactId>
   <version>12.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
+  <scm>
+    <developerConnection>scm:git:https://github.com/axonivy-market/a-trust-connector.git</developerConnection>
+  </scm>
   <dependencies>
     <dependency>
       <groupId>com.axonivy.connector.atrust</groupId>
