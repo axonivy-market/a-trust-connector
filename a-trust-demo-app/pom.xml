@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.connector.atrust</groupId>
   <artifactId>a-trust-demo-app</artifactId>
-  <version>12.0.1-SNAPSHOT</version>
+  <version>12.0.1</version>
   <packaging>pom</packaging>
   <scm>
     <developerConnection>scm:git:https://github.com/axonivy-market/a-trust-connector.git</developerConnection>
+    <tag>v12.0.1</tag>
   </scm>
   <dependencies>
     <dependency>
       <groupId>com.axonivy.connector.atrust</groupId>
       <artifactId>a-trust-connector-demo</artifactId>
-      <version>12.0.1-SNAPSHOT</version>
+      <version>12.0.1</version>
       <type>iar</type>
     </dependency>
   </dependencies>
