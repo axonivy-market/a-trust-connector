@@ -13,7 +13,7 @@
   <version>12.0.2-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
-    <tester.version>12.0.0</tester.version>
+    <tester.version>12.0.1</tester.version>
     <project.build.plugin.version>12.0.0</project.build.plugin.version>
   </properties>
   <dependencies>
