@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.connector.atrust</groupId>
   <artifactId>a-trust-connector-modules</artifactId>
-  <version>12.0.2-SNAPSHOT</version>
+  <version>13.2.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
     <module>a-trust-connector</module>
