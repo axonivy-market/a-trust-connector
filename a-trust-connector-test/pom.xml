@@ -85,6 +85,17 @@
         <artifactId>project-build-plugin</artifactId>
         <extensions>true</extensions>
       </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version>
+        <configuration>
+          <systemPropertyVariables>
+            <apiKey>${atrust.apiKey}</apiKey>
+            <serverUrl>${atrust.serverUrl}</serverUrl>
+            <signBox>${atrust.signBox}</signBox>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>  
     </plugins>
   </build>
 </project>
