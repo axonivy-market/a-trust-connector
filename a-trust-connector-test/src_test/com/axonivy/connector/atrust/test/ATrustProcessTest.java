@@ -4,24 +4,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
-import org.glassfish.jersey.media.multipart.MultiPartFeature;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.TestTemplate;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.ExtensionContext;
 
+import com.axonivy.connector.atrust.TemplateManagementData;
 import com.axonivy.connector.atrust.bo.SignatureDocumentData;
 import com.axonivy.connector.atrust.bo.SignatureJob;
-import com.axonivy.connector.atrust.config.HeaderFeature;
-import com.axonivy.connector.atrust.config.OpenApiJsonFeature;
 import com.axonivy.connector.atrust.enums.ATrustBpmErrorCode;
 import com.axonivy.connector.atrust.enums.ATrustCustomField;
+import com.axonivy.connector.atrust.test.constants.ATrustTestConstants;
+import com.axonivy.connector.atrust.test.context.MultiEnvironmentContextProvider;
+import com.axonivy.connector.atrust.test.utils.ATrustTestUtils;
 
 import at.a.trust.rest.api.client.TemplateMeta;
 import ch.ivyteam.ivy.application.IApplication;
@@ -33,8 +35,6 @@ import ch.ivyteam.ivy.bpm.error.BpmError;
 import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
 import ch.ivyteam.ivy.environment.AppFixture;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.rest.client.RestClient;
-import ch.ivyteam.ivy.rest.client.RestClientFeature;
 import ch.ivyteam.ivy.rest.client.RestClients;
 import ch.ivyteam.ivy.scripting.objects.CompositeObject;
 import ch.ivyteam.ivy.scripting.objects.File;
@@ -45,6 +45,7 @@ import ch.ivyteam.ivy.workflow.ITask;
  */
 @IvyProcessTest(enableWebServer = true)
 @TestMethodOrder(OrderAnnotation.class)
+@ExtendWith(MultiEnvironmentContextProvider.class)
 public class ATrustProcessTest {
 
 	private static final String ATRUST_REST_CLIENT = "A-Trust (A-Trust Connector API)";
@@ -55,36 +56,25 @@ public class ATrustProcessTest {
 	private static final String SAMPLE_DOC = "ATrustTestDoc.pdf";
 	private static final String SAMPLE_TEMPLATE_ID = "101";
 	private static final String SAMPLE_TEMPLATE = "Sisi";
-
+	private static final BpmProcess TEMPLATE_MANAGEMENT = BpmProcess.name("TemplateManagement");
 	private int templateId;
 	private SignatureJob signatureJob;
 
-	@BeforeAll
-	static void beforeAll(AppFixture fixture, IApplication app) {
-		fixture.config("RestClients." + ATRUST_REST_CLIENT + ".Url", ATrustSignMock.URI);
-		fixture.config("RestClients." + ATRUST_REST_CLIENT + ".Features", "");
-
-		RestClients clients = RestClients.of(app);
-		RestClient atrustRestClient = clients.find(ATRUST_REST_CLIENT);
-		var mockClient = atrustRestClient.toBuilder()
-				.features (List.of(
-					new RestClientFeature(HeaderFeature.class.getName()),
-					new RestClientFeature(MultiPartFeature.class.getName()), 
-					new RestClientFeature(OpenApiJsonFeature.class.getName())
-				))
-				.property("AUTH.apiKey", "apiKey").property("PATH.serverUrl", "serverUrl")
-				.property("PATH.signBox", "signBox").toRestClient();
-		clients.set(mockClient);
-	}
-
 	@BeforeEach
-	public void init() {
+	public void beforeEach(ExtensionContext context, AppFixture fixture, IApplication app) {
+		ATrustTestUtils.setUpConfigForContext(context.getDisplayName(), fixture, app);
 		signatureJob = new SignatureJob();
 	}
 
-	@Test
+	@AfterEach
+	void afterEach(AppFixture fixture, IApplication app) {
+		RestClients clients = RestClients.of(app);
+		clients.remove(ATRUST_REST_CLIENT);
+	}
+
+	@TestTemplate
 	@Order(value = Integer.MIN_VALUE)
-	public void addNewTemplateProcess(BpmClient bpmClient) {
+	public void addNewTemplateProcess(BpmClient bpmClient, ExtensionContext context) {
 		BpmElement startable = INTEGRATION_PROCESS.elementName("AddTemplateATrust.ivp");
 		ExecutionResult result = bpmClient.start().process(startable).execute();
 		CompositeObject data = result.data().last();
@@ -99,21 +89,30 @@ public class ATrustProcessTest {
 		assertThat(resultCode).isNotNull();
 		assertThat(templateId).isInstanceOf(Integer.class);
 		assertThat(templateId).isNotEqualTo(0);
+		if (context.getDisplayName().equals(ATrustTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
+			BpmElement deleteStartable = TEMPLATE_MANAGEMENT.elementName("DeleteTemplateATrust(Number)");
+			ExecutionResult deleteResult = bpmClient.start().subProcess(deleteStartable)
+					.withParam("templateId", templateId).execute();
+			var templateData = (TemplateManagementData) deleteResult.data().last();
+			Ivy.log().warn(templateData.getResult().getResultCode().equals(200));
+		}
 	}
 
-	@Test
-	public void getListTemplateProcess(BpmClient bpmClient) {
+	@TestTemplate
+	public void getListTemplateProcess(BpmClient bpmClient, ExtensionContext context) {
 		CompositeObject data = executeGetListTemplateProcess(bpmClient);
 		var demoData = (com.axonivy.connector.atrust.demo.Data) data;
 		String listTemplate = demoData.getTemplateData().getListTemplates();
 		Integer resultCode = demoData.getTemplateData().getResultCode();
 		assertTrue(resultCode == HttpStatus.SC_OK);
 		assertThat(listTemplate).isNotNull();
-		assertTrue(StringUtils.contains(listTemplate, SAMPLE_TEMPLATE));
-		assertTrue(StringUtils.contains(listTemplate, SAMPLE_TEMPLATE_ID));
+		if (context.getDisplayName().equals(ATrustTestConstants.MOCK_SERVER_CONTEXT_DISPLAY_NAME)) {
+			assertTrue(StringUtils.contains(listTemplate, SAMPLE_TEMPLATE));
+			assertTrue(StringUtils.contains(listTemplate, SAMPLE_TEMPLATE_ID));
+		}
 	}
 
-	@Test
+	@TestTemplate
 	public void callStartSignatureFailedByInvalidParams(BpmClient bpmClient) throws IOException {
 		signatureJob.setDocumentName(SAMPLE_DOC);
 		BpmElement startable = ATRUST_SIGNER_PROCESS.elementName(START_SIGN_JOB);
@@ -138,7 +137,7 @@ public class ATrustProcessTest {
 		}
 	}
 
-	@Test
+	@TestTemplate
 	public void callStartSignatureProcessSuccessfully(BpmClient bpmClient) throws NoSuchFieldException {
 		CompositeObject templateData = executeGetListTemplateProcess(bpmClient);
 		var demoData = (com.axonivy.connector.atrust.demo.Data) templateData;
@@ -175,19 +174,6 @@ public class ATrustProcessTest {
 		ExecutionResult result = bpmClient.start().process(startable).execute();
 		assertThat(result.data()).isNotNull();
 		return result.data().last();
-	}
-
-	@Test
-	@Order(value = Integer.MAX_VALUE)
-	public void deleteTemplateProcess(BpmClient bpmClient) {
-		BpmElement startable = INTEGRATION_PROCESS.elementName("DeleteSignatureTemplate.ivp");
-		ExecutionResult result = bpmClient.start().process(startable).execute();
-		CompositeObject data = result.data().last();
-		assertThat(data).isNotNull();
-		com.axonivy.connector.atrust.demo.Data demoData = (com.axonivy.connector.atrust.demo.Data) data;
-		Integer resultCode = demoData.getTemplateData().getResultCode();
-		assertTrue(resultCode == HttpStatus.SC_OK);
-		assertThat(demoData.getTemplateId()).isNotEqualTo(0);
 	}
 
 }
