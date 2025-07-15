@@ -7,7 +7,7 @@ import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import com.axonivy.connector.atrust.config.HeaderFeature;
 import com.axonivy.connector.atrust.config.OpenApiJsonFeature;
 import com.axonivy.connector.atrust.test.ATrustSignMock;
-import com.axonivy.connector.atrust.test.constants.ATrustCommonConstants;
+import com.axonivy.connector.atrust.test.constants.ATrustTestConstants;
 
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.AppFixture;
@@ -15,15 +15,15 @@ import ch.ivyteam.ivy.rest.client.RestClient;
 import ch.ivyteam.ivy.rest.client.RestClientFeature;
 import ch.ivyteam.ivy.rest.client.RestClients;
 
-public class ATrustUtils {
+public class ATrustTestUtils {
 	private static final String ATRUST_REST_CLIENT = "A-Trust (A-Trust Connector API)";
 
 	public static void setUpConfigForContext(String contextName, AppFixture fixture, IApplication app) {
 		switch (contextName) {
-		case ATrustCommonConstants.REAL_CALL_CONTEXT_DISPLAY_NAME:
+		case ATrustTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME:
 			setUpConfigForApiTest(fixture);
 			break;
-		case ATrustCommonConstants.MOCK_SERVER_CONTEXT_DISPLAY_NAME:
+		case ATrustTestConstants.MOCK_SERVER_CONTEXT_DISPLAY_NAME:
 			setUpConfigForMockServer(fixture, app);
 			break;
 		default:
@@ -32,9 +32,9 @@ public class ATrustUtils {
 	}
 
 	public static void setUpConfigForApiTest(AppFixture fixture) {
-		String apiKey = System.getProperty(ATrustCommonConstants.API_KEY);
-		String ServerUrl = System.getProperty(ATrustCommonConstants.SERVER_URL);
-		String SignBox = System.getProperty(ATrustCommonConstants.SIGN_BOX);
+		String apiKey = System.getProperty(ATrustTestConstants.API_KEY);
+		String ServerUrl = System.getProperty(ATrustTestConstants.SERVER_URL);
+		String SignBox = System.getProperty(ATrustTestConstants.SIGN_BOX);
 		fixture.var("ATrust.APIKey", apiKey);
 		fixture.var("ATrust.ServerUrl", ServerUrl);
 		fixture.var("ATrust.SignBox", SignBox);

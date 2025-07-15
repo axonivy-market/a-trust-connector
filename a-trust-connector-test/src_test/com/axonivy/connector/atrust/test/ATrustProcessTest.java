@@ -21,9 +21,9 @@ import com.axonivy.connector.atrust.bo.SignatureDocumentData;
 import com.axonivy.connector.atrust.bo.SignatureJob;
 import com.axonivy.connector.atrust.enums.ATrustBpmErrorCode;
 import com.axonivy.connector.atrust.enums.ATrustCustomField;
-import com.axonivy.connector.atrust.test.constants.ATrustCommonConstants;
+import com.axonivy.connector.atrust.test.constants.ATrustTestConstants;
 import com.axonivy.connector.atrust.test.context.MultiEnvironmentContextProvider;
-import com.axonivy.connector.atrust.test.utils.ATrustUtils;
+import com.axonivy.connector.atrust.test.utils.ATrustTestUtils;
 
 import at.a.trust.rest.api.client.TemplateMeta;
 import ch.ivyteam.ivy.application.IApplication;
@@ -62,7 +62,7 @@ public class ATrustProcessTest {
 
 	@BeforeEach
 	public void beforeEach(ExtensionContext context, AppFixture fixture, IApplication app) {
-		ATrustUtils.setUpConfigForContext(context.getDisplayName(), fixture, app);
+		ATrustTestUtils.setUpConfigForContext(context.getDisplayName(), fixture, app);
 		signatureJob = new SignatureJob();
 	}
 
@@ -89,7 +89,7 @@ public class ATrustProcessTest {
 		assertThat(resultCode).isNotNull();
 		assertThat(templateId).isInstanceOf(Integer.class);
 		assertThat(templateId).isNotEqualTo(0);
-		if (context.getDisplayName().equals(ATrustCommonConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
+		if (context.getDisplayName().equals(ATrustTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
 			BpmElement deleteStartable = TEMPLATE_MANAGEMENT.elementName("DeleteTemplateATrust(Number)");
 			ExecutionResult deleteResult = bpmClient.start().subProcess(deleteStartable)
 					.withParam("templateId", templateId).execute();
@@ -106,7 +106,7 @@ public class ATrustProcessTest {
 		Integer resultCode = demoData.getTemplateData().getResultCode();
 		assertTrue(resultCode == HttpStatus.SC_OK);
 		assertThat(listTemplate).isNotNull();
-		if (context.getDisplayName().equals(ATrustCommonConstants.MOCK_SERVER_CONTEXT_DISPLAY_NAME)) {
+		if (context.getDisplayName().equals(ATrustTestConstants.MOCK_SERVER_CONTEXT_DISPLAY_NAME)) {
 			assertTrue(StringUtils.contains(listTemplate, SAMPLE_TEMPLATE));
 			assertTrue(StringUtils.contains(listTemplate, SAMPLE_TEMPLATE_ID));
 		}

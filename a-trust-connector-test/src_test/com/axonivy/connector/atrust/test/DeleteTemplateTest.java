@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import com.axonivy.connector.atrust.test.utils.ATrustUtils;
+import com.axonivy.connector.atrust.test.utils.ATrustTestUtils;
 
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.bpm.engine.client.BpmClient;
@@ -23,7 +23,7 @@ public class DeleteTemplateTest {
 
 	@BeforeEach
 	public void beforeEach(AppFixture fixture, IApplication app) {
-		ATrustUtils.setUpConfigForMockServer(fixture, app);
+		ATrustTestUtils.setUpConfigForMockServer(fixture, app);
 	}
 
 	@Test
