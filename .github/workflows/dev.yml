@@ -1,5 +1,8 @@
 name: Dev-Build
 
+permissions:
+  contents: read
+
 on:
   push:
   schedule:
@@ -8,8 +11,6 @@ on:
 
 jobs:
   build:
-    permissions:
-      contents: read
     uses: axonivy-market/github-workflows/.github/workflows/dev.yml@v6
     secrets:
       mvnArgs: -Datrust.apiKey=${{secrets.API_KEY}} -Datrust.serverUrl=${{secrets.SERVER_URL}} -Datrust.signBox=${{secrets.SIGN_BOX}}
