@@ -14,7 +14,6 @@ public class TestEnironmentInvocationContext implements TestTemplateInvocationCo
 	private String contextDisplayName;
 
 	public TestEnironmentInvocationContext(String contextDisplayName) {
-		super();
 		this.contextDisplayName = contextDisplayName;
 	}
 
