@@ -1,9 +1,8 @@
 name: E2E-Build
 
 on:
-  push:
   schedule:
-    - cron:  '21 21 * * *'
+    - cron:  '0 1 * * 1'
   workflow_dispatch:
 
 permissions:
@@ -14,4 +13,4 @@ jobs:
   build:
     uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v6
     secrets:
-      mvnArgs: -Datrust.apiKey=${{secrets.API_KEY}} -Datrust.serverUrl=${{secrets.SERVER_URL}} -Datrust.signBox=${{secrets.SIGN_BOX}} "-DtestEnvironment=${{ secrets.END_2_END_TESTING_ENV }}"
+      mvnArgs: -Datrust.apiKey=${{secrets.API_KEY}} -Datrust.serverUrl=${{secrets.SERVER_URL}} -Datrust.signBox=${{secrets.SIGN_BOX}} -DtestEnvironment=E2E
