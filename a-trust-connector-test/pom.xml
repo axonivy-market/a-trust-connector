@@ -92,6 +92,7 @@
             <apiKey>${atrust.apiKey}</apiKey>
             <serverUrl>${atrust.serverUrl}</serverUrl>
             <signBox>${atrust.signBox}</signBox>
+            <testEnvironment>${testEnvironment}</testEnvironment>
           </systemPropertyVariables>
           <statelessTestsetReporter
             implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5Xml30StatelessReporter">

@@ -6,4 +6,6 @@ public class ATrustTestConstants {
 	public static final String API_KEY = "apiKey";
 	public static final String SERVER_URL = "serverUrl";
 	public static final String SIGN_BOX = "signBox";
+	public static final String END_TO_END_TESTING_ENVIRONMENT_KEY = "testEnvironment";
+	public static final String END_TO_END_TESTING_ENVIRONMENT_VALUE = "E2E";
 }
