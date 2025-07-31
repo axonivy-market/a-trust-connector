@@ -2,12 +2,16 @@ name: CI-Build
 
 on:
   push:
+  pull_request:
   schedule:
     - cron:  '21 21 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
 jobs:
   build:
     uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v6
-    secrets:
-      mvnArgs: -Datrust.apiKey=${{secrets.API_KEY}} -Datrust.serverUrl=${{secrets.SERVER_URL}} -Datrust.signBox=${{secrets.SIGN_BOX}}
