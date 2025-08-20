@@ -2,6 +2,7 @@ package com.axonivy.connector.atrust.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.axonivy.utils.e2etest.enums.E2EEnvironment.REAL_SERVER;
 
 import java.io.IOException;
 
@@ -21,9 +22,8 @@ import com.axonivy.connector.atrust.bo.SignatureDocumentData;
 import com.axonivy.connector.atrust.bo.SignatureJob;
 import com.axonivy.connector.atrust.enums.ATrustBpmErrorCode;
 import com.axonivy.connector.atrust.enums.ATrustCustomField;
-import com.axonivy.connector.atrust.test.constants.ATrustTestConstants;
-import com.axonivy.connector.atrust.test.context.MultiEnvironmentContextProvider;
-import com.axonivy.connector.atrust.test.utils.ATrustTestUtils;
+import com.axonivy.utils.e2etest.context.MultiEnvironmentContextProvider;
+import com.axonivy.utils.e2etest.utils.E2ETestUtils;
 
 import at.a.trust.rest.api.client.TemplateMeta;
 import ch.ivyteam.ivy.application.IApplication;
@@ -46,7 +46,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 @IvyProcessTest(enableWebServer = true)
 @TestMethodOrder(OrderAnnotation.class)
 @ExtendWith(MultiEnvironmentContextProvider.class)
-public class ATrustProcessTest {
+public class ATrustProcessTest extends BaseSetup {
 
 	private static final String ATRUST_REST_CLIENT = "A-Trust (A-Trust Connector API)";
 	private static final BpmProcess INTEGRATION_PROCESS = BpmProcess.path("ATrustIntegration/ATrustDemo");
@@ -59,10 +59,12 @@ public class ATrustProcessTest {
 	private static final BpmProcess TEMPLATE_MANAGEMENT = BpmProcess.name("TemplateManagement");
 	private int templateId;
 	private SignatureJob signatureJob;
+	private boolean isRealTest;
 
 	@BeforeEach
 	public void beforeEach(ExtensionContext context, AppFixture fixture, IApplication app) {
-		ATrustTestUtils.setUpConfigForContext(context.getDisplayName(), fixture, app);
+		isRealTest = context.getDisplayName().equals(REAL_SERVER.getDisplayName());
+		E2ETestUtils.determineConfigForContext(context.getDisplayName(), runRealEnv(fixture), runMockEnv(fixture, app));
 		signatureJob = new SignatureJob();
 	}
 
@@ -89,10 +91,10 @@ public class ATrustProcessTest {
 		assertThat(resultCode).isNotNull();
 		assertThat(templateId).isInstanceOf(Integer.class);
 		assertThat(templateId).isNotEqualTo(0);
-		if (context.getDisplayName().equals(ATrustTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
+		if (isRealTest) {
 			BpmElement deleteStartable = TEMPLATE_MANAGEMENT.elementName("DeleteTemplateATrust(Number)");
-			ExecutionResult deleteResult = bpmClient.start().subProcess(deleteStartable)
-					.withParam("templateId", templateId).execute();
+			ExecutionResult deleteResult =
+					bpmClient.start().subProcess(deleteStartable).withParam("templateId", templateId).execute();
 			var templateData = (TemplateManagementData) deleteResult.data().last();
 			Ivy.log().warn(templateData.getResult().getResultCode().equals(200));
 		}
@@ -106,7 +108,7 @@ public class ATrustProcessTest {
 		Integer resultCode = demoData.getTemplateData().getResultCode();
 		assertTrue(resultCode == HttpStatus.SC_OK);
 		assertThat(listTemplate).isNotNull();
-		if (context.getDisplayName().equals(ATrustTestConstants.MOCK_SERVER_CONTEXT_DISPLAY_NAME)) {
+		if (!isRealTest) {
 			assertTrue(StringUtils.contains(listTemplate, SAMPLE_TEMPLATE));
 			assertTrue(StringUtils.contains(listTemplate, SAMPLE_TEMPLATE_ID));
 		}
@@ -160,8 +162,7 @@ public class ATrustProcessTest {
 		assertThat(signatureJob.getDocumentName()).isEqualTo(SAMPLE_DOC);
 		assertThat(signatureJob.getSignTemplateId()).isEqualTo(templateId);
 		ITask requestTask = Ivy.wf().findTask(signatureJob.getTaskId());
-		String submitTicket = requestTask.customFields().stringField(ATrustCustomField.SIGN_TICKET_ID.getKey())
-				.getOrNull();
+		String submitTicket = requestTask.customFields().stringField(ATrustCustomField.SIGN_TICKET_ID.getKey()).getOrNull();
 		assertThat(submitTicket).isEqualTo(documentData.getSignatureTicket());
 		assertThat(requestTask.customFields().stringField(ATrustCustomField.SIGNATURE_JOB_ID.getKey()).getOrNull())
 				.isNotNull();
