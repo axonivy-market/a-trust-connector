@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import com.axonivy.connector.atrust.test.utils.ATrustTestUtils;
 
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.bpm.engine.client.BpmClient;
@@ -18,12 +17,12 @@ import ch.ivyteam.ivy.environment.AppFixture;
 import ch.ivyteam.ivy.scripting.objects.CompositeObject;
 
 @IvyProcessTest(enableWebServer = true)
-public class DeleteTemplateTest {
+public class DeleteTemplateTest extends BaseSetup {
 	private static final BpmProcess INTEGRATION_PROCESS = BpmProcess.path("ATrustIntegration/ATrustDemo");
 
 	@BeforeEach
 	public void beforeEach(AppFixture fixture, IApplication app) {
-		ATrustTestUtils.setUpConfigForMockServer(fixture, app);
+		runMockEnv(fixture, app).run();
 	}
 
 	@Test
