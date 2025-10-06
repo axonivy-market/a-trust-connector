@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<cc:interface componentType="IvyComponent">
+	<cc:attribute name="signatureJob" required="true"/>
+	<cc:attribute name="onSignatureFinishedListener" />
+	<cc:attribute name="addDocToCase" default="false"/>
+	<cc:attribute name="componentToUpdate" />
+	<cc:attribute name="signDialogHeader" default="#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/ATrustSignInFrame/SignYourByIframe')}"/>
+	<cc:attribute name="signButtonLabel" default="#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/ATrustSignInFrame/SignInIFrame')}"/>
+	<cc:attribute name="signButtonIcon" />
+	<cc:attribute name="signButtonStyleClass" />
+</cc:interface>
+
+<cc:implementation>
+	<p:commandButton id="generate-signature-document"
+		actionListener="#{logic.signInFrame(cc.attrs.signatureJob, cc.attrs.addDocToCase)}"
+		update="sign-doc-iframe"
+		process="@this sign-doc-iframe" partialSubmit="true"
+		value="#{cc.attrs.signButtonLabel}"
+		styleClass="signature-button #{cc.attrs.signButtonStyleClass}"
+		oncomplete="if (!args.validationFailed) { PF('sign-doc-iframe').show(); }"
+		icon="#{cc.attrs.signButtonIcon}" />
+
+	<p:dialog id="sign-doc-iframe" widgetVar="sign-doc-iframe" modal="true"
+		closable="false" closeOnEscape="false" draggable="false"
+		header="#{cc.attrs.signDialogHeader}"
+		resizable="false" responsive="true" width="600" height="500"
+		dynamic="true" fitViewport="true" maximizable="true" blockScroll="true">
+		<div class="w-full h-full">
+			<iframe src="#{data.handySignatureURL}" class="w-full h-full border-none" />
+		</div>
+	</p:dialog>
+
+	<p:remoteCommand id="close-signing-dialog-cmd" name="closeSigningDialog" update="@this"
+		actionListener="#{logic.downloadSignedDoc()}"
+		oncomplete="PF('sign-doc-iframe').hide(); onSignatureComplete();"
+		process="@this" partialSubmit="true"/>
+
+	<p:remoteCommand id="on-signature-complete-cmd" name="onSignatureComplete"
+		actionListener="#{cc.attrs.onSignatureFinishedListener}"
+		process="@this" partialSubmit="true"
+		update="@this #{cc.attrs.componentToUpdate}"/>
+
+	<script>
+		//<![CDATA[
+		function openSigningPage() {
+			if (window.self !== window.top) {
+				window.location = '#{ivy.html.applicationHomeLink().getRelative()}';
+				window.open('#{data.handySignatureURL}', '_blank')
+						.focus();
+			} else {
+				window.location = '#{data.handySignatureURL}';
+			}
+		}
+		//]]>
+	</script>
+</cc:implementation>
+
+</html>
