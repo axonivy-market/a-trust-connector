@@ -18,6 +18,7 @@ import static java.util.Objects.nonNull;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.UUID;
 
@@ -177,19 +178,37 @@ public class ATrustService {
 		if (HttpStatus.SC_OK == returnCode) {
 			IvyUtils.addDocToCase(signatureDocumentData.getDocumentName(), signatureDocumentData.getPdfFile(),
 					requestTask.getCase().getId(), true);
-
-			// Update Signature Document
-			String signatureDocumentDataId = requestTask.customFields().stringField(SIGNATURE_DOCUMENT_DATA_ID.getKey())
-					.getOrNull();
-			SignatureDocumentData savedSignatureDocumentData = IvyUtils.queryRepoById(signatureDocumentDataId,
-					SignatureDocumentData.class);
-			savedSignatureDocumentData.setPdfFile(signatureDocumentData.getPdfFile());
-			signatureDocumentData.setSignatureStatus(SignatureStatus.SIGNED);
-			signatureDocumentData.setResultCode(returnCode);
-			signatureDocumentData.setLastSignatureError(null);
-			requestTask.customFields().stringField(SIGNATURE_DOCUMENT_DATA_ID.getKey())
-					.set(IvyUtils.saveToRepo(signatureDocumentData).getId());
 		}
+		saveSignedDocToRepo(returnCode, signatureDocumentData, requestTask);
+	}
+
+	public static void saveSignedDocToRepo(int returnCode, SignatureDocumentData signatureDocumentData,
+			ITask requestTask) {
+		String signatureDocumentDataId = requestTask.customFields().stringField(SIGNATURE_DOCUMENT_DATA_ID.getKey())
+				.getOrNull();
+		var savedSignatureDocumentData = IvyUtils.queryRepoById(signatureDocumentDataId, SignatureDocumentData.class);
+		if (savedSignatureDocumentData == null) {
+			savedSignatureDocumentData = signatureDocumentData;
+		}
+		savedSignatureDocumentData.setResultCode(returnCode);
+		// Update Signature Document
+		try {
+			savedSignatureDocumentData.setPdfFile(signatureDocumentData.getPdfFile());
+			savedSignatureDocumentData.setPdfDocument(Files.readAllBytes(signatureDocumentData.getPdfFile().toPath()));
+		} catch (IOException e) {
+			savedSignatureDocumentData.setSignatureStatus(SignatureStatus.NOT_SIGN);
+			savedSignatureDocumentData.setLastSignatureError(e.getMessage());
+			Ivy.log().error(e);
+		}
+		if (HttpStatus.SC_OK == returnCode) {
+			savedSignatureDocumentData.setSignatureStatus(SignatureStatus.SIGNED);
+			savedSignatureDocumentData.setLastSignatureError(null);
+		} else {
+			savedSignatureDocumentData.setSignatureStatus(SignatureStatus.NOT_SIGN);
+			savedSignatureDocumentData.setLastSignatureError(String.valueOf(returnCode));
+		}
+		requestTask.customFields().stringField(SIGNATURE_DOCUMENT_DATA_ID.getKey())
+				.set(IvyUtils.saveToRepo(savedSignatureDocumentData).getId());
 	}
 
 	public static Long getDefaultSignatureTemplate() {
