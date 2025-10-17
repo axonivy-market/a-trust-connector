@@ -21,6 +21,7 @@ Dialogs:
               EmbeddedInframe: Embedded Inframe?
               PageNumber: Page number
               PageNumberPlaceholder: Page to insert sign stamp
+              RequireDocMessage: At least one document must be uploaded
               RequiredParamsHints: If you are just entering the required parameter (location, reason, and document) without inputting the template. This will result in an invisible signature
               RequiredProperties: Required properties
               SignDocument: Sign Document

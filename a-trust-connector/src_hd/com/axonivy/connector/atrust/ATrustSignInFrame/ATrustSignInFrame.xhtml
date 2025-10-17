@@ -7,20 +7,25 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <cc:interface componentType="IvyComponent">
-	<cc:attribute name="signatureJob" required="true"/>
-	<cc:attribute name="onSignatureFinishedListener" />
-	<cc:attribute name="addDocToCase" default="false"/>
-	<cc:attribute name="componentToUpdate" />
-	<cc:attribute name="signDialogHeader" default="#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/ATrustSignInFrame/SignYourByIframe')}"/>
-	<cc:attribute name="signButtonLabel" default="#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/ATrustSignInFrame/SignInIFrame')}"/>
-	<cc:attribute name="signButtonIcon" />
-	<cc:attribute name="signButtonStyleClass" />
+	<cc:attribute name="signatureJob" required="true" shortDescription="The signature job object containing document and signing parameters"/>
+	<cc:attribute name="onSignatureFinishedListener" shortDescription="Callback method executed after successful signing"/>
+	<cc:attribute name="addDocToCase" default="false" shortDescription="When true, automatically adds the signed document to the current case (default: false)"/>
+	<cc:attribute name="componentToUpdate" shortDescription="ID of the component to update after signing completion"/>
+	<cc:attribute name="disableSignButton" default="false" shortDescription="Controls the enabled state of the sign button (default: false)"/>
+	<cc:attribute name="signDialogHeader" default="#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/ATrustSignInFrame/SignYourByIframe')}" shortDescription="Custom header text for the signing dialog"/>
+	<cc:attribute name="signButtonLabel" default="#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/ATrustSignInFrame/SignInIFrame')}" shortDescription="Text label for the sign button (default: Sign in iframe)"/>
+	<cc:attribute name="signButtonIcon" shortDescription="CSS class for the button icon (supports Streamline Icons)"/>
+	<cc:attribute name="signButtonStyleClass" shortDescription="Additional CSS classes for button styling"/>
 </cc:interface>
 
 <cc:implementation>
+	<p:growl id="signin-frame-message" redisplay="false" showDetail="true" for="signin-frame-exception"/>
+	
 	<p:commandButton id="generate-signature-document"
+		disabled="#{cc.attrs.disableSignButton}"
+		rendered="#{!data.isSignFinished}"
 		actionListener="#{logic.signInFrame(cc.attrs.signatureJob, cc.attrs.addDocToCase)}"
-		update="sign-doc-iframe"
+		update="sign-doc-iframe signin-frame-message"
 		process="@this sign-doc-iframe" partialSubmit="true"
 		value="#{cc.attrs.signButtonLabel}"
 		styleClass="signature-button #{cc.attrs.signButtonStyleClass}"
@@ -29,9 +34,13 @@
 
 	<p:dialog id="sign-doc-iframe" widgetVar="sign-doc-iframe" modal="true"
 		closable="false" closeOnEscape="false" draggable="false"
-		header="#{cc.attrs.signDialogHeader}"
 		resizable="false" responsive="true" width="600" height="500"
 		dynamic="true" fitViewport="true" maximizable="true" blockScroll="true">
+		<f:facet name="header">
+			<div class="text-left">
+				<h:outputText value="#{cc.attrs.signDialogHeader}"/>
+			</div>
+		</f:facet>
 		<div class="w-full h-full">
 			<iframe src="#{data.handySignatureURL}" class="w-full h-full border-none" />
 		</div>

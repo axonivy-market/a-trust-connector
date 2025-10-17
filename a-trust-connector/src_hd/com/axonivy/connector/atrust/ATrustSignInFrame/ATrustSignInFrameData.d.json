@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.1.0/data-class.json",
   "simpleName" : "ATrustSignInFrameData",
   "namespace" : "com.axonivy.connector.atrust.ATrustSignInFrame",
   "isBusinessCaseData" : false,
@@ -17,6 +17,10 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "addDocToCase",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isSignFinished",
     "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]
   } ]
