@@ -99,3 +99,44 @@ Before any signing interactions between the **Axon Ivy Engine** and the **A-Trus
 * You will also get the correct `ServerUrl` and `SignBox` from **A-TRUST** when checking their website!
 * You need to upload a **SignatureTemplate** to the **[A-Trust](https://www.a-trust.at)** service before calling **ATrust/StartSignature**.
 * Check the latest API description on the **[A-Trust](https://www.a-trust.at)** web page.
+
+### Built-in Component for IFrame Signing
+
+The A-Trust connector provides a pre-built JSF component (`ATrustSignInFrame`) that enables seamless integration of A-Trust HandySignatur functionality directly within your Axon Ivy application using an embedded iframe. This component eliminates the need for popup windows and provides a more integrated user experience.
+
+#### Component Overview
+
+The `ATrustSignInFrame` component encapsulates the complete signing workflow within your application's UI, handling the authentication process, document signing, and result processing automatically.
+
+#### Integration Steps
+
+1. **Add the Component to Your JSF Page**
+
+   Include the component in your XHTML file using the following syntax:
+
+   ```xhtml
+   <ic:com.axonivy.connector.atrust.ATrustSignInFrame
+      signatureJob="#{data.signatureJob}"
+      addDocToCase="true"
+      disableSignButton="#{data.disableSignButton}"
+      signDialogHeader="Document Signing"
+      signButtonIcon="si si-pen-2"
+      signButtonLabel="Sign Document"
+      signButtonStyleClass="btn btn-primary"
+      onSignatureFinishedListener="#{logic.onSignFinished()}"
+      componentToUpdate="form" />
+   ```
+
+#### Component Attributes
+
+| Attribute | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `signatureJob` | `SignatureJob` | Yes | The signature job object containing document and signing parameters |
+| `addDocToCase` | `Boolean` | No | When `true`, automatically adds the signed document to the current case (default: `false`) |
+| `disableSignButton` | `Boolean` | No | Controls the enabled state of the sign button (default: `false`) |
+| `signDialogHeader` | `String` | No | Custom header text for the signing dialog |
+| `signButtonIcon` | `String` | No | CSS class for the button icon (supports [Streamline Icons](https://streamlineicons.com/)) |
+| `signButtonLabel` | `String` | No | Text label for the sign button (default: "Sign") |
+| `signButtonStyleClass` | `String` | No | Additional CSS classes for button styling |
+| `onSignatureFinishedListener` | `MethodExpression` | No | Callback method executed after successful signing |
+| `componentToUpdate` | `String` | No | ID of the component to update after signing completion |

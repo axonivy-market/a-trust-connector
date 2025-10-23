@@ -14,7 +14,7 @@
         "guid" : "179825FCCA8D7B69"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 208 },
+        "at" : { "x" : 96, "y" : 192 },
         "labelOffset" : { "x" : 11, "y" : -21 }
       },
       "connect" : [
@@ -37,7 +37,7 @@
         "guid" : "179825FCCA8A85E1"
       },
       "visual" : {
-        "at" : { "x" : 520, "y" : 208 },
+        "at" : { "x" : 512, "y" : 192 },
         "labelOffset" : { "x" : 11, "y" : -21 }
       },
       "connect" : [
@@ -72,7 +72,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 360, "y" : 832 },
+        "at" : { "x" : 288, "y" : 864 },
         "size" : { "width" : 176 }
       },
       "connect" : [
@@ -106,7 +106,7 @@
         "- ATrust/StartSignature/call(SignatureJob) method"
       ],
       "visual" : {
-        "at" : { "x" : 456, "y" : 1287 },
+        "at" : { "x" : 440, "y" : 1183 },
         "size" : { "width" : 776, "height" : 413 },
         "color" : "NodeStyle4"
       }
@@ -152,7 +152,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 664, "y" : 112 },
+        "at" : { "x" : 232, "y" : 448 },
         "size" : { "width" : 120 }
       },
       "connect" : [
@@ -172,11 +172,11 @@
         "guid" : "179825FCCA8B2961"
       },
       "visual" : {
-        "at" : { "x" : 112, "y" : 832 },
+        "at" : { "x" : 112, "y" : 864 },
         "labelOffset" : { "x" : 7, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f67", "to" : "f65" }
+        { "id" : "f67", "to" : "f10" }
       ]
     }, {
       "id" : "f42",
@@ -188,11 +188,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 800, "y" : 208 },
+        "at" : { "x" : 800, "y" : 192 },
         "labelOffset" : { "y" : -16 }
       },
       "connect" : [
-        { "id" : "f17", "to" : "f5", "via" : [ { "x" : 800, "y" : 296 }, { "x" : 1064, "y" : 296 } ] },
+        { "id" : "f17", "to" : "f5" },
         { "id" : "f48", "to" : "f34" }
       ]
     }, {
@@ -220,7 +220,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 920, "y" : 208 }
+        "at" : { "x" : 800, "y" : 280 }
       },
       "boundaries" : [ {
           "id" : "f16",
@@ -239,14 +239,14 @@
             }
           },
           "visual" : {
-            "at" : { "x" : 952, "y" : 240 }
+            "at" : { "x" : 840, "y" : 314 }
           },
           "connect" : [
-            { "id" : "f47", "to" : "f5", "via" : [ { "x" : 1064, "y" : 240 } ] }
+            { "id" : "f47", "to" : "f5", "via" : [ { "x" : 992, "y" : 312 } ] }
           ]
         } ],
       "connect" : [
-        { "id" : "f50", "to" : "f5" }
+        { "id" : "f50", "to" : "f78" }
       ]
     }, {
       "id" : "f6",
@@ -287,19 +287,19 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 608, "y" : 832 },
-        "size" : { "width" : 192 },
+        "at" : { "x" : 552, "y" : 864 },
+        "size" : { "width" : 224, "height" : 86 },
         "icon" : "res:/webContent/icons/atrust-icon.png"
       },
       "connect" : [
-        { "id" : "f26", "to" : "f30" }
+        { "id" : "f26", "to" : "f83" }
       ]
     }, {
       "id" : "f7",
       "type" : "ProcessAnnotation",
       "name" : "Get first doc in current case",
       "visual" : {
-        "at" : { "x" : 360, "y" : 768 },
+        "at" : { "x" : 240, "y" : 928 },
         "size" : { "width" : 160, "height" : 30 }
       },
       "connect" : [
@@ -317,7 +317,7 @@
       "id" : "f11",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 800, "y" : 112 }
+        "at" : { "x" : 336, "y" : 448 }
       }
     }, {
       "id" : "f25",
@@ -344,7 +344,7 @@
         "guid" : "179825FCCA9E1AF5"
       },
       "visual" : {
-        "at" : { "x" : 520, "y" : 112 },
+        "at" : { "x" : 96, "y" : 448 },
         "labelOffset" : { "x" : -5, "y" : -21 }
       },
       "connect" : [
@@ -378,7 +378,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 656, "y" : 208 }
+        "at" : { "x" : 648, "y" : 192 }
       },
       "connect" : [
         { "id" : "f43", "to" : "f42" }
@@ -393,7 +393,7 @@
       "id" : "f30",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 816, "y" : 832 }
+        "at" : { "x" : 928, "y" : 864 }
       }
     }, {
       "id" : "f32",
@@ -406,7 +406,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 216, "y" : 208 }
+        "at" : { "x" : 216, "y" : 192 }
       },
       "connect" : [
         { "id" : "f4", "to" : "f3" }
@@ -415,67 +415,14 @@
       "id" : "f3",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 336, "y" : 208 }
+        "at" : { "x" : 336, "y" : 192 }
       }
     }, {
       "id" : "f5",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 1064, "y" : 208 }
+        "at" : { "x" : 992, "y" : 192 }
       }
-    }, {
-      "id" : "f51",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "downloadSignedDoc()",
-      "config" : {
-        "signature" : "downloadSignedDoc",
-        "guid" : "1916F2D060547ADD"
-      },
-      "visual" : {
-        "at" : { "x" : 112, "y" : 1008 }
-      },
-      "connect" : [
-        { "id" : "f55", "to" : "f54" }
-      ]
-    }, {
-      "id" : "f52",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 432, "y" : 1008 }
-      }
-    }, {
-      "id" : "f54",
-      "type" : "SubProcessCall",
-      "name" : [
-        "ATrust/StartSignature",
-        "downloadSignDoc"
-      ],
-      "config" : {
-        "processCall" : "ATrust/StartSignature:downloadSignedDoc(com.axonivy.connector.atrust.bo.SignatureDocumentData)",
-        "call" : {
-          "map" : {
-            "param.signatureDocument" : "in.signatureDocumentData"
-          }
-        },
-        "output" : {
-          "code" : [
-            "import org.apache.http.HttpStatus;",
-            "import com.axonivy.connector.atrust.service.ATrustService;",
-            "ATrustService.addSignedDocToCaseAndUpdateResult(result.resultCode, result.signatureDocumentData, ivy.task);",
-            "if (HttpStatus.SC_OK == result.resultCode) {",
-            "  in.isSignFinished = true;",
-            "}"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 272, "y" : 1008 },
-        "size" : { "width" : 144 },
-        "icon" : "res:/webContent/icons/atrust-icon.png"
-      },
-      "connect" : [
-        { "id" : "f29", "to" : "f52" }
-      ]
     }, {
       "id" : "f56",
       "type" : "HtmlDialogMethodStart",
@@ -485,7 +432,8 @@
         "guid" : "19173027AFF905B6"
       },
       "visual" : {
-        "at" : { "x" : 520, "y" : 368 }
+        "at" : { "x" : 512, "y" : 112 },
+        "labelOffset" : { "x" : 11, "y" : -21 }
       },
       "connect" : [
         { "id" : "f66", "to" : "f63" }
@@ -494,7 +442,7 @@
       "id" : "f57",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 920, "y" : 368 }
+        "at" : { "x" : 912, "y" : 112 }
       }
     }, {
       "id" : "f63",
@@ -523,7 +471,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 680, "y" : 368 },
+        "at" : { "x" : 672, "y" : 112 },
         "size" : { "width" : 160 },
         "icon" : "res:/webContent/icons/atrust-icon.png"
       },
@@ -563,7 +511,7 @@
         "guid" : "19174142E323D054"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 304 },
+        "at" : { "x" : 96, "y" : 272 },
         "labelOffset" : { "x" : -5, "y" : -21 }
       },
       "connect" : [
@@ -573,7 +521,7 @@
       "id" : "f2",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 240, "y" : 304 }
+        "at" : { "x" : 240, "y" : 272 }
       }
     }, {
       "id" : "f15",
@@ -606,7 +554,7 @@
         "guid" : "1917445EF39C34C7"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 400 },
+        "at" : { "x" : 96, "y" : 352 },
         "labelOffset" : { "x" : 43, "y" : -21 }
       },
       "connect" : [
@@ -616,28 +564,8 @@
       "id" : "f46",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 240, "y" : 400 }
+        "at" : { "x" : 240, "y" : 352 }
       }
-    }, {
-      "id" : "f60",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "signInFrame()",
-      "config" : {
-        "signature" : "signInFrame",
-        "input" : {
-          "map" : {
-            "out.signatureJob.isEmbeddedInframe" : "true"
-          }
-        },
-        "guid" : "19177C800283CCDC"
-      },
-      "visual" : {
-        "at" : { "x" : 112, "y" : 912 },
-        "labelOffset" : { "x" : 7, "y" : 35 }
-      },
-      "connect" : [
-        { "id" : "f68", "to" : "f65", "via" : [ { "x" : 208, "y" : 912 } ] }
-      ]
     }, {
       "id" : "f62",
       "type" : "Script",
@@ -672,15 +600,6 @@
         { "id" : "f21", "to" : "f14" }
       ]
     }, {
-      "id" : "f65",
-      "type" : "Alternative",
-      "visual" : {
-        "at" : { "x" : 208, "y" : 832 }
-      },
-      "connect" : [
-        { "id" : "f31", "to" : "f10" }
-      ]
-    }, {
       "id" : "f49",
       "type" : "HtmlDialogMethodStart",
       "name" : "close()",
@@ -689,7 +608,8 @@
         "guid" : "1917977930E4BBB1"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 496 }
+        "at" : { "x" : 96, "y" : 528 },
+        "labelOffset" : { "x" : 11, "y" : -21 }
       },
       "connect" : [
         { "id" : "f69", "to" : "f61" }
@@ -698,14 +618,193 @@
       "id" : "f61",
       "type" : "HtmlDialogExit",
       "visual" : {
-        "at" : { "x" : 240, "y" : 496 }
+        "at" : { "x" : 240, "y" : 528 }
       }
+    }, {
+      "id" : "f74",
+      "type" : "ProcessAnnotation",
+      "name" : "Refresh the SignatureJob on UI form was change",
+      "visual" : {
+        "at" : { "x" : 600, "y" : 328 },
+        "size" : { "width" : 272, "height" : 40 }
+      },
+      "connect" : [
+        { "id" : "f75", "to" : "f78" }
+      ]
+    }, {
+      "id" : "f76",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "onDataChange()",
+      "config" : {
+        "signature" : "onDataChange",
+        "input" : {
+          "map" : {
+            "out.signatureJob.isEmbeddedInframe" : "true"
+          }
+        },
+        "guid" : "199E76E7BBE46107"
+      },
+      "visual" : {
+        "at" : { "x" : 512, "y" : 400 },
+        "labelOffset" : { "x" : 11, "y" : -21 }
+      },
+      "connect" : [
+        { "id" : "f77", "to" : "f78" }
+      ]
+    }, {
+      "id" : "f78",
+      "type" : "Script",
+      "name" : "Rebuild SignatureJob data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivyteam.ivy.workflow.document.IDocument;",
+            "import java.nio.file.Files;",
+            "import java.nio.file.Path;",
+            "//Get first doc from case",
+            "if (!ivy.case.documents().getAll().isEmpty()) {",
+            "  IDocument document = ivy.case.documents().getAll().get(0);",
+            "  Path path = document.read().asJavaFile().toPath();",
+            "  in.signatureJob.documentName = document.getName();",
+            "  in.signatureJob.pdfDocument = Files.readAllBytes(path);",
+            "}",
+            "",
+            "// Prepare data for Signature job",
+            "in.signatureJob.taskId = ivy.task.getId();",
+            "if (in.selectedTemplate.id != 0) {",
+            "  in.signatureJob.signTemplateId = in.selectedTemplate.id;",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 800, "y" : 400 },
+        "size" : { "width" : 176 }
+      },
+      "connect" : [
+        { "id" : "f80", "to" : "f79" }
+      ]
+    }, {
+      "id" : "f79",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 992, "y" : 400 }
+      }
+    }, {
+      "id" : "f81",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Sign in A-Trust webapp",
+        "This action will reset current task and redirect user to A-Trust webapp"
+      ],
+      "visual" : {
+        "at" : { "x" : 184, "y" : 792 },
+        "size" : { "width" : 270, "height" : 54 }
+      },
+      "connect" : [
+        { "id" : "f82", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f83",
+      "type" : "Alternative",
+      "name" : "is success?",
+      "config" : {
+        "conditions" : {
+          "f87" : "in.signatureDocumentData.signatureStatus == com.axonivy.connector.atrust.enums.SignatureStatus.FAILED",
+          "f84" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 736, "y" : 864 }
+      },
+      "connect" : [
+        { "id" : "f84", "to" : "f30", "label" : {
+            "name" : "yes",
+            "offset" : { "y" : -10 }
+          }, "color" : "default" },
+        { "id" : "f87", "to" : "f85", "via" : [ { "x" : 736, "y" : 776 } ], "label" : {
+            "name" : "no",
+            "segment" : 1.5,
+            "offset" : { "x" : -35, "y" : 30 }
+          } }
+      ]
+    }, {
+      "id" : "f85",
+      "type" : "Script",
+      "name" : "Show error",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import javax.faces.application.FacesMessage;",
+            "FacesMessage message = new FacesMessage();",
+            "message.severity = FacesMessage.SEVERITY_ERROR;",
+            "message.detail = in.signatureDocumentData.lastSignatureError;",
+            "message.summary = in.signatureDocumentData.signatureStatus.name();",
+            "FacesContext.getCurrentInstance().addMessage(null, message);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 832, "y" : 776 }
+      },
+      "connect" : [
+        { "id" : "f86", "to" : "f30", "via" : [ { "x" : 928, "y" : 776 } ] }
+      ]
+    }, {
+      "id" : "f88",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "onSignFinished()",
+      "config" : {
+        "signature" : "onSignFinished",
+        "guid" : "199ECAFC71B74585"
+      },
+      "visual" : {
+        "at" : { "x" : 512, "y" : 512 }
+      },
+      "connect" : [
+        { "id" : "f90", "to" : "f91" }
+      ]
+    }, {
+      "id" : "f89",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 768, "y" : 512 }
+      }
+    }, {
+      "id" : "f91",
+      "type" : "Script",
+      "name" : "Check Sign status",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.atrust.enums.SignatureStatus;",
+            "import com.axonivy.connector.atrust.bo.SignatureDocumentData;",
+            "import com.axonivy.connector.atrust.util.IvyUtils;",
+            "import com.axonivy.connector.atrust.enums.ATrustCustomField;",
+            "",
+            "String dataId = ivy.task.customFields().stringField(ATrustCustomField.SIGNATURE_DOCUMENT_DATA_ID.getKey()).getOrNull();",
+            "in.signatureDocumentData = IvyUtils.queryRepoById(dataId, SignatureDocumentData.class) as SignatureDocumentData;",
+            "in.isSignFinished = in.signatureDocumentData.signatureStatus == SignatureStatus.SIGNED;"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 640, "y" : 512 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "connect" : [
+        { "id" : "f92", "to" : "f89", "color" : "default" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {
         "name" : "Example to integrate in your process",
         "offset" : 560,
-        "size" : 970,
+        "size" : 872,
         "lanes" : [ ]
       } ],
     "colors" : {
