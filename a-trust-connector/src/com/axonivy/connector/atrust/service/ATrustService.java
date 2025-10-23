@@ -184,14 +184,21 @@ public class ATrustService {
 
 	public static void saveSignedDocToRepo(int returnCode, SignatureDocumentData signatureDocumentData,
 			ITask requestTask) {
-		String signatureDocumentDataId = requestTask.customFields().stringField(SIGNATURE_DOCUMENT_DATA_ID.getKey())
-				.getOrNull();
+		String signatureDocumentDataId = requestTask.customFields()
+				.stringField(SIGNATURE_DOCUMENT_DATA_ID.getKey()).getOrNull();
 		var savedSignatureDocumentData = IvyUtils.queryRepoById(signatureDocumentDataId, SignatureDocumentData.class);
 		if (savedSignatureDocumentData == null) {
 			savedSignatureDocumentData = signatureDocumentData;
 		}
 		savedSignatureDocumentData.setResultCode(returnCode);
-		// Update Signature Document
+		if (HttpStatus.SC_OK == returnCode) {
+			savedSignatureDocumentData.setSignatureStatus(SignatureStatus.SIGNED);
+			savedSignatureDocumentData.setLastSignatureError(null);
+		} else {
+			savedSignatureDocumentData.setSignatureStatus(SignatureStatus.NOT_SIGN);
+			savedSignatureDocumentData.setLastSignatureError(String.valueOf(returnCode));
+		}
+		// Update Signature Document content
 		try {
 			savedSignatureDocumentData.setPdfFile(signatureDocumentData.getPdfFile());
 			savedSignatureDocumentData.setPdfDocument(Files.readAllBytes(signatureDocumentData.getPdfFile().toPath()));
@@ -199,13 +206,6 @@ public class ATrustService {
 			savedSignatureDocumentData.setSignatureStatus(SignatureStatus.NOT_SIGN);
 			savedSignatureDocumentData.setLastSignatureError(e.getMessage());
 			Ivy.log().error(e);
-		}
-		if (HttpStatus.SC_OK == returnCode) {
-			savedSignatureDocumentData.setSignatureStatus(SignatureStatus.SIGNED);
-			savedSignatureDocumentData.setLastSignatureError(null);
-		} else {
-			savedSignatureDocumentData.setSignatureStatus(SignatureStatus.NOT_SIGN);
-			savedSignatureDocumentData.setLastSignatureError(String.valueOf(returnCode));
 		}
 		requestTask.customFields().stringField(SIGNATURE_DOCUMENT_DATA_ID.getKey())
 				.set(IvyUtils.saveToRepo(savedSignatureDocumentData).getId());

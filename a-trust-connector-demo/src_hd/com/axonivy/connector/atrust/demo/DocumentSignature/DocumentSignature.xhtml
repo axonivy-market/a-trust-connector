@@ -173,14 +173,6 @@
 					<p:commandButton value="#{ivy.cms.co('/Labels/Finish')}" rendered="#{data.isSignFinished}"
 						actionListener="#{logic.close}" icon="pi pi-check" />
 				</div>
-
-				<p:dialog id="sign-doc-iframe" widgetVar="sign-doc-iframe" closable="false" closeOnEscape="false" modal="true"
-					draggable="false" header="#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/demo/DocumentSignature/SignYourBy')}"
-					resizable="false" responsive="true" width="600" height="500" dynamic="true" fitViewport="true" maximizable="true">
-					<div class="full-size">
-						<iframe src="#{data.handySignatureURL}" class="atrust-sign-frame" />
-					</div>
-				</p:dialog>
 			</h:form>
 		</ui:define>
 	</ui:composition>

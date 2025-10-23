@@ -10,6 +10,7 @@
 	<cc:attribute name="signatureJob" required="true" shortDescription="The signature job object containing document and signing parameters"/>
 	<cc:attribute name="onSignatureFinishedListener" shortDescription="Callback method executed after successful signing"/>
 	<cc:attribute name="addDocToCase" default="false" shortDescription="When true, automatically adds the signed document to the current case (default: false)"/>
+	<cc:attribute name="componentToProcess" default="@form" shortDescription="ID of the component to process when pressing signing button (default: parent form)"/>
 	<cc:attribute name="componentToUpdate" shortDescription="ID of the component to update after signing completion"/>
 	<cc:attribute name="disableSignButton" default="false" shortDescription="Controls the enabled state of the sign button (default: false)"/>
 	<cc:attribute name="signDialogHeader" default="#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/ATrustSignInFrame/SignYourByIframe')}" shortDescription="Custom header text for the signing dialog"/>
@@ -20,13 +21,13 @@
 
 <cc:implementation>
 	<p:growl id="signin-frame-message" redisplay="false" showDetail="true" for="signin-frame-exception"/>
-	
+
 	<p:commandButton id="generate-signature-document"
 		disabled="#{cc.attrs.disableSignButton}"
 		rendered="#{!data.isSignFinished}"
 		actionListener="#{logic.signInFrame(cc.attrs.signatureJob, cc.attrs.addDocToCase)}"
-		update="sign-doc-iframe signin-frame-message"
-		process="@this sign-doc-iframe" partialSubmit="true"
+		update="@this #{cc.attrs.componentToProcess} sign-doc-iframe signin-frame-message"
+		process="@this #{cc.attrs.componentToProcess} sign-doc-iframe" partialSubmit="true"
 		value="#{cc.attrs.signButtonLabel}"
 		styleClass="signature-button #{cc.attrs.signButtonStyleClass}"
 		oncomplete="if (!args.validationFailed) { PF('sign-doc-iframe').show(); }"
@@ -61,8 +62,7 @@
 		function openSigningPage() {
 			if (window.self !== window.top) {
 				window.location = '#{ivy.html.applicationHomeLink().getRelative()}';
-				window.open('#{data.handySignatureURL}', '_blank')
-						.focus();
+				window.open('#{data.handySignatureURL}', '_blank').focus();
 			} else {
 				window.location = '#{data.handySignatureURL}';
 			}
