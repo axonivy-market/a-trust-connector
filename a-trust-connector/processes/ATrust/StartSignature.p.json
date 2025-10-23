@@ -276,33 +276,14 @@
                   "out.signatureTicket = ATrustResponseUtils.extractSignBatchTicketFromResponse(response);"
                 ]
               },
-              "clientError" : "com:axonivy:connector:atrust:startsignature:exception",
-              "statusError" : "com:axonivy:connector:atrust:startsignature:exception"
+              "clientError" : "com:axonivy:connector:atrust:signature:exception",
+              "statusError" : "com:axonivy:connector:atrust:signature:exception"
             }
           },
           "visual" : {
             "at" : { "x" : 512, "y" : 160 },
             "icon" : "res:/webContent/icons/atrust-icon.png"
           },
-          "boundaries" : [ {
-              "id" : "S10-f6",
-              "type" : "ErrorBoundaryEvent",
-              "config" : {
-                "errorCode" : "com:axonivy:connector:atrust:startsignature:exception",
-                "output" : {
-                  "map" : {
-                    "out" : "in",
-                    "out.signatureDocumentData.lastSignatureError" : "error.getErrorMessage()"
-                  }
-                }
-              },
-              "visual" : {
-                "at" : { "x" : 552, "y" : 194 }
-              },
-              "connect" : [
-                { "id" : "S10-f4", "to" : "S10-f1" }
-              ]
-            } ],
           "connect" : [
             { "id" : "S10-f3", "to" : "S10-g1" }
           ]
@@ -322,7 +303,7 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 672, "y" : 160 }
+            "at" : { "x" : 640, "y" : 160 }
           },
           "parentConnector" : "f48"
         }, {
@@ -369,13 +350,6 @@
           "connect" : [
             { "id" : "S10-f10", "to" : "S10-f0" }
           ]
-        }, {
-          "id" : "S10-f1",
-          "type" : "CallSubEnd",
-          "visual" : {
-            "at" : { "x" : 552, "y" : 296 },
-            "icon" : "res:/webContent/icons/atrust-icon.png?small"
-          }
         } ],
       "visual" : {
         "at" : { "x" : 328, "y" : 192 },
@@ -427,7 +401,9 @@
                   "out.resultCode" : "response.getStatus()"
                 },
                 "code" : "out.signatureDocumentData.documentId = com.axonivy.connector.atrust.util.ATrustResponseUtils.extractDocumentIdFromResponse(response);"
-              }
+              },
+              "clientError" : "com:axonivy:connector:atrust:signature:exception",
+              "statusError" : "com:axonivy:connector:atrust:signature:exception"
             }
           },
           "visual" : {
@@ -435,7 +411,7 @@
             "icon" : "res:/webContent/icons/atrust-icon.png"
           },
           "connect" : [
-            { "id" : "S20-f3", "to" : "S20-f7" }
+            { "id" : "S20-f3", "to" : "S20-g1" }
           ]
         }, {
           "id" : "S20-g0",
@@ -453,7 +429,7 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 672, "y" : 160 }
+            "at" : { "x" : 496, "y" : 160 }
           },
           "parentConnector" : "f2"
         }, {
@@ -472,58 +448,6 @@
           "connect" : [
             { "id" : "S20-f5", "to" : "S20-f9" }
           ]
-        }, {
-          "id" : "S20-f7",
-          "type" : "Alternative",
-          "name" : "is success?",
-          "config" : {
-            "conditions" : {
-              "S20-f4" : "in.resultCode == org.apache.http.HttpStatus.SC_CREATED"
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 512, "y" : 160 },
-            "labelOffset" : { "y" : -16 }
-          },
-          "connect" : [
-            { "id" : "S20-f4", "to" : "S20-g1", "label" : {
-                "name" : "no error"
-              } },
-            { "id" : "S20-f1", "to" : "S20-f8" }
-          ]
-        }, {
-          "id" : "S20-f8",
-          "type" : "Script",
-          "name" : "Set error message",
-          "config" : {
-            "output" : {
-              "code" : [
-                "import com.axonivy.connector.atrust.util.IvyUtils;",
-                "import com.axonivy.connector.atrust.enums.SignatureStatus;",
-                "",
-                "in.signatureDocumentData.resultCode = in.resultCode;",
-                "in.signatureDocumentData.signatureTicket = in.signatureTicket;",
-                "in.signatureDocumentData.lastSignatureError = IvyUtils.getCMSTranslation(\"/Dialogs/com/axonivy/connector/atrust/LastSignErrorMessage\", in.resultCode);",
-                "in.signatureDocumentData.signatureStatus = SignatureStatus.FAILED;",
-                "in.signatureDocumentData.pdfDocument = null;"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 512, "y" : 256 },
-            "size" : { "width" : 160 }
-          },
-          "connect" : [
-            { "id" : "S20-f12", "to" : "S20-f11" }
-          ]
-        }, {
-          "id" : "S20-f11",
-          "type" : "CallSubEnd",
-          "visual" : {
-            "at" : { "x" : 512, "y" : 352 },
-            "color" : "NodeStyle3",
-            "icon" : "res:/webContent/icons/atrust-icon.png?small"
-          }
         } ],
       "visual" : {
         "at" : { "x" : 584, "y" : 192 },
@@ -580,7 +504,9 @@
             "response" : {
               "entity" : {
                 "type" : "at.a.trust.rest.api.client.SealSignatureResponse"
-              }
+              },
+              "clientError" : "com:axonivy:connector:atrust:signature:exception",
+              "statusError" : "com:axonivy:connector:atrust:signature:exception"
             }
           },
           "visual" : {
@@ -621,7 +547,9 @@
                   "import com.axonivy.connector.atrust.util.ATrustResponseUtils;",
                   "out.forwardTargetUrl = ATrustResponseUtils.extractHandySignatureUrlFromResponse(response);"
                 ]
-              }
+              },
+              "clientError" : "com:axonivy:connector:atrust:signature:exception",
+              "statusError" : "com:axonivy:connector:atrust:signature:exception"
             }
           },
           "visual" : {
@@ -710,17 +638,75 @@
         "color" : "NodeStyle3",
         "icon" : "res:/webContent/icons/atrust-icon.png?small"
       }
+    }, {
+      "id" : "f49",
+      "type" : "Script",
+      "name" : "Set error message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.atrust.util.IvyUtils;",
+            "import com.axonivy.connector.atrust.enums.SignatureStatus;",
+            "",
+            "in.signatureDocumentData.resultCode = in.resultCode;",
+            "in.signatureDocumentData.signatureTicket = in.signatureTicket;",
+            "in.signatureDocumentData.lastSignatureError = IvyUtils.getCMSTranslation(\"/Dialogs/com/axonivy/connector/atrust/LastSignErrorMessage\", in.resultCode);",
+            "in.signatureDocumentData.signatureStatus = SignatureStatus.FAILED;",
+            "in.signatureDocumentData.pdfDocument = null;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 640 },
+        "size" : { "width" : 160 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "connect" : [
+        { "id" : "f55", "to" : "f54" }
+      ]
+    }, {
+      "id" : "f52",
+      "type" : "ErrorStartEvent",
+      "name" : "com:axonivy:connector:atrust:signature:exception",
+      "config" : {
+        "errorCode" : "com:axonivy:connector:atrust:signature:exception",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.resultCode" : "error.getHttpStatusCode()",
+            "out.signatureDocumentData" : "in.signatureDocumentData"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 128, "y" : 640 },
+        "labelOffset" : { "x" : 57, "y" : 49 }
+      },
+      "connect" : [
+        { "id" : "f53", "to" : "f49" }
+      ]
+    }, {
+      "id" : "f54",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 496, "y" : 640 },
+        "color" : "NodeStyle3",
+        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+      }
     } ],
   "layout" : {
     "lanes" : [ {
         "name" : "A-Trust Single Signature",
         "offset" : 32,
-        "size" : 512,
+        "size" : 704,
         "lanes" : [ {
             "name" : "StartSignatureTemplateEx",
             "size" : 320
           }, {
             "name" : "Download document",
+            "size" : 192
+          }, {
+            "name" : "Error handling",
             "size" : 192
           } ]
       } ],

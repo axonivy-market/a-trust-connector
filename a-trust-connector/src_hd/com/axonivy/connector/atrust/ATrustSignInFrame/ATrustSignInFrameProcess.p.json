@@ -1,0 +1,225 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "id" : "199A8390577197E2",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.connector.atrust.ATrustSignInFrame.ATrustSignInFrameData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "signature" : "start",
+        "guid" : "199A839057A81D14"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f75" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 64 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f60",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "signInFrame(SignatureJob,Boolean)",
+      "config" : {
+        "signature" : "signInFrame",
+        "input" : {
+          "params" : [
+            { "name" : "signatureJob", "type" : "com.axonivy.connector.atrust.bo.SignatureJob", "desc" : "" },
+            { "name" : "addDocToCase", "type" : "Boolean", "desc" : "" }
+          ],
+          "map" : {
+            "out.addDocToCase" : "param.addDocToCase",
+            "out.signatureJob" : "param.signatureJob",
+            "out.signatureJob.isEmbeddedInframe" : "true"
+          }
+        },
+        "guid" : "199A839B9C93DCEC"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 176 },
+        "labelOffset" : { "x" : 7, "y" : 35 }
+      },
+      "connect" : [
+        { "id" : "f68", "to" : "f12" }
+      ]
+    }, {
+      "id" : "f51",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "downloadSignedDoc()",
+      "config" : {
+        "signature" : "downloadSignedDoc",
+        "guid" : "199A839B9C9A3A39"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 336 }
+      },
+      "connect" : [
+        { "id" : "f55", "to" : "f54" }
+      ]
+    }, {
+      "id" : "f54",
+      "type" : "SubProcessCall",
+      "name" : [
+        "ATrust/StartSignature",
+        "downloadSignDoc"
+      ],
+      "config" : {
+        "processCall" : "ATrust/StartSignature:downloadSignedDoc(com.axonivy.connector.atrust.bo.SignatureDocumentData)",
+        "call" : {
+          "map" : {
+            "param.signatureDocument" : "in.signatureDocumentData"
+          }
+        },
+        "output" : {
+          "code" : [
+            "import org.apache.http.HttpStatus;",
+            "import com.axonivy.connector.atrust.service.ATrustService;",
+            "if (in.addDocToCase) {",
+            "  ATrustService.addSignedDocToCaseAndUpdateResult(result.resultCode, result.signatureDocumentData, ivy.task);",
+            "} else {",
+            "  ATrustService.saveSignedDocToRepo(result.resultCode, result.signatureDocumentData, ivy.task);",
+            "}",
+            "// Hide Sign buttun if signature was successfull",
+            "in.isSignFinished = result.resultCode == HttpStatus.SC_OK;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 335 },
+        "size" : { "width" : 240, "height" : 63 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "connect" : [
+        { "id" : "f29", "to" : "f52" }
+      ]
+    }, {
+      "id" : "f52",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 496, "y" : 336 }
+      }
+    }, {
+      "id" : "f12",
+      "type" : "SubProcessCall",
+      "name" : [
+        "Call A-Trust to StartSignature",
+        "Input: SignatureJob",
+        "Output: SignatureDocumentData"
+      ],
+      "config" : {
+        "processCall" : "ATrust/StartSignature:createSignBatch(com.axonivy.connector.atrust.bo.SignatureJob)",
+        "call" : {
+          "map" : {
+            "param.signatureJob" : "in.signatureJob"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.handySignatureURL" : "result.handySignatureURL",
+            "out.signatureDocumentData" : "result.signatureDocumentData"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 176 },
+        "size" : { "width" : 240, "height" : 70 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f70" }
+      ]
+    }, {
+      "id" : "f69",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 704, "y" : 176 }
+      }
+    }, {
+      "id" : "f70",
+      "type" : "Alternative",
+      "name" : "is success?",
+      "config" : {
+        "conditions" : {
+          "f72" : "in.signatureDocumentData.signatureStatus == com.axonivy.connector.atrust.enums.SignatureStatus.FAILED",
+          "f71" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 496, "y" : 176 },
+        "labelOffset" : { "x" : 24, "y" : -16 }
+      },
+      "connect" : [
+        { "id" : "f71", "to" : "f69", "label" : {
+            "name" : "yes",
+            "offset" : { "y" : -10 }
+          }, "color" : "default" },
+        { "id" : "f72", "to" : "f73", "via" : [ { "x" : 496, "y" : 256 } ], "label" : {
+            "name" : "no",
+            "segment" : 1.5,
+            "offset" : { "x" : -39, "y" : -34 }
+          } }
+      ]
+    }, {
+      "id" : "f73",
+      "type" : "Script",
+      "name" : "Show error",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import javax.faces.application.FacesMessage;",
+            "FacesMessage message = new FacesMessage();",
+            "message.severity = FacesMessage.SEVERITY_ERROR;",
+            "message.detail = in.signatureDocumentData.lastSignatureError;",
+            "message.summary = in.signatureDocumentData.signatureStatus.name();",
+            "FacesContext.getCurrentInstance().addMessage(\"signin-frame-exception\", message);",
+            "FacesContext.getCurrentInstance().validationFailed();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 600, "y" : 256 }
+      },
+      "connect" : [
+        { "id" : "f74", "to" : "f69", "via" : [ { "x" : 704, "y" : 256 } ] }
+      ]
+    }, {
+      "id" : "f75",
+      "type" : "Script",
+      "name" : "Init data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.atrust.util.IvyUtils;",
+            "import com.axonivy.connector.atrust.enums.ATrustCustomField;",
+            "import com.axonivy.connector.atrust.enums.SignatureStatus;",
+            "import com.axonivy.connector.atrust.bo.SignatureDocumentData;",
+            "",
+            "String signatureDocumentDataId = ivy.task.customFields().stringField(ATrustCustomField.SIGNATURE_DOCUMENT_DATA_ID.getKey()).getOrNull();",
+            "in.signatureDocumentData = IvyUtils.queryRepoById(signatureDocumentDataId, SignatureDocumentData.class) as SignatureDocumentData;",
+            "in.isSignFinished = SignatureStatus.SIGNED == in.signatureDocumentData.#signatureStatus;"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 64 },
+        "size" : { "width" : 160, "height" : 62 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "connect" : [
+        { "id" : "f76", "to" : "f1", "color" : "default" }
+      ]
+    } ]
+}
