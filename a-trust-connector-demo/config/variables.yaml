@@ -1,25 +1,2 @@
 # yaml-language-server: $schema=https://json-schema.axonivy.com/app/12.0.0/variables.json
 Variables:
-  ATrust:
-    # API Key for "A-Trust Handysignature API"
-    APIKey: ''
-    
-    # The Server URL under which the SigBox Server is reachable
-    ServerUrl: ''
-    
-    # The SignBox belong to your ATrust server
-    SignBox: ''
-    
-    # The default signature template ID to be used
-    TemplateId: 0
-    
-    # To config the Handy-Signature view in iframe. The Details can be found on the A-Trust Website https://labs.a-trust.at/developer/Handy-Signatur.aspx.
-    HandySignaturParameter:
-      # For setting width of frame.
-      Width: 350
-      # For setting height of frame.
-      Height: 350
-      # For setting background color of frame.
-      BackgroundColor: 0
-      # For setting phone number of frame.
-      PhoneNumber: 0
