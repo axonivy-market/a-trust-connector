@@ -1,98 +1,102 @@
-#Axon Efeus [Ein-Hoff](https://www.a-trust.at) Anschluss hilft du zu
-beschleunigen Arbeitsgang Automatisierung Initiativen integrieren mal
-**#Ein-Hoffen HandySignatur** hinein euren Arbeitsgang Antrag innerhalb keine
-Zeit. **Ein-Trust** mit die Mobiltelefon Unterschrift, du kannst deutlich
-beglaubigen #du auf dem Internet. Es ist eure persönliche Unterschrift auf das
-#netto, #welche ist gleichwertig zu der handgeschriebenen Unterschrift bei
-Gesetz. Dieser Anschluss:
+Der [A-Trust](https://www.a-trust.at) Konnektor von Axon Ivy hilft Ihnen dabei,
+Initiativen zur Prozessautomatisierung zu beschleunigen, indem er **A-Trust
+HandySignatur** innerhalb kürzester Zeit in Ihre Prozessanwendung integriert.
+**A-Trust** Mit der HandySignatur können Sie sich im Internet eindeutig
+authentifizieren. Es handelt sich dabei um Ihre persönliche Signatur im Netz,
+die rechtlich einer handschriftlichen Unterschrift gleichkommt. Dieser
+Konnektor:
 
-*   Ist gegründet weiter **RUHEN API** Technologien.
-*   Versieht Zugang zu die Innenteil Charakterzüge von **#Ein-Trust** zu
-    eigentlich signiert PDFs.
-*   Unterstützt du mit ein leichtes-zu-Kopie Demo Ausführung zu heruntersetzen
-    eure Integration Anstrengung.
-*   Aktiviert niederen Code Bürger Entwickler zu erweitern existieren
-    dienstliche Arbeitsgänge mit Mobiltelefon Unterschrift Charakterzüge.
+*   Basiert auf den Technologien „ **” und „REST API** ”.
+*   Bietet Zugriff auf die Kernfunktionen von **A-Trust** zum virtuellen
+    Signieren von PDF-Dateien.
+*   Unterstützt Sie mit einer einfach zu kopierenden Demo-Implementierung, um
+    Ihren Integrationsaufwand zu reduzieren.
+*   Ermöglicht Low-Code-Citizen-Developern, bestehende Geschäftsprozesse mit
+    Funktionen für die Unterschrift per Mobiltelefon zu verbessern.
 
-Zu benutzen Ein-Trust, du brauchst ein Konto jener du schaffst an
-https://www.Ein-hoff.An/de/produkte/qualifizierte_signaturservices/xidentity/.
+Um A-Trust nutzen zu können, benötigen Sie ein Konto, das Sie unter
+https://www.a-trust.at/de/produkte/qualifizierte_signaturservices/xidentity/
+erstellen können.
 
 
 
 ## Demo
 
-1. Starte das **Ein-Hoffen HandySignatur Beispiel** Arbeitsgang.
-2. Bereite vor #Daten für signieren
-    * #Hochladen ein **#PDF** Dokument.
-    * Wähl aus eure Unterschrift Vorlage.
-    * Betritt Drehort, Grund, und Indiz Briefmarke Koordinaten x, y, und w ob du
-      wolltest mögen zu verschönern ihm.
+1. Starten Sie den Prozess „ **A-Trust HandySignatur Beispiel** ”.
+2. Daten für die Signatur vorbereiten
+    * Hochladen Sie ein PDF-Dokument mit dem Namen „ **” (** ) hoch.
+    * Wählen Sie Ihre Signaturvorlage aus.
+    * Geben Sie den Standort, den Grund und die Koordinaten x, y und w des
+      Stempels ein, wenn Sie ihn verschönern möchten.
 
-   ![Demo-verarbeite](images/atrust-upload-doc.png)
+   ![demo-process](images/atrust-upload-doc.png)
 
-2. Start #Unterschrift Dokument
+2. Beginnen Sie mit der Unterzeichnung des Dokuments.
 
-   Dort haben 2 Optionen:
+   Es gibt zwei Möglichkeiten:
 
-   1.  Unterschrift Dokument: Leite um Nutzer zu ATrust-HandySignature Seite,
-       und dann kann Nutzer signieren das Dokument! Zu #zurückhalten "Blocken
-       Popup" Charakterzug von Web Browser, nach Klick auf Unterschrift Dokument
-       Knopf, ein neuer Knopf will sein fungieren und du kannst klicken auf ihm
-       zu signieren.
-   2.  Indiz Dokument in Rahm ein: Ein Rahmen will fungieren und erlauben Nutzer
-       Anmeldung zu ATrust, dann kann Nutzer bleiben hier und signieren der doc!
+   1.  Signaturdokument: Leiten Sie den Benutzer zur ATrust-HandySignature-Seite
+       weiter, wo er das Dokument unterschreiben kann! Um die Funktion „Popups
+       blockieren” des Webbrowsers zu umgehen, erscheint nach dem Klicken auf
+       die Schaltfläche „Signaturdokument” eine neue Schaltfläche, auf die Sie
+       klicken können, um zu unterschreiben.
+   2.  Dokument im Rahmen signieren: Es erscheint ein Rahmen, in dem sich der
+       Benutzer bei ATrust anmelden kann. Anschließend kann der Benutzer hier
+       bleiben und das Dokument signieren!
 
-   Lass uns probieren mit IFrame Option, Klick weiter **Indiz Dokument in
-   Rahmen** und ein popup will fungieren und gelassen Nutzer Anmeldung zu
-   **ATrust HandySignature** Seite
+   Probieren wir es mit der IFrame-Option. Klicken Sie auf „ **-Signaturdokument
+   im Frame** ”. Es erscheint ein Popup-Fenster, in dem sich der Benutzer bei
+   **ATrust HandySignature** anmelden kann.
 
-    - Log herein mit eure Mobiltelefon Unterschrift Urkunde.
-      ![atrust-Unterschrift](images/atrust-handysign-login.png)
+    - Melden Sie sich mit Ihrem mobilen Signaturzertifikat an.
+      ![atrust-signature](images/atrust-handysign-login.png)
 
-   - Kontrolle Mitteilung auf eurem Telefon, und folgen hin dem **Einem-Trust**
-     steuert zu zufügen eure Unterschrift zu doc.
+   - Überprüfen Sie die Benachrichtigung auf Ihrem Telefon und folgen Sie der
+     Anleitung „ **“ (A-Trust** ) von A-Trust, um Ihre Unterschrift zur
+     Dokumentation hinzuzufügen.
 
-3. #Nachdem signiert, ein neues Dokument will sein zugefügt zu eurem Fall mit
-   der Vorsilbe **SIGNIERT_**
+3. Nach der Unterzeichnung wird Ihrem Fall ein neues Dokument mit dem Präfix „
+   ***SIGNED_*” hinzugefügt.**
 
-   ![atrust-Unterschrift-fertig](images/atrust-handysign-finished.png)
+   ![atrust-signature-finished](images/atrust-handysign-finished.png)
 
-4. Du können herunterladen und offen **Adobe #PDF** zu sehen #genau besehen eure
-   Unterschrift von doc.
+4. Sie können **herunterladen und mit Adobe PDF** öffnen, um Ihre Signatur am
+   Ende des Dokuments zu sehen.
 
-   ![atrust-doc-#Mit Vorzeichen versehen](images/atrust-doc-signed.png)
+   ![atrust-dokumentation-signed](images/atrust-doc-signed.png)
 
-Das **ATrustDemo** #verarbeiten zügelt eine endgültige Bedienung Teil, #wo
-bereiteten vor wir eine Unterschrift Vorlage weiter die **Eine-Trust** Server.
+Der Prozess „ **ATrustDemo** ” enthält einen abschließenden Service-Teil, in dem
+wir eine Signaturvorlage auf dem Server „ **A-Trust** ” vorbereitet haben.
 
-![atrust-Demo-biete](images/atrust-demo-feature.png)
+![atrust-demo-feature](images/atrust-demo-feature.png)
 
-* Du brauchst zu #hochladen ein **SignatureTemplate** zu das
-  **[Ein-Hoff](https://www.a-trust.at)** Bedienung. Nutzungen
-  `AddTemplateATrust` starten herein die `ATrustDemo` Arbeitsgang von
-  `einen-Trust-Anschluss-Demo` Projekt.
+* Sie müssen eine **SignatureTemplate** auf den
+  **[A-Trust](https://www.a-trust.at)** Dienst hochladen. Verwenden Sie
+  `AddTemplateATrust` starten Sie den `ATrustDemo` Prozess von
+  `a-trust-connector-demo` Projekt.
 
-  Wann #hochladen erfolgreich, **Ein-Trust** Rückgaben `templateID` und setzen
-  es herein projizieren Variablen - `TemplateId` schätzen herein die
-  `Konfiguration/Variablen.yaml`.
+  `Nach erfolgreichem Hochladen gibt **A-Trust** die Vorlage-ID
+  `templateID` zurück und legt sie in den Projektvariablen fest – `TemplateId`
+  Wert in der Konfiguration/variables.yaml`.
 
-* Ein Beispiel **SignatureTemplate** herein CMS: `cms/Vorlagen/tempsiegel1`.
+* Ein Beispiel **SignatureTemplate** im CMS: `cms/Templates/tempsiegel1`.
 
 ## Einrichtung
 
-Vor irgendwelche #Unterschrift Interaktionen zwischen die **#Axon Efeu Motor**
-und der **Ein-Hoffen HandySignatur** Bedienungen können sein gerannt, sie müssen
-sein hereingebracht zu #jede #andere. Dies kann sein getan folgendermaßen:
+Bevor Signaturvorgänge zwischen den Diensten **Axon Ivy Engine** und **A-Trust
+HandySignatur** durchgeführt werden können, müssen diese einander vorgestellt
+werden. Dies kann wie folgt erfolgen:
 
-1. Melde an ein **Ein-Hoffen HandySignatur** Konto:
-   Https://www.Ein-hoff.An/en/praktisch-signatur/praktisch-signatur-#Nutzbarmachung/
+1. ** Registrieren Sie sich für eine A-Trust HandySignatur **- :
+   https://www.a-trust.at/en/handy-signatur/handy-signatur-activation/
 
-2. Schaff ein **Ein-Hoffen Signatur-Schachteln**
-   **[hier](https://www.a-trust.at/en/handy-signatur/signaturbox)** und dann
-   bekommen ein neues `API Schlüssel` mit den `ServerUrl` und `SignBox`.
+2. Erstellen Sie eine **A-Trust Signatur-Box**
+   **[hier](https://www.a-trust.at/en/handy-signatur/signaturbox)** und erhalten
+   Sie dann einen neuen `API-Schlüssel` mit dem `ServerUrl` und `SignBox`.
 
-3. Öffne das `Konfiguration/Variablen.yaml` In eurem Designer und #bekleben dem
-   unterhalb Code mit eure `APIKey`, `TemplateId`, `ServerUrl` und `SignBox`
+3. Öffnen Sie die Datei „ `Configuration/variables.yaml”` in Ihrem Designer und
+   fügen Sie den folgenden Code mit Ihrem APIKey `,`, `TemplateId`, `ServerUrl`
+   und `SignBox ein.`
 
    ```
    Variables:
@@ -121,40 +125,39 @@ sein hereingebracht zu #jede #andere. Dies kann sein getan folgendermaßen:
           PhoneNumber: 0
    ```
 
-4. Speicher die #abgeändert Lagen.
+4. Speichern Sie die geänderten Einstellungen.
 
 ### Voraussetzungen:
 
-* Arbeitend **Ein-TRUST** `API Schlüssel` (Apparat in das variables) - Gebraucht
-  zu rufen **RUHT API** Bedienungen.
-* Du willst auch das richtiges bekommen `ServerUrl` und `SignBox` von
-  **Ein-TRUST** #wann überprüfend ihre Website!
-* Du brauchst zu #hochladen ein **SignatureTemplate** zu das
-  **[Ein-Hoff](https://www.a-trust.at)** Bedienung vor rufen
-  **ATrust/StartSignature**.
-* Überprüf das spätestes API Steckbrief weiter den
-  **[Einen-Hoff](https://www.a-trust.at)** Web-Seite.
+* Arbeits- **A-TRUST** `API-Schlüssel` (in der Variablen festgelegt) – Wird
+  benötigt, um die REST-API** Dienste von **aufzurufen.
+* Die korrekten Server-URLs `,` und `sowie die SignBox-URL` von **A-TRUST**
+  finden Sie auf deren Website!
+* Sie müssen eine **SignatureTemplate** auf den
+  **[A-Trust](https://www.a-trust.at)** Dienst hochladen, bevor Sie
+  **ATrust/StartSignature** aufrufen.
+* Die aktuelle API-Beschreibung finden Sie auf der Webseite
+  **[A-Trust](https://www.a-trust.at)**.
 
-### #Errichtet-in Komponente für IFrame #Unterschrift
+### Integrierte Komponente für IFrame-Signierung
 
-Das Ein-Trust Anschluss versieht ein pre-#errichtet JSF Komponente
-(`ATrustSignInFrame`) jener aktiviert nahtlose Integration von Eine-Hofft
-HandySignatur Funktionalität direkt innerhalb euren #Axon Efeu Antrag benutzend
-einen #eingraben iframe. Diese Komponente merzt die Notwendigkeit für popup
-Fenster und versehen eine More integrativ Nutzer Erfahrung.
+Der A-Trust-Konnektor bietet eine vorgefertigte JSF-Komponente
+(`ATrustSignInFrame`), die eine nahtlose Integration der
+A-Trust-HandySignatur-Funktionalität direkt in Ihre Axon Ivy-Anwendung mithilfe
+eines eingebetteten Iframes ermöglicht. Diese Komponente macht Popup-Fenster
+überflüssig und sorgt für eine besser integrierte Benutzererfahrung.
 
-#### Komponente Überblick
+#### Komponentenübersicht
 
-Das `ATrustSignInFrame` Komponente #abkapseln das vollständige #Unterschrift
-workflow innerhalb euren Antrags UI, bedienend den Authentifizierung
-Arbeitsgang, Dokument #Unterschrift, und Resultat verarbeitend automatisch.
+Die Komponente „ `ATrustSignInFrame` ” kapselt den gesamten Signatur-Workflow in
+der Benutzeroberfläche Ihrer Anwendung und übernimmt automatisch die
+Authentifizierung, die Dokumentensignatur und die Ergebnisverarbeitung.
 
-#### Integration Stufen
+#### Integrationsschritte
 
-1. **Fügt zu die Komponente zu eure JSF Seite**
+1. **Fügen Sie die Komponente zu Ihrer JSF-Seite hinzu**
 
-   Schließ ein herein die Komponente eure XHTML Datei benutzend die folgende
-   Syntax:
+   Fügen Sie die Komponente mit der folgenden Syntax in Ihre XHTML-Datei ein:
 
    ```xhtml
    <ic:com.axonivy.connector.atrust.ATrustSignInFrame
@@ -169,16 +172,16 @@ Arbeitsgang, Dokument #Unterschrift, und Resultat verarbeitend automatisch.
       componentToUpdate="form" />
    ```
 
-#### Komponente Attribute
+#### Komponentenattribute
 
-| Attribut                      | Typ                | Bedürft | Steckbrief                                                                                                             |
-| ----------------------------- | ------------------ | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `signatureJob`                | `SignatureJob`     | Ja      | Der Unterschrift Beruf Objekt zügelnd dokumentiert und signierend Parameter                                            |
-| `addDocToCase`                | `Aussagenlogisch`  | #Nr     | Wann `wahr`, automatisch fügt zu das #mit Vorzeichen versehen Dokument zu dem gängigen Fall (#voreinstellen: `Falsch`) |
-| `disableSignButton`           | `Aussagenlogisch`  | #Nr     | Reguliert den bereiten Staat von den Indiz Knopf (#voreinstellen: `Falsch`)                                            |
-| `signDialogHeader`            | `Schnur`           | #Nr     | #Benutzerdefiniert Kopfball Text für das #Unterschrift Zwiegespräch                                                    |
-| `signButtonIcon`              | `Schnur`           | #Nr     | CSS Klasse für die Knopf Ikone (unterstützt [#Windschlüpfig machen Ikonen](https://streamlineicons.com/))              |
-| `signButtonLabel`             | `Schnur`           | #Nr     | Text Etikett für den Indiz Knopf (#voreinstellen: "Indiz")                                                             |
-| `signButtonStyleClass`        | `Schnur`           | #Nr     | Zuzüglich CSS Klassen für Knopf Styling                                                                                |
-| `onSignatureFinishedListener` | `MethodExpression` | #Nr     | Rückruf Methode exekutiert nach erfolgreich #Unterschrift                                                              |
-| `componentToUpdate`           | `Schnur`           | #Nr     | ID Von der Komponente zu verbessern nach signieren Abschluss                                                           |
+| Attribut                      | Typ                  | Erforderlich | Beschreibung                                                                                                                |
+| ----------------------------- | -------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| `signatureJob`                | `SignatureJob`       | Ja           | Das Signatur-Job-Objekt enthält Dokument- und Signaturparameter.                                                            |
+| `addDocToCase`                | `Boolesche Variable` | Nein         | Wenn „ `” wahr ist (`), wird das signierte Dokument automatisch zum aktuellen Fall hinzugefügt (Standard: „ `” falsch (`)). |
+| `disableSignButton`           | `Boolesche Variable` | Nein         | Steuert den Aktivierungsstatus der Signatur-Schaltfläche (Standard: `false`)                                                |
+| `signDialogHeader`            | `Zeichenfolge`       | Nein         | Benutzerdefinierter Kopfzeilentext für den Signaturdialog                                                                   |
+| `signButtonIcon`              | `Zeichenfolge`       | Nein         | CSS-Klasse für das Schaltflächensymbol (unterstützt [Streamline Icons](https://streamlineicons.com/))                       |
+| `signButtonLabel`             | `Zeichenfolge`       | Nein         | Textbezeichnung für die Schaltfläche „Signieren“ (Standard: „Signieren“)                                                    |
+| `signButtonStyleClass`        | `Zeichenfolge`       | Nein         | Zusätzliche CSS-Klassen für die Gestaltung von Schaltflächen                                                                |
+| `onSignatureFinishedListener` | `MethodExpression`   | Nein         | Callback-Methode, die nach erfolgreicher Signierung ausgeführt wird                                                         |
+| `componentToUpdate`           | `Zeichenfolge`       | Nein         | ID der Komponente, die nach Abschluss der Signierung aktualisiert werden soll                                               |
