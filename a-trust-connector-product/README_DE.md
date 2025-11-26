@@ -81,7 +81,7 @@ wir eine Signaturvorlage auf dem Server „ **A-Trust** ” vorbereitet haben.
 
 * Ein Beispiel **SignatureTemplate** im CMS: `cms/Templates/tempsiegel1`.
 
-## Einrichtung
+## Setup
 
 Bevor Signaturvorgänge zwischen den Diensten **Axon Ivy Engine** und **A-Trust
 HandySignatur** durchgeführt werden können, müssen diese einander vorgestellt
