@@ -14,7 +14,7 @@ Variables:
     TemplateId: 0
     
     # To config the Handy-Signature view in iframe. The Details can be found on the A-Trust Website https://labs.a-trust.at/developer/Handy-Signatur.aspx.
-    HandySignaturParameter:
+    IDAustriaParameter:
       # For setting width of frame.
       Width: 350
       # For setting height of frame.
