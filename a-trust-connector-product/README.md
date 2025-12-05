@@ -11,7 +11,7 @@ To use A-Trust, you need an account that you create at https://www.a-trust.at/de
 
 ## Demo
 
-1. Start the **A-Trust HandySignatur Example** process.
+1. Start the **A-Trust ID Austria Example** process.
 2. Prepare data for signing
     * Upload a **PDF** document.
     * Select your signature template.
@@ -55,18 +55,18 @@ The **ATrustDemo** process contains a final service part, where we prepared a si
 
 ## Setup
 
-Before any signing interactions between the **Axon Ivy Engine** and the **A-Trust HandySignatur** services can be run, they have to be introduced to each other. This can be done as follows:
+Before any signing interactions between the **Axon Ivy Engine** and the **A-Trust ID Austria login (formerly Handy-Signatur)** services can be run, they have to be introduced to each other. This can be done as follows:
 
-1. Register an **A-Trust HandySignatur** account: https://www.a-trust.at/en/handy-signatur/handy-signatur-activation/
+1. Register an **A-Trust ID Austria** account: https://www.a-trust.at/en/id-austria/
 
-2. Create an **A-Trust Signatur-Box** **[here](https://www.a-trust.at/en/handy-signatur/signaturbox)** and then get a new `API key` with the `ServerUrl` and `SignBox`.
+2. Create an **A-Trust Signatur-Box** **[here](https://www.a-trust.at/en/id-austria/signaturbox)** and then get a new `API key` with the `ServerUrl` and `SignBox`.
 
 3. Open the `Configuration/variables.yaml` in your Designer and paste the below code with your `APIKey`, `TemplateId`, `ServerUrl` and `SignBox`
 
    ```
    Variables:
       ATrust:
-        # API Key for "A-Trust Handysignature API"
+        # API Key for "A-Trust ID Austria API"
         APIKey: ''
     
         # The Server URL under which the SigBox Server is reachable
@@ -78,8 +78,8 @@ Before any signing interactions between the **Axon Ivy Engine** and the **A-Trus
         # The default signature template ID to be used
         TemplateId: 0
     
-        # To config the Handy-Signature view in iframe. The Details can be found on the A-Trust Website https://labs.a-trust.at/developer/Handy-Signatur.aspx.
-        HandySignaturParameter:
+         # To config the ID Austria view in iframe.  The Details can be found on the A-Trust Website https://labs.a-trust.at/developer/ID-Austria.aspx. 
+        IDAustriaParameter:
           # For setting width of frame.
           Width: 350
           # For setting height of frame.
