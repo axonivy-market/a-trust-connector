@@ -13,7 +13,7 @@ Variables:
     # The default signature template ID to be used
     TemplateId: 0
     
-    # To config the Handy-Signature view in iframe. The Details can be found on the A-Trust Website https://labs.a-trust.at/developer/Handy-Signatur.aspx.
+    # To config the Handy-Signature view in iframe. The Details can be found on the A-Trust Website https://labs.a-trust.at/developer/ID-Austria.aspx.
     IDAustriaParameter:
       # For setting width of frame.
       Width: 350
