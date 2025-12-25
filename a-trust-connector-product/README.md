@@ -78,7 +78,7 @@ Before any signing interactions between the **Axon Ivy Engine** and the **A-Trus
         # The default signature template ID to be used
         TemplateId: 0
     
-        # To config the ID Austria view in iframe.  The Details can be found on the A-Trust Website https://labs.a-trust.at/developer/ID-Austria.aspx. 
+        # To config the ID Austria view in iframe. The Details can be found on the A-Trust Website https://labs.a-trust.at/developer/ID-Austria.aspx.
         IDAustriaParameter:
           # For setting width of frame.
           Width: 350
