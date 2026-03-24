@@ -11,6 +11,9 @@
   <artifactId>a-trust-connector-demo</artifactId>
   <version>13.1.3-SNAPSHOT</version>
   <packaging>iar</packaging>
+  <properties>
+    <sonar.organization>axonivy-market</sonar.organization>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>com.axonivy.connector.atrust</groupId>
