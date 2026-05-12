@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "1797F1F35CA9D09F",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -52,7 +52,7 @@
       "visual" : {
         "at" : { "x" : 1200, "y" : 192 },
         "color" : "NodeStyle3",
-        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+        "icon" : "res:/webContent/icons/atrust-icon.png"
       }
     }, {
       "id" : "f5",
@@ -84,7 +84,7 @@
         "at" : { "x" : 208, "y" : 104 },
         "labelOffset" : { "x" : 33, "y" : -15 },
         "color" : "NodeStyle3",
-        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+        "icon" : "res:/webContent/icons/atrust-icon.png"
       },
       "connect" : [
         { "id" : "f26", "to" : "f25" }
@@ -139,7 +139,7 @@
       "visual" : {
         "at" : { "x" : 128, "y" : 432 },
         "labelOffset" : { "x" : 97, "y" : 41 },
-        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+        "icon" : "res:/webContent/icons/atrust-icon.png"
       },
       "connect" : [
         { "id" : "f45", "to" : "f43" }
@@ -149,7 +149,7 @@
       "type" : "CallSubEnd",
       "visual" : {
         "at" : { "x" : 488, "y" : 432 },
-        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+        "icon" : "res:/webContent/icons/atrust-icon.png"
       }
     }, {
       "id" : "f43",
@@ -236,7 +236,7 @@
         "at" : { "x" : 128, "y" : 192 },
         "labelOffset" : { "x" : 17, "y" : 33 },
         "color" : "NodeStyle3",
-        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+        "icon" : "res:/webContent/icons/atrust-icon.png"
       },
       "connect" : [
         { "id" : "f46", "to" : "f25" }
@@ -636,7 +636,7 @@
       "visual" : {
         "at" : { "x" : 448, "y" : 296 },
         "color" : "NodeStyle3",
-        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+        "icon" : "res:/webContent/icons/atrust-icon.png"
       }
     }, {
       "id" : "f49",
@@ -691,7 +691,7 @@
       "visual" : {
         "at" : { "x" : 496, "y" : 640 },
         "color" : "NodeStyle3",
-        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+        "icon" : "res:/webContent/icons/atrust-icon.png"
       }
     } ],
   "layout" : {

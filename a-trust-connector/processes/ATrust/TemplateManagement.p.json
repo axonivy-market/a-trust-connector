@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "1797F20B0709EDE7",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -32,7 +32,7 @@
         "at" : { "x" : 96, "y" : 128 },
         "labelOffset" : { "x" : 64, "y" : 37 },
         "color" : "NodeStyle3",
-        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+        "icon" : "res:/webContent/icons/atrust-icon.png"
       },
       "connect" : [
         { "id" : "f32", "to" : "f27" }
@@ -43,7 +43,7 @@
       "visual" : {
         "at" : { "x" : 544, "y" : 304 },
         "color" : "NodeStyle3",
-        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+        "icon" : "res:/webContent/icons/atrust-icon.png"
       }
     }, {
       "id" : "f13",
@@ -72,7 +72,7 @@
         "at" : { "x" : 96, "y" : 304 },
         "labelOffset" : { "x" : 85, "y" : 37 },
         "color" : "NodeStyle3",
-        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+        "icon" : "res:/webContent/icons/atrust-icon.png"
       },
       "connect" : [
         { "id" : "f25", "to" : "f9" }
@@ -98,7 +98,7 @@
         "at" : { "x" : 96, "y" : 496 },
         "labelOffset" : { "x" : 45, "y" : 37 },
         "color" : "NodeStyle3",
-        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+        "icon" : "res:/webContent/icons/atrust-icon.png"
       },
       "connect" : [
         { "id" : "f24", "to" : "f22" }
@@ -109,7 +109,7 @@
       "visual" : {
         "at" : { "x" : 544, "y" : 496 },
         "color" : "NodeStyle3",
-        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+        "icon" : "res:/webContent/icons/atrust-icon.png"
       }
     }, {
       "id" : "f22",
@@ -206,7 +206,7 @@
       "visual" : {
         "at" : { "x" : 544, "y" : 128 },
         "color" : "NodeStyle3",
-        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+        "icon" : "res:/webContent/icons/atrust-icon.png"
       }
     }, {
       "id" : "f27",
