@@ -29,10 +29,6 @@
       <groupId>com.axonivy.ivy.spi</groupId>
       <artifactId>ivy-rest-jersey-spi</artifactId>
     </dependency>
-    <dependency>
-      <groupId>com.axonivy.ivy.spi</groupId>
-      <artifactId>ivy-poi-spi</artifactId>
-    </dependency>
   </dependencies>
   <repositories>
     <repository>
