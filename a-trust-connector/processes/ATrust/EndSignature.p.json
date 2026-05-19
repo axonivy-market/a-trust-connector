@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
   "id" : "1797F203890511D1",
   "config" : {
     "data" : "com.axonivy.connector.atrust.EndSignatureData"
@@ -76,7 +76,7 @@
         "at" : { "x" : 96, "y" : 224 },
         "labelOffset" : { "x" : 9, "y" : 33 },
         "color" : "NodeStyle3",
-        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+        "icon" : "res:/webContent/icons/atrust-icon.png"
       },
       "connect" : [
         { "id" : "f7", "to" : "f3" }
@@ -129,7 +129,7 @@
         "at" : { "x" : 192, "y" : 120 },
         "labelOffset" : { "x" : 17, "y" : 33 },
         "color" : "NodeStyle3",
-        "icon" : "res:/webContent/icons/atrust-icon.png?small"
+        "icon" : "res:/webContent/icons/atrust-icon.png"
       },
       "connect" : [
         { "id" : "f4", "to" : "f3" }

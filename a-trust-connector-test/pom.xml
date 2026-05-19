@@ -1,15 +1,16 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.axonivy.ivy.api</groupId>
     <artifactId>ivy-project-parent</artifactId>
-    <version>13.1.1</version>
-    <relativePath />
+    <version>13.2.0</version>
+    <relativePath></relativePath>
   </parent>
   <groupId>com.axonivy.connector.atrust</groupId>
   <artifactId>a-trust-connector-test</artifactId>
-  <version>13.1.3-SNAPSHOT</version>
+  <version>13.2.0-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
     <sonar.organization>axonivy-market</sonar.organization>
@@ -18,11 +19,11 @@
     <dependency>
       <groupId>com.axonivy.utils.e2etest</groupId>
       <artifactId>e2e-test-utils</artifactId>
-      <version>[1.0.0,)</version>
+      <version>1.0.1</version>
     </dependency>
     <dependency>
-      <groupId>com.axonivy.ivy.test</groupId>
-      <artifactId>unit-tester</artifactId>
+      <groupId>com.axonivy.ivy.api.test</groupId>
+      <artifactId>ivy-test-api</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -45,6 +46,10 @@
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpcore</artifactId>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.axonivy.ivy.spi</groupId>
+      <artifactId>ivy-rest-jersey-spi</artifactId>
     </dependency>
   </dependencies>
   <repositories>
