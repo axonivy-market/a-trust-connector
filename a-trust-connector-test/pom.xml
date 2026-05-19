@@ -9,7 +9,7 @@
   </parent>
   <groupId>com.axonivy.connector.atrust</groupId>
   <artifactId>a-trust-connector-test</artifactId>
-  <version>13.2.0</version>
+  <version>13.2.1-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
     <sonar.organization>axonivy-market</sonar.organization>
