@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
   "id" : "1797F20B0709EDE7",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -117,7 +117,7 @@
       "name" : "Get all Templates",
       "config" : {
         "target" : {
-          "clientId" : "69b7fe41-3196-40bf-9458-b723c0bcc2b2",
+          "clientId" : "A-Trust-A-Trust-Connector-API",
           "path" : "/templates"
         },
         "response" : {
@@ -163,7 +163,7 @@
       "config" : {
         "method" : "DELETE",
         "target" : {
-          "clientId" : "69b7fe41-3196-40bf-9458-b723c0bcc2b2",
+          "clientId" : "A-Trust-A-Trust-Connector-API",
           "path" : "/templates/{templateId}",
           "templateParams" : {
             "templateId" : "in.templateId"
@@ -215,7 +215,7 @@
       "config" : {
         "method" : "POST",
         "target" : {
-          "clientId" : "69b7fe41-3196-40bf-9458-b723c0bcc2b2",
+          "clientId" : "A-Trust-A-Trust-Connector-API",
           "path" : "/templates"
         },
         "body" : {
