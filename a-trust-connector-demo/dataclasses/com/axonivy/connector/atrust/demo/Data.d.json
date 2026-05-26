@@ -1,20 +1,21 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "Data",
   "namespace" : "com.axonivy.connector.atrust.demo",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "myIvyFile",
-    "type" : "File"
+    "type" : "File",
+    "modifiers" : [ ]
   }, {
     "name" : "templateData",
-    "type" : "com.axonivy.connector.atrust.bo.TemplateData"
+    "type" : "com.axonivy.connector.atrust.bo.TemplateData",
+    "modifiers" : [ ]
   }, {
     "name" : "templateId",
-    "type" : "Number",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Number"
   }, {
     "name" : "signatureTemplates",
-    "type" : "at.a.trust.rest.api.client.SignatureTemplates"
+    "type" : "at.a.trust.rest.api.client.SignatureTemplates",
+    "modifiers" : [ ]
   } ]
 }

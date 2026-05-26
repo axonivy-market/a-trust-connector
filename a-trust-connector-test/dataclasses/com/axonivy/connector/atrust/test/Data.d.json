@@ -1,13 +1,14 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/13.1.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "Data",
   "namespace" : "com.axonivy.connector.atrust.test",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "signatureJob",
-    "type" : "com.axonivy.connector.atrust.bo.SignatureJob"
+    "type" : "com.axonivy.connector.atrust.bo.SignatureJob",
+    "modifiers" : [ ]
   }, {
     "name" : "signatureDocumentData",
-    "type" : "com.axonivy.connector.atrust.bo.SignatureDocumentData"
+    "type" : "com.axonivy.connector.atrust.bo.SignatureDocumentData",
+    "modifiers" : [ ]
   } ]
 }
