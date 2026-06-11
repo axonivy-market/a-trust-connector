@@ -19,6 +19,7 @@ import com.axonivy.connector.atrust.bo.ATrustException;
 import com.axonivy.connector.atrust.enums.ATrustBpmErrorCode;
 
 import ch.ivyteam.ivy.bpm.error.BpmError;
+import ch.ivyteam.ivy.rest.client.oauth2.OAuth2Error;
 import ch.ivyteam.ivy.scripting.objects.File;
 
 public class ATrustResponseUtils {
@@ -67,7 +68,7 @@ public class ATrustResponseUtils {
 				byte[] bytes = IOUtils.toByteArray(is);
 				FileUtils.writeByteArrayToFile(file.getJavaFile(), bytes);
 			} catch (IOException e) {
-				BpmError.create(ATrustBpmErrorCode.GENERAL.getCode())
+				OAuth2Error.build().withErrorCode(ATrustBpmErrorCode.GENERAL.getCode())
 						.withMessage(ATrustBpmErrorCode.GENERAL.getErrorMessage()).withCause(e).throwError();
 			}
 		}

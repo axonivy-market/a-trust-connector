@@ -14,6 +14,7 @@ import ch.ivyteam.ivy.bpm.error.BpmError;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpResponse;
+import ch.ivyteam.ivy.rest.client.oauth2.OAuth2Error;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -97,7 +98,7 @@ public class IvyUtils {
 		if (FacesContext.getCurrentInstance() != null) {
 			FacesContext.getCurrentInstance().validationFailed();
 		}
-		BpmError.create(ATrustBpmErrorCode.TEMPLATE_NOT_FOUND.getCode())
+		OAuth2Error.build().withErrorCode(ATrustBpmErrorCode.TEMPLATE_NOT_FOUND.getCode())
 				.withMessage(ATrustBpmErrorCode.TEMPLATE_NOT_FOUND.getErrorMessage()).throwError();
 	}
 }

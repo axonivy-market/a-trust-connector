@@ -10,6 +10,7 @@ import com.axonivy.connector.atrust.enums.ATrustBpmErrorCode;
 import com.axonivy.connector.atrust.util.IvyUtils;
 
 import ch.ivyteam.ivy.bpm.error.BpmError;
+import ch.ivyteam.ivy.rest.client.oauth2.OAuth2Error;
 import ch.ivyteam.ivy.workflow.ITask;
 
 public class ATrustSignValidator {
@@ -33,7 +34,7 @@ public class ATrustSignValidator {
 	}
 
 	private static void throwATrustBpmError(ATrustBpmErrorCode errorCode) {
-		BpmError.create(errorCode.getCode()).withMessage(errorCode.getErrorMessage()).throwError();
+		OAuth2Error.build().withErrorCode(errorCode.getCode()).withMessage(errorCode.getErrorMessage()).throwError();
 	}
 
 	public static void validateSignatureJobData(SignatureJob signatureJob) {
