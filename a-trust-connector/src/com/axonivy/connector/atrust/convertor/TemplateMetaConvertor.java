@@ -1,10 +1,10 @@
 package com.axonivy.connector.atrust.convertor;
 
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
-import javax.faces.convert.FacesConverter;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.convert.Converter;
+import jakarta.faces.convert.ConverterException;
+import jakarta.faces.convert.FacesConverter;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -13,7 +13,7 @@ import com.axonivy.connector.atrust.service.ATrustService;
 import at.a.trust.rest.api.client.TemplateMeta;
 
 @FacesConverter(value = "templateMetaConvertor")
-public class TemplateMetaConvertor implements Converter {
+public class TemplateMetaConvertor implements Converter<Object> {
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) throws ConverterException {

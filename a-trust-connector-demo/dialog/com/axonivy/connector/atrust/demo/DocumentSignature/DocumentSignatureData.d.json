@@ -14,7 +14,8 @@
     "modifiers" : [ ]
   }, {
     "name" : "disableSignButton",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "documents",
     "type" : "java.util.List<ch.ivyteam.ivy.workflow.document.IDocument>",
@@ -34,13 +35,16 @@
     "modifiers" : [ ]
   }, {
     "name" : "doesDocumentExist",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "disableUpload",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "handySignatureURL",
-    "comment" : "The URL (which includes the required session id) to start the Handy-Signature"
+    "comment" : "The URL (which includes the required session id) to start the Handy-Signature",
+    "modifiers" : [ ]
   }, {
     "name" : "templateData",
     "type" : "at.a.trust.rest.api.client.SignatureTemplates",
@@ -54,9 +58,11 @@
     "type" : "at.a.trust.rest.api.client.TemplateMeta",
     "modifiers" : [ ]
   }, {
-    "name" : "uploadedDocumentName"
+    "name" : "uploadedDocumentName",
+    "modifiers" : [ ]
   }, {
     "name" : "isSignFinished",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

@@ -1,14 +1,14 @@
 package com.axonivy.connector.atrust.config;
 
-import javax.ws.rs.Priorities;
-import javax.ws.rs.core.FeatureContext;
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.Priorities;
+import jakarta.ws.rs.core.FeatureContext;
+import jakarta.ws.rs.core.MediaType;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import com.fasterxml.jackson.jakarta.rs.json.JacksonJsonProvider;
 
 import ch.ivyteam.ivy.rest.client.mapper.JsonFeature;
 
