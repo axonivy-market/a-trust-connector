@@ -1,14 +1,13 @@
 package com.axonivy.connector.atrust.test;
 
+import static com.axonivy.utils.e2etest.enums.E2EEnvironment.REAL_SERVER;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static com.axonivy.utils.e2etest.enums.E2EEnvironment.REAL_SERVER;
 
 import java.io.IOException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -26,7 +25,6 @@ import com.axonivy.utils.e2etest.context.MultiEnvironmentContextProvider;
 import com.axonivy.utils.e2etest.utils.E2ETestUtils;
 
 import at.a.trust.rest.api.client.TemplateMeta;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.bpm.engine.client.BpmClient;
 import ch.ivyteam.ivy.bpm.engine.client.ExecutionResult;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmElement;
@@ -35,7 +33,6 @@ import ch.ivyteam.ivy.bpm.error.BpmError;
 import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
 import ch.ivyteam.ivy.environment.AppFixture;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.rest.client.RestClients;
 import ch.ivyteam.ivy.scripting.objects.CompositeObject;
 import ch.ivyteam.ivy.scripting.objects.File;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -48,7 +45,6 @@ import ch.ivyteam.ivy.workflow.ITask;
 @ExtendWith(MultiEnvironmentContextProvider.class)
 public class ATrustProcessTest extends BaseSetup {
 
-	private static final String ATRUST_REST_CLIENT = "A-Trust (A-Trust Connector API)";
 	private static final BpmProcess INTEGRATION_PROCESS = BpmProcess.path("ATrustIntegration/ATrustDemo");
 	private static final BpmProcess ATRUST_SIGNER_PROCESS = BpmProcess.path("ATrust/StartSignature");
 	private static final BpmProcess ATRUST_TEST_PROCESS = BpmProcess.path("Start Processes/TestATrust");
@@ -62,16 +58,10 @@ public class ATrustProcessTest extends BaseSetup {
 	private boolean isRealTest;
 
 	@BeforeEach
-	public void beforeEach(ExtensionContext context, AppFixture fixture, IApplication app) {
+	public void beforeEach(ExtensionContext context, AppFixture fixture) {
 		isRealTest = context.getDisplayName().equals(REAL_SERVER.getDisplayName());
-		E2ETestUtils.determineConfigForContext(context.getDisplayName(), runRealEnv(fixture), runMockEnv(fixture, app));
+		E2ETestUtils.determineConfigForContext(context.getDisplayName(), runRealEnv(fixture), runMockEnv(fixture));
 		signatureJob = new SignatureJob();
-	}
-
-	@AfterEach
-	void afterEach(AppFixture fixture, IApplication app) {
-		RestClients clients = RestClients.of(app);
-		clients.remove(ATRUST_REST_CLIENT);
 	}
 
 	@TestTemplate
@@ -93,8 +83,8 @@ public class ATrustProcessTest extends BaseSetup {
 		assertThat(templateId).isNotEqualTo(0);
 		if (isRealTest) {
 			BpmElement deleteStartable = TEMPLATE_MANAGEMENT.elementName("DeleteTemplateATrust(Number)");
-			ExecutionResult deleteResult =
-					bpmClient.start().subProcess(deleteStartable).withParam("templateId", templateId).execute();
+			ExecutionResult deleteResult = bpmClient.start().subProcess(deleteStartable).withParam("templateId", templateId)
+					.execute();
 			var templateData = (TemplateManagementData) deleteResult.data().last();
 			Ivy.log().warn(templateData.getResult().getResultCode().equals(200));
 		}
