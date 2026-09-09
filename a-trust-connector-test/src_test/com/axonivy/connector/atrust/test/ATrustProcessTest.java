@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
@@ -77,7 +76,7 @@ public class ATrustProcessTest extends BaseSetup {
 		templateId = demoData.getTemplateData().getSigTemplateId();
 		assertTrue(resultCode == HttpStatus.SC_CREATED);
 		assertThat(uploadedFile).isNotNull();
-		assertTrue(StringUtils.contains(uploadedFile.getPath(), "Template.xml"));
+		assertThat(uploadedFile.getPath()).contains("Template.xml");
 		assertThat(resultCode).isNotNull();
 		assertThat(templateId).isInstanceOf(Integer.class);
 		assertThat(templateId).isNotEqualTo(0);
@@ -99,8 +98,8 @@ public class ATrustProcessTest extends BaseSetup {
 		assertTrue(resultCode == HttpStatus.SC_OK);
 		assertThat(listTemplate).isNotNull();
 		if (!isRealTest) {
-			assertTrue(StringUtils.contains(listTemplate, SAMPLE_TEMPLATE));
-			assertTrue(StringUtils.contains(listTemplate, SAMPLE_TEMPLATE_ID));
+			assertThat(listTemplate)
+					.contains(SAMPLE_TEMPLATE, SAMPLE_TEMPLATE_ID);
 		}
 	}
 
