@@ -203,8 +203,8 @@
         "output" : {
           "code" : [
             "import com.axonivy.connector.atrust.util.IvyUtils;",
-            "import javax.faces.context.FacesContext;",
-            "import javax.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
             "",
             "in.uploadedDocumentName = in.uploadedFile.getFileName();",
             "//Add the new file to case",
@@ -228,8 +228,8 @@
           "config" : {
             "output" : {
               "code" : [
-                "import javax.faces.context.FacesContext;",
-                "import javax.faces.application.FacesMessage;",
+                "import jakarta.faces.context.FacesContext;",
+                "import jakarta.faces.application.FacesMessage;",
                 "",
                 "//Update message",
                 "FacesMessage message = new FacesMessage(String.format(\"Upload file %s to case failed: %s\", in.uploadedFile.getFileName(), error.getLocalizedMessage()));",
@@ -358,8 +358,8 @@
         "output" : {
           "code" : [
             "import com.axonivy.connector.atrust.util.IvyUtils;",
-            "import javax.faces.context.FacesContext;",
-            "import javax.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
             "import ch.ivyteam.ivy.workflow.document.Path;",
             "",
             "//Find doc in case by name",
@@ -737,8 +737,8 @@
       "config" : {
         "output" : {
           "code" : [
-            "import javax.faces.context.FacesContext;",
-            "import javax.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
             "FacesMessage message = new FacesMessage();",
             "message.severity = FacesMessage.SEVERITY_ERROR;",
             "message.detail = in.signatureDocumentData.lastSignatureError;",

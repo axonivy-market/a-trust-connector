@@ -177,8 +177,8 @@
       "config" : {
         "output" : {
           "code" : [
-            "import javax.faces.context.FacesContext;",
-            "import javax.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
             "FacesMessage message = new FacesMessage();",
             "message.severity = FacesMessage.SEVERITY_ERROR;",
             "message.detail = in.signatureDocumentData.lastSignatureError;",

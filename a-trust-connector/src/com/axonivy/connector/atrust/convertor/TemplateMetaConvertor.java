@@ -11,8 +11,10 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.connector.atrust.service.ATrustService;
 
 import at.a.trust.rest.api.client.TemplateMeta;
+import jakarta.enterprise.context.ApplicationScoped;
 
-@FacesConverter(value = "templateMetaConvertor")
+@FacesConverter(value = "templateMetaConvertor", managed = true)
+@ApplicationScoped
 public class TemplateMetaConvertor implements Converter<Object> {
 
 	@Override
