@@ -11,7 +11,7 @@ import jakarta.ws.rs.core.FeatureContext;
 import com.axonivy.connector.atrust.constant.Constants;
 import com.fasterxml.jackson.jakarta.rs.json.JacksonJsonProvider;
 
-import ch.ivyteam.ivy.rest.client.FeatureConfig;
+import ch.ivyteam.ivy.rest.client.feature.FeatureConfig;
 
 public class HeaderFeature implements Feature {
 	public static final String REQUIRED_HEADER_KEY = "X-API-KEY";
@@ -20,7 +20,7 @@ public class HeaderFeature implements Feature {
 
 	@Override
 	public boolean configure(FeatureContext context) {
-		var config = new FeatureConfig(context.getConfiguration(), HeaderFeature.class);
+		var config = FeatureConfig.of(context.getConfiguration(), HeaderFeature.class);
 		String apiKey = config.readMandatory(API_KEY);
 		context.register(new ATrustRequestFilter(apiKey), Priorities.HEADER_DECORATOR);
 		context.register(JacksonJsonProvider.class);
