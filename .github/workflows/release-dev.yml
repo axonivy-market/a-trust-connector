@@ -17,7 +17,7 @@ permissions:
 
 jobs:
   release:
-    uses: axonivy-market/github-workflows/.github/workflows/release-dev.yml@v6
+    uses: axonivy-market/github-workflows/.github/workflows/release-dev.yml@feature/MARP-4636-trigger-release-dev-multi-branches
     with:
       dryRun: ${{ inputs.dryRun }}
       javaVersion: 25
