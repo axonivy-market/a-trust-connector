@@ -11,6 +11,6 @@ permissions:
 
 jobs:
   build:
-    uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v6
+    uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v14
     secrets:
       mvnArgs: -Datrust.apiKey=${{secrets.API_KEY}} -Datrust.serverUrl=${{secrets.SERVER_URL}} -Datrust.signBox=${{secrets.SIGN_BOX}} -DtestEnvironment=E2E
