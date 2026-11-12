@@ -9,7 +9,7 @@ import jakarta.ws.rs.core.Feature;
 import jakarta.ws.rs.core.FeatureContext;
 
 import com.axonivy.connector.atrust.constant.Constants;
-import com.fasterxml.jackson.jakarta.rs.json.JacksonJsonProvider;
+import tools.jackson.jakarta.rs.json.JacksonJsonProvider;
 
 import ch.ivyteam.ivy.rest.client.feature.FeatureConfig;
 

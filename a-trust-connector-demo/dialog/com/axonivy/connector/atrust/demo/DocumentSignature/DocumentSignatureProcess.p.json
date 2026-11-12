@@ -364,7 +364,7 @@
             "",
             "//Find doc in case by name",
             "String fileName = in.uploadedFile.getFileName();",
-            "in.doesDocumentExist = ivy.case.documents().get(new Path(fileName)) != null;",
+            "in.doesDocumentExist = ivy.case.documents().get(Path.of(fileName)) != null;",
             "",
             "if (in.doesDocumentExist) {",
             "  //Update message",

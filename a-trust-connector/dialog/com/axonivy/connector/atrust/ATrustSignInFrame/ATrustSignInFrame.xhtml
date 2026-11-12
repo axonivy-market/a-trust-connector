@@ -7,12 +7,12 @@
 	xmlns:p="primefaces"
 	xmlns:pe="primefaces.extensions">
 <cc:interface componentType="IvyComponent">
-	<cc:attribute name="signatureJob" required="true" shortDescription="The signature job object containing document and signing parameters"/>
-	<cc:attribute name="onSignatureFinishedListener" shortDescription="Callback method executed after successful signing"/>
-	<cc:attribute name="addDocToCase" default="false" shortDescription="When true, automatically adds the signed document to the current case (default: false)"/>
+	<cc:attribute name="signatureJob" type="com.axonivy.connector.atrust.bo.SignatureJob" required="true" shortDescription="The signature job object containing document and signing parameters"/>
+	<cc:attribute name="onSignatureFinishedListener" method-signature="void onSignatureFinished()" shortDescription="Callback method executed after successful signing"/>
+	<cc:attribute name="addDocToCase" type="java.lang.Boolean" default="false" shortDescription="When true, automatically adds the signed document to the current case (default: false)"/>
 	<cc:attribute name="componentToProcess" default="@form" shortDescription="ID of the component to process when pressing signing button (default: parent form)"/>
 	<cc:attribute name="componentToUpdate" shortDescription="ID of the component to update after signing completion"/>
-	<cc:attribute name="disableSignButton" default="false" shortDescription="Controls the enabled state of the sign button (default: false)"/>
+	<cc:attribute name="disableSignButton" type="java.lang.Boolean" default="false" shortDescription="Controls the enabled state of the sign button (default: false)"/>
 	<cc:attribute name="signDialogHeader" default="#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/ATrustSignInFrame/SignYourByIframe')}" shortDescription="Custom header text for the signing dialog"/>
 	<cc:attribute name="signButtonLabel" default="#{ivy.cms.co('/Dialogs/com/axonivy/connector/atrust/ATrustSignInFrame/SignInIFrame')}" shortDescription="Text label for the sign button (default: Sign in iframe)"/>
 	<cc:attribute name="signButtonIcon" shortDescription="CSS class for the button icon (supports Streamline Icons)"/>
