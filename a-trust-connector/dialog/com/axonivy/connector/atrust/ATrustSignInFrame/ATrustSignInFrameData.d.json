@@ -1,0 +1,25 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
+  "simpleName" : "ATrustSignInFrameData",
+  "namespace" : "com.axonivy.connector.atrust.ATrustSignInFrame",
+  "fields" : [ {
+    "name" : "signatureDocumentData",
+    "type" : "com.axonivy.connector.atrust.bo.SignatureDocumentData",
+    "modifiers" : [ ]
+  }, {
+    "name" : "signatureJob",
+    "type" : "com.axonivy.connector.atrust.bo.SignatureJob",
+    "modifiers" : [ ]
+  }, {
+    "name" : "handySignatureURL",
+    "modifiers" : [ ]
+  }, {
+    "name" : "addDocToCase",
+    "type" : "Boolean",
+    "modifiers" : [ ]
+  }, {
+    "name" : "isSignFinished",
+    "type" : "Boolean",
+    "modifiers" : [ ]
+  } ]
+}

@@ -8,7 +8,7 @@ import com.axonivy.connector.atrust.config.HeaderFeature;
 import com.axonivy.connector.atrust.config.OpenApiJsonFeature;
 import com.axonivy.connector.atrust.test.constants.ATrustTestConstants;
 
-import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.environment.AppFixture;
 import ch.ivyteam.ivy.rest.client.RestClient;
 import ch.ivyteam.ivy.rest.client.RestClientFeature;
@@ -28,7 +28,7 @@ public class BaseSetup {
 		};
 	}
 
-	protected static Runnable runMockEnv(AppFixture fixture, IApplication app) {
+	protected static Runnable runMockEnv(AppFixture fixture, Application app) {
 		return () -> {
 			fixture.config("RestClients." + ATRUST_REST_CLIENT + ".Url", ATrustSignMock.URI);
 			fixture.config("RestClients." + ATRUST_REST_CLIENT + ".Features", "");

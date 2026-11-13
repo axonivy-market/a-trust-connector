@@ -1,0 +1,68 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
+  "simpleName" : "DocumentSignatureData",
+  "namespace" : "com.axonivy.connector.atrust.demo.DocumentSignature",
+  "fields" : [ {
+    "name" : "signatureJob",
+    "type" : "com.axonivy.connector.atrust.bo.SignatureJob",
+    "comment" : "The input of A-Trust Signature servive",
+    "modifiers" : [ ]
+  }, {
+    "name" : "signatureDocumentData",
+    "type" : "com.axonivy.connector.atrust.bo.SignatureDocumentData",
+    "comment" : "The output of A-Trust Signature servive",
+    "modifiers" : [ ]
+  }, {
+    "name" : "disableSignButton",
+    "type" : "Boolean",
+    "modifiers" : [ ]
+  }, {
+    "name" : "documents",
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.document.IDocument>",
+    "comment" : "Documents of case",
+    "modifiers" : [ ]
+  }, {
+    "name" : "selectedDocument",
+    "type" : "ch.ivyteam.ivy.workflow.document.IDocument",
+    "modifiers" : [ ]
+  }, {
+    "name" : "uploadedFile",
+    "type" : "org.primefaces.model.file.UploadedFile",
+    "modifiers" : [ ]
+  }, {
+    "name" : "streamedContent",
+    "type" : "org.primefaces.model.StreamedContent",
+    "modifiers" : [ ]
+  }, {
+    "name" : "doesDocumentExist",
+    "type" : "Boolean",
+    "modifiers" : [ ]
+  }, {
+    "name" : "disableUpload",
+    "type" : "Boolean",
+    "modifiers" : [ ]
+  }, {
+    "name" : "handySignatureURL",
+    "comment" : "The URL (which includes the required session id) to start the Handy-Signature",
+    "modifiers" : [ ]
+  }, {
+    "name" : "templateData",
+    "type" : "at.a.trust.rest.api.client.SignatureTemplates",
+    "modifiers" : [ ]
+  }, {
+    "name" : "templates",
+    "type" : "java.util.List<at.a.trust.rest.api.client.TemplateMeta>",
+    "modifiers" : [ ]
+  }, {
+    "name" : "selectedTemplate",
+    "type" : "at.a.trust.rest.api.client.TemplateMeta",
+    "modifiers" : [ ]
+  }, {
+    "name" : "uploadedDocumentName",
+    "modifiers" : [ ]
+  }, {
+    "name" : "isSignFinished",
+    "type" : "Boolean",
+    "modifiers" : [ ]
+  } ]
+}

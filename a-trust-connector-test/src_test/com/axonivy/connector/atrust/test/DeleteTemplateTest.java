@@ -7,7 +7,7 @@ import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.bpm.engine.client.BpmClient;
 import ch.ivyteam.ivy.bpm.engine.client.ExecutionResult;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmElement;
@@ -21,7 +21,7 @@ public class DeleteTemplateTest extends BaseSetup {
 	private static final BpmProcess INTEGRATION_PROCESS = BpmProcess.path("ATrustIntegration/ATrustDemo");
 
 	@BeforeEach
-	public void beforeEach(AppFixture fixture, IApplication app) {
+	public void beforeEach(AppFixture fixture, Application app) {
 		runMockEnv(fixture, app).run();
 	}
 

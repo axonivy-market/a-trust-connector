@@ -26,7 +26,7 @@ import com.axonivy.utils.e2etest.context.MultiEnvironmentContextProvider;
 import com.axonivy.utils.e2etest.utils.E2ETestUtils;
 
 import at.a.trust.rest.api.client.TemplateMeta;
-import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.bpm.engine.client.BpmClient;
 import ch.ivyteam.ivy.bpm.engine.client.ExecutionResult;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmElement;
@@ -62,14 +62,14 @@ public class ATrustProcessTest extends BaseSetup {
 	private boolean isRealTest;
 
 	@BeforeEach
-	public void beforeEach(ExtensionContext context, AppFixture fixture, IApplication app) {
+	public void beforeEach(ExtensionContext context, AppFixture fixture, Application app) {
 		isRealTest = context.getDisplayName().equals(REAL_SERVER.getDisplayName());
 		E2ETestUtils.determineConfigForContext(context.getDisplayName(), runRealEnv(fixture), runMockEnv(fixture, app));
 		signatureJob = new SignatureJob();
 	}
 
 	@AfterEach
-	void afterEach(AppFixture fixture, IApplication app) {
+	void afterEach(AppFixture fixture, Application app) {
 		RestClients clients = RestClients.of(app);
 		clients.remove(ATRUST_REST_CLIENT);
 	}

@@ -1,0 +1,352 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/process.json",
+  "id" : "1798254723F146E3",
+  "config" : {
+    "data" : "com.axonivy.connector.atrust.demo.Data"
+  },
+  "elements" : [ {
+      "id" : "f10",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 784, "y" : 496 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 481, "y" : 312 }
+      }
+    }, {
+      "id" : "f25",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "UPDATE A-TRUST CUSTOM VARS IN VARIABLE of A-TRUST-CONNECTOR  project:",
+        "- ATrust.APIKey: API Key for A-Trust Handysignatur api",
+        "- ATrust.EndpointUri: The endpoint uri of A-Trust Handysignatur Signatur-box webservice.",
+        "- ATrust.TemplateId: The ID of the signature template to be used."
+      ],
+      "visual" : {
+        "at" : { "x" : 384, "y" : 213 },
+        "size" : { "width" : 640, "height" : 86 },
+        "color" : "NodeStyle3"
+      }
+    }, {
+      "id" : "f15",
+      "type" : "RequestStart",
+      "name" : "StartATrustExample.ivp",
+      "config" : {
+        "signature" : "StartATrustExample",
+        "request" : {
+          "name" : "A-Trust ID Austria Example"
+        },
+        "case" : {
+          "name" : "Your process",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+          ]
+        }
+      },
+      "tags" : [
+        "demo"
+      ],
+      "visual" : {
+        "at" : { "x" : 96, "y" : 312 },
+        "labelOffset" : { "x" : 49, "y" : 37 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "RequestStart",
+      "name" : "AddTemplateATrust.ivp",
+      "config" : {
+        "signature" : "AddTemplateATrust"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 496 },
+        "labelOffset" : { "x" : 52, "y" : 37 }
+      },
+      "connect" : [
+        { "id" : "f26", "to" : "f89" }
+      ]
+    }, {
+      "id" : "f17",
+      "type" : "RequestStart",
+      "name" : "GetListTemplate.ivp",
+      "config" : {
+        "signature" : "GetListTemplate"
+      },
+      "visual" : {
+        "at" : { "x" : 104, "y" : 944 },
+        "labelOffset" : { "x" : 17, "y" : 33 }
+      },
+      "connect" : [
+        { "id" : "f14", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f21",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "Add your Signature Template to A-Trust Handy Signature",
+        "Template should be a xml file"
+      ],
+      "visual" : {
+        "at" : { "x" : 280, "y" : 424 },
+        "size" : { "width" : 432, "height" : 44 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f22",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "Remove a Signature Template on A-Trust Handy Signatur",
+        "You should provide exactly templateID"
+      ],
+      "visual" : {
+        "at" : { "x" : 280, "y" : 608 },
+        "size" : { "width" : 432, "height" : 44 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f34" }
+      ]
+    }, {
+      "id" : "f18",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "** Sign your docs by A-Trust",
+        "Your process opens a dialog.",
+        "This dialog allows the user uploads a document.",
+        "Then he can press sign the doc. Integration code will be call, then user will be redirect to A-Trust identification page."
+      ],
+      "visual" : {
+        "at" : { "x" : 384, "y" : 112 },
+        "size" : { "width" : 640, "height" : 92 },
+        "color" : "NodeStyle4"
+      }
+    }, {
+      "id" : "f20",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 569, "y" : 944 }
+      }
+    }, {
+      "id" : "f24",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "Get all your Signature Templates info on A-Trust Handy Signatur",
+        "It returns your templates name and ids"
+      ],
+      "visual" : {
+        "at" : { "x" : 279, "y" : 832 },
+        "size" : { "width" : 430, "height" : 50 }
+      },
+      "connect" : [
+        { "id" : "f23", "to" : "f17" }
+      ]
+    }, {
+      "id" : "f3",
+      "type" : "UserTask",
+      "name" : "Sign a Document",
+      "config" : {
+        "dialog" : "com.axonivy.connector.atrust.demo.DocumentSignature:start()",
+        "task" : {
+          "name" : "Start A-Trust Demo",
+          "skipTasklist" : true
+        },
+        "case" : {
+          "name" : "A-Trust Demo"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 312 },
+        "size" : { "width" : 128 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f11" }
+      ]
+    }, {
+      "id" : "f34",
+      "type" : "RequestStart",
+      "name" : "DeleteSignatureTemplate.ivp",
+      "config" : {
+        "signature" : "DeleteSignatureTemplate"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 704 },
+        "labelOffset" : { "x" : 25, "y" : 41 }
+      },
+      "connect" : [
+        { "id" : "f0", "to" : "f2" }
+      ]
+    }, {
+      "id" : "f35",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 784, "y" : 704 }
+      }
+    }, {
+      "id" : "f40",
+      "type" : "SubProcessCall",
+      "name" : [
+        "ATrust/TemplateManagement",
+        "DeleteSignatureTemplate(Integer)"
+      ],
+      "config" : {
+        "processCall" : "ATrust/TemplateManagement:DeleteTemplateATrust(Number)",
+        "call" : {
+          "map" : {
+            "param.templateId" : "in.templateId"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.templateData.resultCode" : "result.resultCode"
+          },
+          "code" : "ivy.log.info(\"A-Trust: resultCode {0}\", in.templateData.resultCode);"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 569, "y" : 704 },
+        "size" : { "width" : 223, "height" : 72 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "connect" : [
+        { "id" : "f36", "to" : "f35" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "SubProcessCall",
+      "name" : "ATrust/TemplateManagement",
+      "config" : {
+        "processCall" : "ATrust/TemplateManagement:AddTemplateATrust(File)",
+        "call" : {
+          "map" : {
+            "param.templateFile" : "in.myIvyFile"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.templateData" : "result.templateData"
+          },
+          "code" : [
+            "ivy.log.info(\"A-Trust call result code {0}\", out.templateData.resultCode);",
+            "ivy.log.info(\"A-Trust call template id {0}\", out.templateData.sigTemplateId);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 568, "y" : 496 },
+        "size" : { "width" : 176 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "SubProcessCall",
+      "name" : [
+        "ATrust/TemplateManagement",
+        "GetListTemplate()"
+      ],
+      "config" : {
+        "processCall" : "ATrust/TemplateManagement:GetListTemplate()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.signatureTemplates" : "result.templates",
+            "out.templateData" : "result.templateData"
+          },
+          "code" : [
+            "ivy.log.info(\"A-Trust: resultCode {0}\", in.templateData.resultCode);",
+            "ivy.log.info(\"A-Trust: List of template {0}\", in.templateData.listTemplates);",
+            "ivy.log.info(\"A-Trust: New SignatureTemplates {0}\", result.templates);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 944 },
+        "size" : { "width" : 176 },
+        "icon" : "res:/webContent/icons/atrust-icon.png"
+      },
+      "connect" : [
+        { "id" : "f19", "to" : "f20" }
+      ]
+    }, {
+      "id" : "f2",
+      "type" : "SubProcessCall",
+      "name" : [
+        "ATrust/TemplateManagement",
+        "GetListTemplate()",
+        "Get first result"
+      ],
+      "config" : {
+        "processCall" : "ATrust/TemplateManagement:GetListTemplate()",
+        "output" : {
+          "code" : [
+            "if (result.templates.templateList.size() == 0) {",
+            "  ivy.log.warn(\"A-Trust: No template available!\");",
+            "} else {",
+            "  in.templateId = result.templates.templateList.get(0).getId();",
+            "  ivy.log.warn(\"A-Trust: Template {0} will be deleted!\", in.templateId);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 704 },
+        "size" : { "width" : 194, "height" : 78 }
+      },
+      "connect" : [
+        { "id" : "f1", "to" : "f40" }
+      ]
+    }, {
+      "id" : "f89",
+      "type" : "Script",
+      "name" : [
+        "Get TemplateSiegel from CMS",
+        "/Templates/SampleSignatureSeal"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.io.FileUtils;",
+            "import com.axonivy.connector.atrust.IvyScriptCmsHelper;",
+            "import ch.ivyteam.ivy.cm.ContentObjectValue;",
+            "",
+            "//Create a file that will hold the template",
+            "in.myIvyFile = new File(\"Template.xml\", true);",
+            "ContentObjectValue cov = IvyScriptCmsHelper.getContentObjectValue(\"/Templates/SampleSignatureSeal\");",
+            "//Save result in java File of ivy File",
+            "IvyScriptCmsHelper.copyContentObjectValueToFile(cov, in.myIvyFile);",
+            "ivy.log.info(\"A-Trust: Found template {0}\", cov.toString());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 496 },
+        "size" : { "width" : 208 }
+      },
+      "connect" : [
+        { "id" : "f27", "to" : "f12" }
+      ]
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "Example to integrate in your process",
+        "offset" : 32,
+        "size" : 992,
+        "lanes" : [ ]
+      } ],
+    "colors" : {
+      "NodeStyle3" : "rgb(255, 0, 0)",
+      "NodeStyle4" : "rgb(0, 128, 0)"
+    }
+  }
+}

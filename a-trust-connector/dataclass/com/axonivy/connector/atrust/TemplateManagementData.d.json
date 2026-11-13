@@ -1,0 +1,26 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
+  "simpleName" : "TemplateManagementData",
+  "namespace" : "com.axonivy.connector.atrust",
+  "fields" : [ {
+    "name" : "documentByteArray",
+    "type" : "List<Byte>",
+    "modifiers" : [ ]
+  }, {
+    "name" : "result",
+    "type" : "com.axonivy.connector.atrust.bo.TemplateData",
+    "modifiers" : [ ]
+  }, {
+    "name" : "ivyFile",
+    "type" : "File",
+    "modifiers" : [ ]
+  }, {
+    "name" : "templateId",
+    "type" : "Number",
+    "modifiers" : [ ]
+  }, {
+    "name" : "signatureTemplates",
+    "type" : "at.a.trust.rest.api.client.SignatureTemplates",
+    "modifiers" : [ ]
+  } ]
+}
